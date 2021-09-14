@@ -21,9 +21,9 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	</head>
 
-	<body class="vertical light">
+	<body class="horizontal light">
 		<div class="wrapper">
-			<nav class="topnav navbar navbar-light">
+	<!-- 		<nav class="topnav navbar navbar-light">
 				<button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
 					<i class="fe fe-menu navbar-toggler-icon"></i>
 				</button>
@@ -34,7 +34,7 @@
 					<i class="fe fe-x"><span class="sr-only"></span></i>
 				</a>
 				<nav class="vertnav navbar navbar-light">
-					<!-- nav bar -->
+					nav bar
 					<div class="w-100 mb-4 d-flex">
 						<a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="/">
 	              			<span class="ml-1 item-text">거제시</span>
@@ -45,10 +45,27 @@
 						<li class="nav-item w-100"><a class="nav-link" href="/campaign">
 							<i class="fe fe-home fe-16"></i><span class="ml-3 item-text">100대 공약사항 이행 현황	</span>
 						</a></li>
-						<li class="nav-item w-100"><a class="nav-link" href="/population">
-							<i class="fe fe-layers fe-16"></i><span class="ml-3 item-text">인구 유출/입 분석 현황</span>
-						</a></li>
 					</ul>
 				</nav>
-			</aside>
+			</aside> -->
+					
+			<nav class="navbar navbar-expand-lg navbar-light bg-white flex-row border-bottom shadow">
+				<div class="container-fluid">
+					<a class="navbar-brand mx-lg-1 mr-0" href="/">
+						<span class="ml-1 item-text">거제시</span>
+					</a>
+					<button class="navbar-toggler mt-2 mr-auto toggle-sidebar text-muted">
+						<i class="fe fe-menu navbar-toggler-icon"></i>
+					</button>
+					<div class="navbar-slide bg-white ml-lg-4" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+							  <a class="nav-link" href="/campaign">
+							    <span class="ml-lg-2">100대 공약사항 이행 현황</span>
+							  </a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
 			

@@ -4,136 +4,210 @@
 
 <main role="main" class="main-content">
 	<div class="container-fluid">
-		<div class="alert alert-info" role="alert">
-			<span class="fe fe-alert-circle fe-16 mr-2"></span>campaign page
-		</div>
-		<br><br>
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
-					<div class="col-md-6">
-						<div class="col-xl-12 mb-4">
-							<div class="card shadow bg-primary text-white border-0">
+				
+					<div class="col-md-4">
+						<!-- <div class="col-xl-12 mb-4"> -->
+							<div class="card shadow border-1">
 								<div class="card-body">
-									<div class="row align-items-center">
-										<div class="col-3 text-center">
-											<span class="circle circle-sm bg-primary-light">
-												<i class="fe fe-16 fe-alert-circle text-white mb-0"></i>
-											</span>
-										</div>
-										<div class="col pr-0">
-											<p class="small text-muted mb-0">실시간 추가 확진자</p>
-											<a href="/beta"><span class="h3 mb-0 text-white">&nbsp;BETA SERVICE</span></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-12 mb-4">
-							<div class="card shadow border-0">
-								<div class="card-body">
-									<div class="row align-items-center">
-										<div class="col-3 text-center">
-											<span class="circle circle-sm bg-primary">
-												<i class="fe fe-16 fe-filter text-white mb-0"></i>
-											</span>
-										</div>
-										<div class="col pr-0">
-											<p class="small text-muted mb-0">어제 확진자</p>
-											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;&nbsp;
-											<c:if test="${(alist[0].ADecideCnt-alist[1].ADecideCnt) > 0}"><span class="small text-success">+</span></c:if>
-											<span class="small text-success"><fmt:formatNumber value="${alist[0].ADecideCnt-alist[1].ADecideCnt}" pattern="#,###,###" />명</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-12 mb-4">
-							<div class="card shadow border-0">
-								<div class="card-body">
-									<div class="row align-items-center">
-										<div class="col-3 text-center">
-											<span class="circle circle-sm bg-primary">
-												<i class="fe fe-16 fe-bar-chart text-white mb-0"></i>
-											</span>
-										</div>
-										<div class="col">
-											<p class="small text-muted mb-0">누적 확진자</p>
-											<div class="row align-items-center no-gutters">
-												<div class="col-auto">
-													<span class="h3 mr-2 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].decideCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;
-													<span class="small text-success">+ <fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" />명</span>
-												</div>
+									<div class="row align-items-center no-gutters">
+										<div class="col-auto">
+											<span class="h5 mr-2 mb-1">공약 이행 현황</span>
+											<div class="progress">
+												<div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-xl-12 mb-4">
-							<div class="card shadow border-0">
+						<!-- </div> -->
+						<br>
+						<!-- <div class="col-xl-12"> -->
+							<div class="card shadow">
+								<div class="card-header">
+									<strong class="card-title mb-0">100대 과제 진행률</strong>
+								</div>
 								<div class="card-body">
-									<div class="row align-items-center">
-										<div class="col-3 text-center">
-											<span class="circle circle-sm bg-primary">
-												<i class="fe fe-16 fe-activity text-white mb-0"></i>
-											</span>
+									<div class="chartjs-size-monitor">
+										<div class="chartjs-size-monitor-expand">
+											<div class=""></div>
 										</div>
-										<div class="col">
-											<p class="small text-muted mb-0">누적 사망자</p>
-											<span class="h3 mb-0">&nbsp;<fmt:formatNumber value="${alist[0].deathCnt}" pattern="#,###,###" /> 명</span>&nbsp;&nbsp;&nbsp;
-											<c:if test="${alist[0].ADeathCnt > 0}"><span class="small text-success">+ ${alist[0].ADeathCnt}명</span></c:if>
-											<c:if test="${alist[0].ADeathCnt == 0}"><span class="small text-success">없음</span></c:if>
+										<div class="chartjs-size-monitor-shrink">
+											<div class=""></div>
 										</div>
+									</div>
+									<canvas id="pieChartjs" width="420" height="269" style="display: block; height: 300px; width: 467px;" class="chartjs-render-monitor"></canvas>
+								</div>
+								<!-- /.card-body -->
+							</div>
+						<!-- </div> -->
+						
+						<br>
+						
+						<div class="card shadow border-1" style="margin:10px 0">
+							<div class="card-body">
+								<div class="row align-items-center no-gutters">
+									<div class="col-auto">
+										<span class="h5 mr-2 mb-1">이행 완료 임박 공약 top 5</span>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="card shadow mb-4">
+						<div class="card shadow border-1" style="margin:10px 0">
 							<div class="card-body">
-								<h3 style="margin:10px 10px 0px 20px;">도넛 파이 차트</h3><br>
-								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
-								<p style="text-align:right; margin-right:20px; margin-bottom:10px;">
-								<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
-								<div class="chart-widget" style="margin:10px 0px;">
-									<div id="gradientRadial"></div>
-								</div><br>
-								<fmt:parseNumber var="adecPer" value="${alist[0].ADecideCnt/alist[1].ADecideCnt * 100}" integerOnly="true" />
-								<%-- <fmt:formatNumber type="percent" value="${alist[0].ADecideCnt/alist[1].ADecideCnt}" pattern="0.0%" var="adecPerr"/> --%>
-								<input type="hidden" id="adecPer" value="${adecPer}" />
-								<div class="row">
-									<div class="col-6 text-center">
-										<p class="text-muted mb-0">어제</p>
-										<h4 class="mb-1"><fmt:formatNumber value="${alist[1].ADecideCnt}" pattern="#,###,###" /> 명</h4>
-									</div>
-									<div class="col-6 text-center">
-										<p class="text-muted mb-0">오늘</p>
-										<h4 class="mb-1"><fmt:formatNumber value="${alist[0].ADecideCnt}" pattern="#,###,###" /> 명</h4>
-										${alist[0].ADecideCnt-alist[1].ADecideCnt}명&nbsp;&nbsp;
-										<c:if test="${(adecPer-100) > 0}"><span class="small text-success">+</span></c:if>
-										<span class="small text-success">${adecPer-100}%</span>
+								<div class="row align-items-center no-gutters">
+									<div class="col-auto">
+										<span class="h5 mr-2 mb-1">이행률 미진 공약 top 5</span>
 									</div>
 								</div>
 							</div>
-							<!-- .card-body -->
+						</div>
+						<div class="card shadow border-1" style="margin:10px 0">
+							<div class="card-body">
+								<div class="row align-items-center no-gutters">
+									<div class="col-auto">
+										<span class="h5 mr-2 mb-1">100대 공약 상세보기</span>
+									</div>
+								</div>
+							</div>
+						</div>
+							
+					</div>
+					
+					<div class="col-md-8">
+					
+						<div class="card shadow">
+							<div class="card-header">
+								<strong class="card-title mb-0">부서별 공약 이행 현황</strong>
+							</div>
+							<div class="card-body">
+								<div class="chartjs-size-monitor">
+									<div class="chartjs-size-monitor-expand">
+										<div class=""></div>
+									</div>
+									<div class="chartjs-size-monitor-shrink">
+										<div class=""></div>
+									</div>
+								</div>
+								<canvas id="barChartjs" width="425" height="269" style="display: block; height: 300px; width: 473px;" class="chartjs-render-monitor"></canvas>
+							</div>
+							<!-- /.card-body -->
+						</div>
+						
+						<br>
+						
+						<div class="card shadow mb-4">
+							<h5 style="text-align:center; margin:30px 0px;">부서별 이행 리스트</h5>
+							<table class="table table-borderless table-striped">
+								<thead>
+									<tr role="row">
+										<th style="text-align:center;">격려 보내기</th>
+										<th style="text-align:center;">공약 신호등</th>
+										<th style="text-align:center;">부서명</th>
+										<th style="text-align:center;">진행 현황</th>
+										<th style="text-align:center;">사업 기간</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="col" style="text-align:center;">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="1">
+												<label class="custom-control-label" for="1"></label>
+											</div>
+										</th>
+										<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
+										<td style="text-align:center;">조선산업일자리과</td>
+										<td style="text-align:center;">1/10</td>
+										<td style="text-align:center;">2021</td>
+									</tr>
+									<tr>
+										<th scope="col" style="text-align:center;">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="2">
+												<label class="custom-control-label" for="2"></label>
+											</div>
+										</th>
+										<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
+										<td style="text-align:center;">교통과</td>
+										<td style="text-align:center;">2/15</td>
+										<td style="text-align:center;">2021</td>
+									</tr>
+									<tr>
+										<th scope="col" style="text-align:center;">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="3">
+												<label class="custom-control-label" for="3"></label>
+											</div>
+										</th>
+										<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
+										<td style="text-align:center;">생활경제과</td>
+										<td style="text-align:center;">1/7</td>
+										<td style="text-align:center;">2018</td>
+									</tr>
+									<tr>
+										<th scope="col" style="text-align:center;">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="4">
+												<label class="custom-control-label" for="4"></label>
+											</div>
+										</th>
+										<td style="text-align:center;"><span class="badge badge-pill badge-warning">노란불</span></td>
+										<td style="text-align:center;">관광과</td>
+										<td style="text-align:center;">3/6</td>
+										<td style="text-align:center;">2022</td>
+									</tr>
+									<tr>
+										<th scope="col" style="text-align:center;">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="5">
+												<label class="custom-control-label" for="5"></label>
+											</div>
+										</th>
+										<td style="text-align:center;"><span class="badge badge-pill badge-success">초록불</span></td>
+										<td style="text-align:center;">생활체육과</td>
+										<td style="text-align:center;">2/2</td>
+										<td style="text-align:center;">2023</td>
+									</tr>
+									<tr>
+										<th scope="col" style="text-align:center;">
+											<div class="custom-control custom-checkbox">
+												<input type="checkbox" class="custom-control-input" id="6">
+												<label class="custom-control-label" for="6"></label>
+											</div>
+										</th>
+										<td style="text-align:center;">sample01</td>
+										<td style="text-align:center;">sample01</td>
+										<td style="text-align:center;">sample01</td>
+										<td style="text-align:center;">sample01</td>
+									</tr>
+	
+									<!-- <tr>
+										<th scope="col" style="text-align:center;">
+											<div class="progress mb-3" style="height: 30px;">
+												<div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+											</div>
+										</th>
+										<td style="text-align:center;">
+											<span class="badge badge-pill badge-danger">빨간불</span>
+										</td>
+										<td style="text-align:center;">
+											<span class="badge badge-pill badge-warning">노란불</span>
+										</td>
+										<td style="text-align:center;">
+											<span class="badge badge-pill badge-success">초록불</span>
+										</td>
+										<td style="text-align:center;">
+											<span class="badge badge-pill badge-primary">파란불</span>
+										</td>
+									</tr> -->
+								</tbody>
+							</table>
+							<!-- .table -->
 						</div>
 						<!-- .card -->
-					</div>
-					<!-- .col -->
-				</div>
-				<!-- end section -->
-				
-				<br><hr><br>
-				
-				<!-- charts-->
-				<div class="row my-4">
-					<div class="col-md-12">
-						<h4 style="text-align:center; margin:30px 0px;">막대 그래프 차트</h4>
-						<div class="chart-box" style="padding:0px 20px;">
-							<div id="columnChart"></div>
-						</div>
 					</div>
 					<!-- .col -->
 				</div>
@@ -144,31 +218,186 @@
 				
 				<div class="row">
 					<div class="col-md-12">
-						<h4 style="text-align:center; margin:30px 0px;">표 차트</h4>
+						<h4 style="text-align:center; margin:30px 0px;">부서별 현황</h4>
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
-									<th style="text-align:center;">일자</th>
-									<th style="text-align:center;">누적 확진자</th>
-									<th style="text-align:center;">추가 확진자</th>
-									<th style="text-align:center;">누적 사망자</th>
-									<th style="text-align:center;">추가 사망자</th>
+									<th style="text-align:center;">격려 보내기</th>
+									<th style="text-align:center;">공약 신호등</th>
+									<th style="text-align:center;">부서명</th>
+									<th style="text-align:center;">진행 현황</th>
+									<th style="text-align:center;">사업 기간</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<th scope="col" style="text-align:center;">sample01</th>
+									<th scope="col" style="text-align:center;">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="1">
+											<label class="custom-control-label" for="1"></label>
+										</div>
+									</th>
+									<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
+									<td style="text-align:center;">조선산업일자리과</td>
+									<td style="text-align:center;">1/10</td>
+									<td style="text-align:center;">2021</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="2">
+											<label class="custom-control-label" for="2"></label>
+										</div>
+									</th>
+									<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
+									<td style="text-align:center;">교통과</td>
+									<td style="text-align:center;">2/15</td>
+									<td style="text-align:center;">2021</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="3">
+											<label class="custom-control-label" for="3"></label>
+										</div>
+									</th>
+									<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
+									<td style="text-align:center;">생활경제과</td>
+									<td style="text-align:center;">1/7</td>
+									<td style="text-align:center;">2018</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="4">
+											<label class="custom-control-label" for="4"></label>
+										</div>
+									</th>
+									<td style="text-align:center;"><span class="badge badge-pill badge-warning">노란불</span></td>
+									<td style="text-align:center;">관광과</td>
+									<td style="text-align:center;">3/6</td>
+									<td style="text-align:center;">2022</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="5">
+											<label class="custom-control-label" for="5"></label>
+										</div>
+									</th>
+									<td style="text-align:center;"><span class="badge badge-pill badge-success">초록불</span></td>
+									<td style="text-align:center;">생활체육과</td>
+									<td style="text-align:center;">2/2</td>
+									<td style="text-align:center;">2023</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">
+										<div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="6">
+											<label class="custom-control-label" for="6"></label>
+										</div>
+									</th>
 									<td style="text-align:center;">sample01</td>
 									<td style="text-align:center;">sample01</td>
 									<td style="text-align:center;">sample01</td>
 									<td style="text-align:center;">sample01</td>
 								</tr>
+
+								<!-- <tr>
+									<th scope="col" style="text-align:center;">
+										<div class="progress mb-3" style="height: 30px;">
+											<div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">75%</div>
+										</div>
+									</th>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-danger">빨간불</span>
+									</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-warning">노란불</span>
+									</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-success">초록불</span>
+									</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-primary">파란불</span>
+									</td>
+								</tr> -->
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<br><hr><br>
+				
+				<div class="row">
+					<div class="col-md-12">
+						<h4 style="text-align:center; margin:30px 0px;">조선산업일자리과 공약 이행 현황 (팝업용)</h4>
+						<table class="table table-borderless table-striped">
+							<thead>
+								<tr role="row">
+									<th style="text-align:center;">담당</th>
+									<th style="text-align:center;">담당자</th>
+									<th style="text-align:center;">공약</th>
+									<th style="text-align:center;">이행도</th>
+									<th style="text-align:center;" colspan="2">이행률</th>
+								</tr>
+							</thead>
+							<tbody>
 								<tr>
-									<th scope="col" style="text-align:center;">sample02</th>
-									<td style="text-align:center;">sample02</td>
-									<td style="text-align:center;">sample02</td>
-									<td style="text-align:center;">sample02</td>
-									<td style="text-align:center;">sample02</td>
+									<th scope="col" style="text-align:center;">일자리 창출</th>
+									<td style="text-align:center;">4143</td>
+									<td style="text-align:center;">지역일자리 적극 창출</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-primary">완료</span>
+									</td>
+									<td style="text-align:center;" colspan="2">
+										<div class="progress mb-3" style="height: 30px;">
+											<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+												100%</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">일자리 창출</th>
+									<td style="text-align:center;">4144</td>
+									<td style="text-align:center;">고용위기지역 지정 연장</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-primary">완료</span>
+									</td>
+									<td style="text-align:center;" colspan="2">
+										<div class="progress mb-3" style="height: 30px;">
+											<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+												100%</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">기업지원</th>
+									<td style="text-align:center;">4154</td>
+									<td style="text-align:center;">조선업 부활을 위한 전방위적 지원 강화</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-warning">추진중</span>
+									</td>
+									<td style="text-align:center;" colspan="2">
+										<div class="progress mb-3" style="height: 30px;">
+											<div class="progress-bar bg-success" role="progressbar" style="width: 93%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+												93%</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="col" style="text-align:center;">노동정책</th>
+									<td style="text-align:center;">4453</td>
+									<td style="text-align:center;">비정규직 근로자 지원센터 지원 확대</td>
+									<td style="text-align:center;">
+										<span class="badge badge-pill badge-primary">완료</span>
+									</td>
+									<td style="text-align:center;" colspan="2">
+										<div class="progress mb-3" style="height: 30px;">
+											<div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+												100%</div>
+										</div>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -187,84 +416,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
-
-<script>
-	var adecPer = $('#adecPer').val()-100;
-	var gradientRadialChart;
-	var gradientRadialOptions = { 
-	    series: [adecPer], 
-	    chart: { 
-	        height: 200, 
-	        type: "radialBar", 
-	        toolbar: { show: !1 } 
-	    }, 
-	    plotOptions: { 
-	        radialBar: { 
-	            startAngle: 0, 
-	            endAngle: 360, 
-	            hollow: { 
-	                margin: 0, 
-	                size: "70%", 
-	                background: colors.backgroundColor, 
-	                image: void 0, 
-	                imageOffsetX: 0, 
-	                imageOffsetY: 0, 
-	                position: "front" 
-	            }, 
-	            track: { 
-	                background: colors.backgroundColor, 
-	                strokeWidth: "67%", 
-	                margin: 0 
-	            }, 
-	            dataLabels: { 
-	                show: !0, 
-	                name: { 
-	                    fontSize: "0.875rem", 
-	                    fontWeight: 400, 
-	                    offsetY: -10, 
-	                    show: !0, 
-	                    color: colors.mutedColor, 
-	                    fontFamily: base.defaultFontFamily 
-	                }, 
-	                value: { 
-	                    formatter: function (e) { return parseInt(e) }, 
-	                    color: colors.headingColor, 
-	                    fontSize: "1.53125rem", 
-	                    fontWeight: 700, 
-	                    fontFamily: base.defaultFontFamily, 
-	                    offsetY: 5, 
-	                    show: !0 
-	                }, 
-	                total: { 
-	                    show: !0, 
-	                    fontSize: "0.875rem", 
-	                    fontWeight: 400, 
-	                    offsetY: -10, 
-	                    color: colors.mutedColor, 
-	                    fontFamily: base.defaultFontFamily 
-	                } 
-	            } 
-	        } 
-	    }, 
-	    fill: { 
-	        type: "gradient", 
-	        gradient: { 
-	            shade: "dark", 
-	            type: "horizontal", 
-	            shadeIntensity: .5, 
-	            gradientToColors: ["#ABE5A1"], 
-	            inverseColors: !0, 
-	            opacityFrom: 1, 
-	            opacityTo: 1, 
-	            stops: [0, 100] 
-	        } 
-	    }, 
-	    stroke: { lineCap: "round" }, 
-	    labels: ["Percent"] 
-	};
-	var gradientRadial = document.querySelector("#gradientRadial"); 
-	gradientRadial && (gradientRadialChart = new ApexCharts(gradientRadial, gradientRadialOptions)).render(); 
-</script>
 
 <script>
 	var dateArea = [], D = [];
