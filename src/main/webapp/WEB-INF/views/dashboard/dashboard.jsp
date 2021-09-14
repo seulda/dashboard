@@ -94,7 +94,7 @@
 					<div class="col-md-6">
 						<div class="card shadow mb-4">
 							<div class="card-body">
-								<h3 style="margin:10px 10px 0px 20px;">전일대비 확진자 비교</h3><br>
+								<h3 style="margin:10px 10px 0px 20px;">도넛 파이 차트</h3><br>
 								<fmt:parseDate value="${alist[0].stateDt}" var="date0" pattern="yyyyMMdd" />
 								<p style="text-align:right; margin-right:20px; margin-bottom:10px;">
 								<fmt:formatDate value="${date0}" pattern="MM월 dd일" /> 기준</p>
@@ -131,7 +131,7 @@
 				<!-- charts-->
 				<div class="row my-4">
 					<div class="col-md-12">
-						<h4 style="text-align:center; margin:30px 0px;">최근 10일 일별 코로나 확진 현황</h4>
+						<h4 style="text-align:center; margin:30px 0px;">막대 그래프 차트</h4>
 						<div class="chart-box" style="padding:0px 20px;">
 							<div id="columnChart"></div>
 						</div>
@@ -145,11 +145,11 @@
 				
 				<div class="row">
 					<div class="col-md-12">
-						<h4 style="text-align:center; margin:30px 0px;">최근 일별 코로나 누적 확진 현황</h4>
+						<h4 style="text-align:center; margin:30px 0px;">표 차트</h4>
 						<table class="table table-borderless table-striped">
 							<thead>
 								<tr role="row">
-									<th style="text-align:center;">집계일</th>
+									<th style="text-align:center;">일자</th>
 									<th style="text-align:center;">누적 확진자</th>
 									<th style="text-align:center;">추가 확진자</th>
 									<th style="text-align:center;">누적 사망자</th>
@@ -157,16 +157,20 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="list" items="${alist}">
-								<fmt:parseDate value="${list.stateDt}" var="stateDt" pattern="yyyyMMdd" />
 								<tr>
-									<th scope="col" style="text-align:center;"><fmt:formatDate value="${stateDt}" pattern="MM월 dd일" /></th>
-									<td style="text-align:center;"><fmt:formatNumber value="${list.decideCnt}" pattern="#,###,###" /></td>
-									<td style="text-align:center;">+ <fmt:formatNumber value="${list.ADecideCnt}" pattern="#,###,###" /></td>
-									<td style="text-align:center;"><fmt:formatNumber value="${list.deathCnt}" pattern="#,###,###" /></td>
-									<td style="text-align:center;">+ <fmt:formatNumber value="${list.ADeathCnt}" pattern="#,###,###" /></td>
+									<th scope="col" style="text-align:center;">sample01</th>
+									<td style="text-align:center;">sample01</td>
+									<td style="text-align:center;">sample01</td>
+									<td style="text-align:center;">sample01</td>
+									<td style="text-align:center;">sample01</td>
 								</tr>
-								</c:forEach>
+								<tr>
+									<th scope="col" style="text-align:center;">sample02</th>
+									<td style="text-align:center;">sample02</td>
+									<td style="text-align:center;">sample02</td>
+									<td style="text-align:center;">sample02</td>
+									<td style="text-align:center;">sample02</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>
