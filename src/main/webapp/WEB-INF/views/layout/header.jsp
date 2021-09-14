@@ -17,8 +17,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery.steps.css">
 		<!-- App CSS -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app-light.css" id="lightTheme">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app-dark.css" id="darkTheme" disabled>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/accordions.css">
 		<!-- JQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	</head>
@@ -29,13 +27,6 @@
 				<button type="button" class="navbar-toggler text-muted mt-2 p-0 mr-3 collapseSidebar">
 					<i class="fe fe-menu navbar-toggler-icon"></i>
 				</button>
-				<ul class="nav">
-					<li class="nav-item">
-						<a class="nav-link text-muted my-2" href="#" id="modeSwitcher" data-mode="light">
-							<i class="fe fe-sun fe-16"></i>
-						</a>
-					</li>
-				</ul>
 			</nav>
 	
 			<aside class="sidebar-left border-right bg-white shadow" id="leftSidebar" data-simplebar>
@@ -60,3 +51,4 @@
 					</ul>
 				</nav>
 			</aside>
+			
