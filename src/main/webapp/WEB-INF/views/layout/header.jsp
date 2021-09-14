@@ -42,10 +42,10 @@
 					</div>
 	
 					<ul class="navbar-nav flex-fill w-100 mb-2">
-						<li class="nav-item w-100"><a class="nav-link" href="/">
+						<li class="nav-item w-100"><a class="nav-link" href="/campaign">
 							<i class="fe fe-home fe-16"></i><span class="ml-3 item-text">100대 공약사항 이행 현황	</span>
 						</a></li>
-						<li class="nav-item w-100"><a class="nav-link" href="/#">
+						<li class="nav-item w-100"><a class="nav-link" href="/population">
 							<i class="fe fe-layers fe-16"></i><span class="ml-3 item-text">인구 유출/입 분석 현황</span>
 						</a></li>
 					</ul>

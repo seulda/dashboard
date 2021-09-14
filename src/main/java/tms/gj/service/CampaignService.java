@@ -1,6 +1,6 @@
 package tms.gj.service;
 
-public interface CommitmentService {
+public interface CampaignService {
 	// service 구현 sample
 	
 	// today date get

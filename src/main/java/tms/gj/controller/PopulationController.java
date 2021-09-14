@@ -13,22 +13,13 @@ import lombok.extern.log4j.Log4j;
 
 
 @Controller
-public class HomeController {
+@AllArgsConstructor
+@Log4j
+public class PopulationController {
 	
-	@GetMapping("/")
-	public String index() {
-		// Index Page update 예정
-		return "/layout/index";
+	@GetMapping("/population")
+	public String population() {
+		return "/dashboard/population";
 	}
-	
-//	@GetMapping("/campaign")
-//	public String campaign() {
-//		return "/dashboard/campaign";
-//	}
-	
-//	@GetMapping("/population")
-//	public String population() {
-//		return "/dashboard/population";
-//	}
 	
 }

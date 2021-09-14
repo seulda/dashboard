@@ -5,7 +5,7 @@
 <main role="main" class="main-content">
 	<div class="container-fluid">
 		<div class="alert alert-info" role="alert">
-			<span class="fe fe-alert-circle fe-16 mr-2"></span>안내영역
+			<span class="fe fe-alert-circle fe-16 mr-2"></span>campaign page
 		</div>
 		<br><br>
 		<div class="row justify-content-center">

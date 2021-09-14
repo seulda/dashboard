@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class CommitmentServiceImpl implements CommitmentService {
+public class CampaignServiceImpl implements CampaignService {
 	// ServiceImpl 구현 sample
 	
 	// today date get
