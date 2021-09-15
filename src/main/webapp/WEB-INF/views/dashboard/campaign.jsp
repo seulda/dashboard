@@ -107,6 +107,7 @@
 										<th style="text-align:center;">공약 신호등</th>
 										<th style="text-align:center;">부서명</th>
 										<th style="text-align:center;">진행 현황</th>
+										<th style="text-align:center;">진행도</th>
 										<th style="text-align:center;">사업 기간</th>
 									</tr>
 								</thead>
@@ -121,6 +122,11 @@
 										<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
 										<td style="text-align:center;">조선산업일자리과</td>
 										<td style="text-align:center;">1/10</td>
+										<td sytle="text-align:center;">
+											<div class="progress mb-3">
+												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
 										<td style="text-align:center;">2021</td>
 									</tr>
 									<tr>
@@ -133,6 +139,11 @@
 										<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
 										<td style="text-align:center;">교통과</td>
 										<td style="text-align:center;">2/15</td>
+										<td sytle="text-align:center;">
+											<div class="progress mb-3">
+												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
 										<td style="text-align:center;">2021</td>
 									</tr>
 									<tr>
@@ -145,6 +156,11 @@
 										<td style="text-align:center;"><span class="badge badge-pill badge-danger">빨간불</span></td>
 										<td style="text-align:center;">생활경제과</td>
 										<td style="text-align:center;">1/7</td>
+										<td sytle="text-align:center;">
+											<div class="progress mb-3">
+												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
 										<td style="text-align:center;">2018</td>
 									</tr>
 									<tr>
@@ -157,6 +173,11 @@
 										<td style="text-align:center;"><span class="badge badge-pill badge-warning">노란불</span></td>
 										<td style="text-align:center;">관광과</td>
 										<td style="text-align:center;">3/6</td>
+										<td sytle="text-align:center;">
+											<div class="progress mb-3">
+												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
 										<td style="text-align:center;">2022</td>
 									</tr>
 									<tr>
@@ -169,6 +190,11 @@
 										<td style="text-align:center;"><span class="badge badge-pill badge-success">초록불</span></td>
 										<td style="text-align:center;">생활체육과</td>
 										<td style="text-align:center;">2/2</td>
+										<td sytle="text-align:center;">
+											<div class="progress mb-3">
+												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
 										<td style="text-align:center;">2023</td>
 									</tr>
 									<tr>
@@ -181,6 +207,11 @@
 										<td style="text-align:center;">sample01</td>
 										<td style="text-align:center;">sample01</td>
 										<td style="text-align:center;">sample01</td>
+										<td sytle="text-align:center;">
+											<div class="progress mb-3">
+												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
+											</div>
+										</td>
 										<td style="text-align:center;">sample01</td>
 									</tr>
 	
