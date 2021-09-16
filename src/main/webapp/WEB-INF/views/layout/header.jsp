@@ -64,6 +64,11 @@
 							    <span class="ml-lg-2">100대 공약사항 이행 현황</span>
 							  </a>
 							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="/population">
+							    <span class="ml-lg-2">인구 현황</span>
+							  </a>
+							</li>
 						</ul>
 					</div>
 				</div>
