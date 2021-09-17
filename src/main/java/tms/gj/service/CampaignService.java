@@ -1,8 +1,7 @@
 package tms.gj.service;
 
 public interface CampaignService {
-	// service 구현 sample
 	
-	// today date get
-	public String today();
+	// 공약 개수 조회
+	public void testCount();
 }

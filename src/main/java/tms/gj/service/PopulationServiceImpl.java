@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 
 @Service
 @AllArgsConstructor
-public class PopulationServiceImpl implements CampaignService {
+public class PopulationServiceImpl implements PopulationService {
 	// ServiceImpl 구현 sample
 	
 	// today date get
