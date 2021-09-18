@@ -1,6 +1,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,windows,eclipse,java,git
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,eclipse,java,git
 
+# design
+.css
+.js
+
 # ignore properties file
 config.properties
 
