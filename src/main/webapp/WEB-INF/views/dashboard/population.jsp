@@ -43,7 +43,7 @@
 					
 					<div class="col-md-6">
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-2" style="height:30vh">
 							<div class="card-header">
 								<strong class="card-title mb-0">연간 인구 현황</strong>
 							</div>
@@ -55,7 +55,7 @@
 						</div>
 						
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-2" style="height:30vh">
 							<div class="card-header">
 								<strong class="card-title mb-0">연령별 인구 현황</strong>
 							</div>
@@ -69,7 +69,7 @@
 						<!-- /.card -->
 						
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-2" style="height:30vh">
 							<div class="card-header">
 								<strong class="card-title mb-0">인구 변화 요인</strong>
 							</div>

@@ -1,8 +1,8 @@
 package tms.gj.service;
 
 public interface PopulationService {
-	// service 구현 sample
 	
-	// today date get
-	public String today();
+	// 인구 데이터 개수 조회
+	public void testCount();
+	
 }
