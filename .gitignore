@@ -2,8 +2,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,eclipse,java,git
 
 # design
-.css
-.js
+*.css
+*.js
 
 # ignore properties file
 config.properties
