@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import tms.gj.service.CampaignService;
+import tms.gj.service.PopulationService;
 
 
 @Controller
@@ -17,8 +19,14 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class PopulationController {
 	
+	private PopulationService ps;
+	
+	
 	@GetMapping("/population")
 	public String population() {
+		
+		ps.testCount();
+		
 		return "/dashboard/population";
 	}
 	

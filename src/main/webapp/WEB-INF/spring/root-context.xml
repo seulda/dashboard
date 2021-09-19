@@ -16,12 +16,20 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
+	<!-- config파일 자동 로드 location="classpath:database.properties"  /!-->
+    <!-- <context:property-placeholder location="/config/*.properties" />  -->
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="/WEB-INF/config/config.properties"/>
+        <property name="fileEncoding" value="UTF-8" />
+    </bean>
+    
 	<!-- MariaDB JDBC DataSource -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
-		<property name="url" value="jdbc:mariadb://innodep11.ceeu6mczsj77.us-east-2.rds.amazonaws.com:3306/innodep_db" />
-		<property name="username" value="innodep" />
-		<property name="password" value="innodep123!" />
+		<property name="driverClassName" value="${db.driverClassName}" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
 	</bean>
     
 	<!-- mybatis SqlSessionFactoryBean -->

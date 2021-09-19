@@ -2,15 +2,20 @@ package tms.gj.service;
 
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
+import tms.gj.mapper.PopulationMapper;
 
 
 @Service
 @AllArgsConstructor
 public class PopulationServiceImpl implements PopulationService {
-	// ServiceImpl 구현 sample
 	
-	// today date get
-	public String today() {
-		return null;
+	private PopulationMapper pm;
+	
+	
+	@Override
+	public void testCount() {
+		System.out.println("test population count : " + pm.populationCount());
 	}
+	
+
 }
