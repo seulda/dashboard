@@ -8,5 +8,15 @@
 		select count(*)
 		from campaign
 	</select>
+	
+	<select id="campaignList" resultType="tms.gj.domain.CampaignVO">
+		SELECT 
+		department,
+		sum(if(rate=100,1,0)) as successCount,
+		count(department) as totalCount, 
+		(sum(if(rate=100,1,0))/count(department)) * 100  as successRate
+		FROM innodep_db.campaign
+		Group by department;
+	</select>
 
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <main role="main" class="main-content">
@@ -106,60 +107,20 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td style="text-align:center;">조선산업일자리과</td>
-										<td style="text-align:center;">1/10</td>
-										<td style="text-align:center; padding-right:5%">
-											<div class="progress mb-1">
-												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td style="text-align:center;">교통과</td>
-										<td style="text-align:center;">2/15</td>
-										<td style="text-align:center; padding-right:5%">
-											<div class="progress mb-1">
-												<div class="progress-bar" role="progressbar" style="width: 10%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">10%</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td style="text-align:center;">생활경제과</td>
-										<td style="text-align:center;">1/7</td>
-										<td style="text-align:center; padding-right:5%">
-											<div class="progress mb-1">
-												<div class="progress-bar" role="progressbar" style="width: 14%;" aria-valuenow="14" aria-valuemin="0" aria-valuemax="100">14%</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td style="text-align:center;">관광과</td>
-										<td style="text-align:center;">3/6</td>
-										<td style="text-align:center; padding-right:5%">
-											<div class="progress mb-1">
-												<div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td style="text-align:center;">생활체육과</td>
-										<td style="text-align:center;">2/2</td>
-										<td style="text-align:center; padding-right:5%">
-											<div class="progress mb-1">
-												<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">100%</div>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td style="text-align:center;">sample01</td>
-										<td style="text-align:center;">sample01</td>
-										<td style="text-align:center; padding-right:5%">
-											<div class="progress mb-1">
-												<div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
-											</div>
-										</td>
-									</tr>
+									<c:forEach var="campaign" items="${ list }">
+										<tr>
+											<td style="text-align:center;">${ campaign.department }</td>
+											<td style="text-align:center;">${ campaign.totalCount }/${ campaign.successCount }</td>
+											<td style="text-align:center; padding-right:5%">
+												<div class="progress mb-1">
+													<c:if test="${ campaign.successRate eq 0 }">
+														<div class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+													</c:if>
+													<div class="progress-bar" role="progressbar" style="width: ${ campaign.successRate }%;" aria-valuenow="${ campaign.successRate }" aria-valuemin="0" aria-valuemax="100">${ campaign.successRate }%</div>
+												</div>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							<!-- .table -->

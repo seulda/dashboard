@@ -17,4 +17,7 @@ public class CampaignVO {
 	private String fulfil;				// 자체점검 - 이행도
 	private int rate;       			// 자체점검 - 이행률
 	
+	int successCount;                   //진행현황 - 분모
+	int totalCount;                     //진행현황 - 분자
+	int successRate;                    //진행률
 }

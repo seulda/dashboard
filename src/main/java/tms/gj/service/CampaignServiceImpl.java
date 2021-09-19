@@ -1,7 +1,11 @@
 package tms.gj.service;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
+import tms.gj.domain.CampaignVO;
 import tms.gj.mapper.CampaignMapper;
 
 
@@ -16,4 +20,11 @@ public class CampaignServiceImpl implements CampaignService {
 	public void testCount() {
 		System.out.println("test campaign count : " + cm.campaignCount());
 	}
+
+	//부서별 이행 리스트
+	@Override
+	public ArrayList<CampaignVO> campaignList() {
+		return cm.campaignList();
+	}
+	
 }
