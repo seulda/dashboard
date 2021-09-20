@@ -25,9 +25,19 @@ public class CampaignController {
 	public String campaign(Model model) {
 		
 		cs.testCount();
-		ArrayList<CampaignVO> list =cs.campaignList();
+		ArrayList<CampaignVO> list = cs.campaignList();
+		ArrayList<CampaignVO> rate = cs.campaignRate();
+		ArrayList<CampaignVO> category = cs.category();
+		ArrayList<CampaignVO> location = cs.location();
+		ArrayList<CampaignVO> period   = cs.businessPeriod();
+		ArrayList<CampaignVO> fulfil   = cs.fulfil();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("rate", rate);
+		model.addAttribute("category", category);
+		model.addAttribute("location", location);
+		model.addAttribute("period", period);
+		model.addAttribute("fulfil", fulfil);
 		
 		return "/dashboard/campaign";
 	}

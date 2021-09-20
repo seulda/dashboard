@@ -1,9 +1,9 @@
 package tms.gj.service;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
+
 import lombok.AllArgsConstructor;
 import tms.gj.domain.CampaignVO;
 import tms.gj.mapper.CampaignMapper;
@@ -25,6 +25,36 @@ public class CampaignServiceImpl implements CampaignService {
 	@Override
 	public ArrayList<CampaignVO> campaignList() {
 		return cm.campaignList();
+	}
+	// 부서별 공약 이행 현황
+	@Override
+	public ArrayList<CampaignVO> campaignRate() {
+		// TODO Auto-generated method stub
+		return cm.campaignRate();
+	}
+
+	@Override
+	public ArrayList<CampaignVO> category() {
+		// TODO Auto-generated method stub
+		return cm.category();
+	}
+
+	@Override
+	public ArrayList<CampaignVO> location() {
+		// TODO Auto-generated method stub
+		return cm.location();
+	}
+
+	@Override
+	public ArrayList<CampaignVO> businessPeriod() {
+		// TODO Auto-generated method stub
+		return cm.businessPeriod();
+	}
+
+	@Override
+	public ArrayList<CampaignVO> fulfil() {
+		// TODO Auto-generated method stub
+		return cm.fulfil();
 	}
 	
 }

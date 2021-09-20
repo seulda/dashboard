@@ -20,4 +20,15 @@ public class CampaignVO {
 	int successCount;                   //진행현황 - 분모
 	int totalCount;                     //진행현황 - 분자
 	int successRate;                    //진행률
+	int avgRate;                        //평균 이행 현황
+	
+	//부서별
+	int successCat;                     //완료       
+	int totalCat;                       //전체      
+	int cat;                            //진행 현황  
+	//지역별    
+	int totalLoc;                       //전체      
+	int loc;                            //진행 현황 
+	
+	int cnt;
 }
