@@ -4,9 +4,15 @@
 <!-- <mapper namespace="tms.gj.mapper.CampaignMapper"> -->
 <mapper namespace="tms.gj.mapper.PopulationMapper">
 
-	<select id="populationCount" resultType="int">
+	<select id="testCount" resultType="int">
 		select count(*)
 		from population
+	</select>
+	
+	<select id="year_total" resultType="tms.gj.domain.PopulationVO">
+		select year, sum(population) as population
+		from innodep_db.population 
+		group by year;
 	</select>
 
 </mapper>
