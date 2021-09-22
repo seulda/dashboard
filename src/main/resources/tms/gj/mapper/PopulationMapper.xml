@@ -5,14 +5,78 @@
 <mapper namespace="tms.gj.mapper.PopulationMapper">
 
 	<select id="testCount" resultType="int">
-		select count(*)
-		from population
+		select
+			count(*)
+		from
+			population
 	</select>
 	
+	
 	<select id="year_total" resultType="tms.gj.domain.PopulationVO">
-		select year, sum(population) as population
-		from innodep_db.population 
-		group by year;
+		select 
+			year, sum(population) as population
+		from 
+			innodep_db.population 
+		group by 
+			year
+		order by 
+			year;
 	</select>
+	<select id="year_dong" resultType="tms.gj.domain.PopulationVO">
+		select 
+			year, dong, sum(population) as population 
+		from 
+			innodep_db.population 
+		group by 
+			year, dong 
+		order by 
+			year, dong;
+	</select>
+	
+	
+	<!-- <select id="year2021_sex" resultType="tms.gj.domain.PopulationVO">
+		select 
+			year, sex, sum(population) as population 
+		from 
+			innodep_db.population 
+		where 
+			year = 2021 
+		group by 
+			year, sex;
+	</select>
+	<select id="year_sex" resultType="tms.gj.domain.PopulationVO">
+		select 
+			year, sex, sum(population) as population 
+		from 
+			innodep_db.population 
+		group by 
+			year, sex 
+		order by 
+			year;
+	</select> -->
+	<select id="year2021_sex" resultType="tms.gj.domain.PopulationVO">
+		select 
+			year, sex, sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = 2021)*100, 1) as per
+		from 
+			innodep_db.population 
+		where 
+			year = 2021 
+		group by 
+			year, sex
+		order by 
+			year, sex;
+	</select>
+	<select id="year_sex" resultType="tms.gj.domain.PopulationVO">
+		select 
+			year, sex, sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = #{year})*100, 1) as per
+		from 
+			innodep_db.population 
+		group by 
+			year, sex 
+		order by 
+			year, sex;
+	</select>
+	
+	
 
 </mapper>

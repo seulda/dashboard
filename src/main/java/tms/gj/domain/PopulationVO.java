@@ -11,5 +11,6 @@ public class PopulationVO {
 	private String age;			// 연령대 : 5세단위
 	private String sex;			// 성별
 	private int population;		// 인구수
+	private float per;			// percentage
 	
 }

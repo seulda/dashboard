@@ -25,6 +25,20 @@ public class PopulationServiceImpl implements PopulationService {
 	public ArrayList<PopulationVO> year_total() {
 		return pm.year_total();
 	}
+	@Override
+	public ArrayList<PopulationVO> year_dong() {
+		return pm.year_dong();
+	}
+
+
+	@Override
+	public ArrayList<PopulationVO> year2021_sex() {
+		return pm.year2021_sex();
+	}
+	@Override
+	public ArrayList<PopulationVO> year_sex(int year) {
+		return pm.year_sex(year);
+	}
 	
 
 }

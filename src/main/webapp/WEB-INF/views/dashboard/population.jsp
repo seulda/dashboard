@@ -18,12 +18,12 @@
 								<h5>인구수 : </h5>
 								<h6>구성비 : </h6>
 								<br>
+								<span>남</span>
 								<div class="progress">
-									<span>남</span>
-									<div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">55%</div>
-									<div class="progress-bar bg-danger" role="progressbar" style="width: 45%" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100">45%</div>
-									<span>여</span>
+									<div class="progress-bar" role="progressbar" style="width: ${men}%" aria-valuenow="${men}" aria-valuemin="0" aria-valuemax="100">${men}%</div>
+									<div class="progress-bar bg-danger" role="progressbar" style="width: ${woman}%" aria-valuenow="${woman}" aria-valuemin="0" aria-valuemax="100">${woman}%</div>
 								</div>
+								<span>여</span>
 								<br>
 							</div>
 						</div>
@@ -74,15 +74,6 @@
 								<strong class="card-title mb-0">인구 변화 요인</strong>
 							</div>
 							<div class="card-body">
-								<!-- <div class="chartjs-size-monitor">
-									<div class="chartjs-size-monitor-expand">
-										<div class=""></div>
-									</div>
-									<div class="chartjs-size-monitor-shrink">
-										<div class=""></div>
-									</div>
-								</div>
-								<canvas id="lineChartjs" width="662" height="539" style="display: block; height: 300px; width: 368px;" class="chartjs-render-monitor"></canvas> -->
 								<div class="chart-box">
 									<div id="lineChart"></div>
 								</div>
