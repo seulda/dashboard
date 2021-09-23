@@ -16,7 +16,8 @@
 	</select>
 	<select id="year_count" resultType="tms.gj.domain.PopulationVO">
 		select 
-			year, sum(population) as population
+			year, 
+			sum(population) as population
 		from 
 			innodep_db.population 
 		group by 
@@ -28,7 +29,8 @@
 	
 	<select id="year2021_dong" resultType="tms.gj.domain.PopulationVO">
 		select 
-			year, dong, sum(population) as population 
+			dong, 
+			sum(population) as population 
 		from 
 			innodep_db.population 
 		where
@@ -40,7 +42,9 @@
 	</select>
 	<select id="year_dong" resultType="tms.gj.domain.PopulationVO">
 		select 
-			year, dong, sum(population) as population 
+			year, 
+			dong, 
+			sum(population) as population 
 		from 
 			innodep_db.population 
 		where
@@ -54,7 +58,9 @@
 	
 	<select id="year2021_sex" resultType="tms.gj.domain.PopulationVO">
 		select 
-			year, sex, sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = 2021)*100, 1) as per
+			sex, 
+			sum(population) as population, 
+			round(sum(population)/(select sum(population) from innodep_db.population where year = 2021)*100, 1) as per
 		from 
 			innodep_db.population 
 		where 
@@ -66,7 +72,10 @@
 	</select>
 	<select id="year_sex" resultType="tms.gj.domain.PopulationVO">
 		select 
-			year, sex, sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = #{year})*100, 1) as per
+			year, 
+			sex, 
+			sum(population) as population, 
+			round(sum(population)/(select sum(population) from innodep_db.population where year = #{year})*100, 1) as per
 		from 
 			innodep_db.population 
 		where 
@@ -80,17 +89,22 @@
 	
 	<select id="year2021_age" resultType="tms.gj.domain.PopulationVO">
 		select 
-			age, sum(population) as population 
+			age, 
+			sum(population) as population 
 		from 
 			innodep_db.population 
 		where 
 			year = 2021 
 		group by 
+			age
+		order by 
 			age;
 	</select>
 	<select id="year_age" resultType="tms.gj.domain.PopulationVO">
 		select 
-			year, age, sum(population) as population 
+			year, 
+			age, 
+			sum(population) as population 
 		from 
 			innodep_db.population 
 		where
@@ -98,7 +112,7 @@
 		group by 
 			year, age
 		order by 
-			year;
+			age;
 	</select>
 
 </mapper>

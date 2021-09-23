@@ -28,18 +28,22 @@ public class PopulationController {
 		ArrayList<PopulationVO> yc = ps.year_count();
 		log.info(" year -> total  count : " + yc);
 		
-		ArrayList<PopulationVO> y2d = ps.year2021_dong();
-		log.info(" year -> dong  count : " + y2d);
-		
 		ArrayList<PopulationVO> y2s = ps.year2021_sex();
 		log.info(" year=2021 -> sex  count : " + y2s);
 		log.info(" men per : " + y2s.get(0).getPer());
 		log.info(" woman per : " + y2s.get(1).getPer());
 		
+		ArrayList<PopulationVO> y2d = ps.year2021_dong();
+		log.info(" year -> dong  count : " + y2d);
+		
+		ArrayList<PopulationVO> y2a = ps.year2021_age();
+		log.info(" year=2021 -> age  count : " + y2a);
+		
 		model.addAttribute("yc", yc);
-		model.addAttribute("yd", y2d);
 		model.addAttribute("men", y2s.get(0).getPer());
 		model.addAttribute("woman", y2s.get(1).getPer());
+		model.addAttribute("yd", y2d);
+		model.addAttribute("y2a", y2a);
 		
 		return "/dashboard/population";
 	}

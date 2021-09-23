@@ -2,15 +2,15 @@
 <%@ include file="../layout/header.jsp"%>
 
 
-<main role="main" class="main-content">
+<main role="main" class="main-content" style="margin:0">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-12">
 
 				<div class="row">
-					<div class="col-md-5">
+					<div class="col-md-5" style="padding:0">
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-0">
 							<div class="card-body text-center">
 								<h3 style="margin-top:2vh">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명</h3>
 								<p>(2021년 06월 기준)</p>
@@ -31,7 +31,7 @@
 							</div>
 						</div>
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-0">
 							<div class="card-body">
 								<span>거제시</span>
 								<div style="position:relative; width:100%; margin:auto;">
@@ -62,9 +62,9 @@
 					</div>
 					<!-- /. col -->
 					
-					<div class="col-md-7">
+					<div class="col-md-7" style="padding:0">
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-0">
 							<div class="card-header">
 								<strong class="card-title mb-0">연간 인구 현황</strong>
 							</div>
@@ -76,7 +76,7 @@
 						</div>
 						
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-0">
 							<div class="card-header">
 								<strong class="card-title mb-0">연령별 인구 현황</strong>
 							</div>
@@ -90,7 +90,7 @@
 						<!-- /.card -->
 						
 						
-						<div class="card shadow mb-2">
+						<div class="card shadow mb-0">
 							<div class="card-header">
 								<strong class="card-title mb-0">인구 변화 요인</strong>
 							</div>
@@ -273,15 +273,38 @@
 </script>
 
 <script>
+	/* var dateArea = [], D = [];
+	<c:forEach var="list" items="${yc}">
+		var dt = '${list.year}' + '년';
+	    dateArea.push(dt);
+	    D.push('${list.population}');
+	</c:forEach> */
+	
+	/* var D1 = [], D2 = [], D3 = [], D4 = [], D5 = [], D6 = [];
+	<c:forEach var="list" items="${y2a}">
+		var dt = '${list.year}' + '년';
+	    dateArea.push(dt);
+	    D.push('${list.population}');
+	</c:forEach> */
+	
 	var barChart, barChartoptions = {
 		series : [ {
-			name : "Desktop",
+			name : "0 - 9세",
 			data : [ 44, 55, 41, 64, 22, 43, 21, 53, 32, 33 ]
 		}, {
-			name : "Mobile",
+			name : "10 - 19세",
 			data : [ 53, 32, 33, 52, 13, 44, 32, 53, 32, 33 ]
 		}, {
-			name : "Tablet",
+			name : "20 - 29세",
+			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+		}, {
+			name : "30 - 49세",
+			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+		}, {
+			name : "50 - 64세",
+			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+		}, {
+			name : "65세 이상",
 			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
 		} ],
 		chart : {
@@ -319,7 +342,7 @@
 			}
 		},
 		xaxis : {
-			categories : [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ],
+			categories : [ 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 ],
 			labels : {
 				show : !0,
 				trim : !1,
