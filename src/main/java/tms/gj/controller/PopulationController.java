@@ -24,24 +24,34 @@ public class PopulationController {
 	@GetMapping("/population")
 	public String population(Model model) {
 		
-		ps.testCount();
+		//ps.year2021_count();
+		ArrayList<PopulationVO> yc = ps.year_count();
+		log.info(" year -> total  count : " + yc);
 		
-		ArrayList<PopulationVO> yt = ps.year_total();
-		log.info(" year -> total  count : " + yt);
-		ArrayList<PopulationVO> yd = ps.year_dong();
-		log.info(" year -> dong  count : " + yd);
+		ArrayList<PopulationVO> y2d = ps.year2021_dong();
+		log.info(" year -> dong  count : " + y2d);
 		
 		ArrayList<PopulationVO> y2s = ps.year2021_sex();
 		log.info(" year=2021 -> sex  count : " + y2s);
 		log.info(" men per : " + y2s.get(0).getPer());
 		log.info(" woman per : " + y2s.get(1).getPer());
+		
+		model.addAttribute("yc", yc);
+		model.addAttribute("yd", y2d);
+		model.addAttribute("men", y2s.get(0).getPer());
+		model.addAttribute("woman", y2s.get(1).getPer());
+		
+		return "/dashboard/population";
+	}
+	
+	@GetMapping("/population/click")
+	public String pClick(Model model) {
+		
+		//ps.count2021();
+
 		ArrayList<PopulationVO> ys = ps.year_sex(2021);
 		log.info(" year-> sex  count : " + ys);
 		
-		model.addAttribute("yt", yt);
-		model.addAttribute("yd", yd);
-		model.addAttribute("men", y2s.get(0).getPer());
-		model.addAttribute("woman", y2s.get(1).getPer());
 		model.addAttribute("ys", ys);
 		
 		return "/dashboard/population";

@@ -8,32 +8,53 @@
 			<div class="col-12">
 
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-5">
 						
-						<div class="card shadow mb-4">
-							<div class="card-body">
-								<h3>인구 현황</h3>
-								<p>(2021년 07월 기준)</p>
-								<br>
-								<h5>인구수 : </h5>
-								<h6>구성비 : </h6>
-								<br>
-								<span>남</span>
-								<div class="progress">
-									<div class="progress-bar" role="progressbar" style="width: ${men}%" aria-valuenow="${men}" aria-valuemin="0" aria-valuemax="100">${men}%</div>
-									<div class="progress-bar bg-danger" role="progressbar" style="width: ${woman}%" aria-valuenow="${woman}" aria-valuemin="0" aria-valuemax="100">${woman}%</div>
+						<div class="card shadow mb-2">
+							<div class="card-body text-center">
+								<h3 style="margin-top:2vh">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명</h3>
+								<p>(2021년 06월 기준)</p>
+								<div style="margin:2vh 0">
+									<h4>인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
+									<h5>구성비 : <fmt:parseNumber value="${yc[8].population/yc[8].population * 100}" integerOnly="true" />% </h5>
 								</div>
-								<span>여</span>
-								<br>
+								<div class="progress" style="margin:1vh 0 2vh 0; width:70%;">
+									<div class="progress-bar" role="progressbar" style="width: ${men}%" aria-valuenow="${men}" aria-valuemin="0" aria-valuemax="100">
+										<span style="text-align:left; margin-left:1vh;">남</span>
+										${men}%</div>
+									<div class="progress-bar bg-danger" role="progressbar" style="width: ${woman}%" aria-valuenow="${woman}" aria-valuemin="0" aria-valuemax="100">
+										${woman}%
+										<span style="text-align:right; margin-right:1vh;">여</span>	
+									</div>
+								</div>
+								<h5 style="margin:1vh 0">전년대비 증감 : <fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
 							</div>
 						</div>
 						
-						<div class="card shadow mb-4">
-							<!-- <div class="card-header">
-								<strong class="card-title mb-0">card header 01</strong>
-							</div> -->
+						<div class="card shadow mb-2">
 							<div class="card-body">
 								<span>거제시</span>
+								<div style="position:relative; width:100%; margin:auto;">
+									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%;"><a href="#">거제면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:35%; top:44%;"><a href="#">고현동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%;"><a href="#">남부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%;"><a href="#">능포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%;"><a href="#">동부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%;"><a href="#">둔덕면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%;"><a href="#">사등면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%;"><a href="#">상문동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%;"><a href="#">수양동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%;"><a href="#">아주동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:33%;"><a href="#">연초면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%;"><a href="#">옥포1동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%;"><a href="#">옥포2동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:62%;"><a href="#">일운면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%;"><a href="#">장목면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:63%; top:50%;"><a href="#">장승포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%;"><a href="#">장평동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%;"><a href="#">하청면</a></span>
+									<div style="width:100%; height:0; padding-top:100%; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
+								</div>
 							</div>
 						</div>
 						
@@ -41,7 +62,7 @@
 					</div>
 					<!-- /. col -->
 					
-					<div class="col-md-6">
+					<div class="col-md-7">
 						
 						<div class="card shadow mb-2">
 							<div class="card-header">
@@ -102,7 +123,7 @@
 
 <script>
 	var dateArea = [], D = [];
-	<c:forEach var="list" items="${yt}">
+	<c:forEach var="list" items="${yc}">
 		var dt = '${list.year}' + '년';
 	    dateArea.push(dt);
 	    D.push('${list.population}');
@@ -141,10 +162,10 @@
         plotOptions: {
             bar: {
                 horizontal: !1,
-                columnWidth: "12%",
-                radius: 30,
+                columnWidth: "50%",
+                radius: 0,
                 enableShades: !1,
-                endingShape: "rounded",
+                /* endingShape: "rounded", */
                 dataLabels: {
 					position: 'top',
 				},
@@ -266,7 +287,7 @@
 		chart : {
 			type : "bar",
 			height : 350,
-			stacked : !0,
+			stacked : !0, /* bar block stack option */
 			columnWidth : "70%",
 			zoom : {
 				enabled : !1
@@ -279,7 +300,7 @@
 			mode : colors.chartTheme
 		},
 		dataLabels : {
-			enabled : !0
+			enabled : !0 /* Displaying data on the bar */
 		},
 		responsive : [ {
 			breakpoint : 480,
@@ -354,7 +375,7 @@
 				vertical : 0
 			},
 			onItemClick : {
-				toggleDataSeries : !0
+				toggleDataSeries : !1
 			},
 			onItemHover : {
 				highlightDataSeries : !0
