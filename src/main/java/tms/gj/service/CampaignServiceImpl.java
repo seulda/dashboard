@@ -56,5 +56,11 @@ public class CampaignServiceImpl implements CampaignService {
 		// TODO Auto-generated method stub
 		return cm.fulfil();
 	}
+
+	@Override
+	public ArrayList<CampaignVO> all() {
+		// TODO Auto-generated method stub
+		return cm.all();
+	}
 	
 }

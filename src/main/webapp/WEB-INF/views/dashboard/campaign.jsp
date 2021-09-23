@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/board.css">
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/campaign.css">
 
 
-<main role="main" class="main-content">
+<main role="main" class="main-content" style="margin: 0">
 	<div class="container-fluid">
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
 				
 					<div class="col-md-4">
-						<!-- <div class="col-xl-12 mb-4"> -->
 
 						<div class="col-12 col-md-3">
 							<div class="card1 shadow mb-4">
@@ -399,10 +398,6 @@
 													class="apexcharts-ycrosshairs-hidden"></line></g>
 												</svg>
 										
-<!-- 										<div class ="center_c">
-											<div class="c_txt0">완료 59건</div><div class="c_txt">미완료 46건</div>
-											<div class="c_txt1">보류 4건</div><div class="c_txt1">폐기 7건</div>
-										</div> -->
 										
 										<div class ="center_c">
 											<c:forEach var="fulfil" items="${ fulfil }">
@@ -438,6 +433,13 @@
 										</div>
 										</div>
 									</div>
+
+									<div class="card shadow border-1">
+										<div class="card-body" onclick="test();">
+											<h4>이행률 미진산업</h4>
+										</div>
+									</div>
+
 									<div class="resize-triggers">
 										<div class="expand-trigger">
 											<div style="width: 518px; height: 316px;"></div>
@@ -492,14 +494,14 @@
 										</div>
 									</c:forEach>
 								</div>
-								<div class="bar_l">
+								<div onclick="test();" class="bar_l">
 									<c:forEach var="rate" items="${ rate }">
 										<div onclick="" class="bar_l0" style="font-size: 10px;">${ rate.department }</div>
 									</c:forEach>
 								</div>
 							</div>
 						</div>
-						<div class="card2 shadow mb-4">
+<%-- 						<div class="card2 shadow mb-4">
 							<h5 style="text-align: center; margin: 30px 0px;">이행률 미진 산업 top5</h5>
 							<table class="table table-borderless table-striped">
 								<thead>
@@ -527,8 +529,8 @@
 								</tbody>
 							</table>
 							<!-- .table -->
-						</div>
-						<div class="card2 shadow mb-4">
+						</div> --%>
+<%-- 						<div class="card2 shadow mb-4">
 							<h5 style="text-align: center; margin: 30px 0px;">지역별 이행 현황</h5>
 							<table class="table table-borderless table-striped">
 								<thead>
@@ -556,8 +558,67 @@
 								</tbody>
 							</table>
 							<!-- .table -->
-						</div>
+						</div> --%>
 						<!-- .card -->
+						
+						
+						<div class="card shadow border-1">
+							<div class="card-header">
+								<strong class="card-title mb-0">공약별 이행 현황</strong>
+							</div>
+							<div class="card-body">
+									<table class="table table-borderless table-striped">
+									<thead>
+										<tr role="row">
+											<th style="text-align:center;">담당</th>
+											<th style="text-align:center;">담당자</th>
+											<th style="text-align:center;">공약</th>
+											<th style="text-align:center;">이행도</th>
+											<th style="text-align:center; width:50%; padding-right:5%">이행률</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="all" items="${ all }">	
+											<tr>
+												<th scope="col" style="text-align:center;">${ all.section }</th>
+												<td style="text-align:center;">${ all.manager }</td>
+												<td style="text-align:center;">${ all.name }</td>
+												<td style="text-align:center;">
+													<c:if test="${ all.fulfil eq '완료' }">
+														<span class="badge badge-pill badge-primary">
+															${ all.fulfil }
+														</span>
+													</c:if>	
+													<c:if test="${ all.fulfil eq '추진중' }">
+														<span class="badge badge-pill badge-warning">
+															${ all.fulfil }
+														</span>
+													</c:if>
+													<c:if test="${ all.fulfil eq '폐기' }">
+														<span class="badge badge-pill badge-danger">
+															${ all.fulfil }
+														</span>
+													</c:if>
+													<c:if test="${ all.fulfil eq '보류' }">
+														<span class="badge badge-pill badge-secondary">
+															${ all.fulfil }
+														</span>
+													</c:if>		
+												</td>
+												<td style="text-align:center; padding-right:5%">
+													<div class="progress mb-3" style="height: 30px;">
+														<div class="progress-bar bg-success" role="progressbar" style="width: ${ all.rate }%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="${ all.rate }">
+															${ all.rate }</div>
+													</div>
+												</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+												
 					</div>
 					<!-- .col -->
 				</div>

@@ -31,6 +31,7 @@ public class CampaignController {
 		ArrayList<CampaignVO> location = cs.location();
 		ArrayList<CampaignVO> period   = cs.businessPeriod();
 		ArrayList<CampaignVO> fulfil   = cs.fulfil();
+		ArrayList<CampaignVO> all   = cs.all();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rate", rate);
@@ -38,6 +39,7 @@ public class CampaignController {
 		model.addAttribute("location", location);
 		model.addAttribute("period", period);
 		model.addAttribute("fulfil", fulfil);
+		model.addAttribute("all", all);
 		
 		return "/dashboard/campaign";
 	}

@@ -22,4 +22,6 @@ public interface CampaignMapper {
 	public ArrayList<CampaignVO> businessPeriod();
 	
 	public ArrayList<CampaignVO> fulfil();
+	//전체공약
+	public ArrayList<CampaignVO> all();
 }

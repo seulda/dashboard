@@ -20,4 +20,6 @@ public interface CampaignService {
 	public ArrayList<CampaignVO> businessPeriod();
 	
 	public ArrayList<CampaignVO> fulfil();
+	// 전체 공약
+	public ArrayList<CampaignVO> all();
 }

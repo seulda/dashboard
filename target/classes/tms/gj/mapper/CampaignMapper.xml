@@ -79,5 +79,11 @@
 		group by fulfil
 		order by cnt desc
 	</select>
+	
+	<select id="all" resultType="tms.gj.domain.CampaignVO">
+		SELECT
+		section,manager,name,fulfil,rate
+		FROM innodep_db.campaign
+	</select>
 
 </mapper>
