@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- <mapper namespace="tms.gj.mapper.CampaignMapper"> -->
+
 <mapper namespace="tms.gj.mapper.PopulationMapper">
 
 	<select id="year2021_count" resultType="int">
@@ -87,32 +87,32 @@
 	</select>
 	
 	
-	<select id="year2021_age" resultType="tms.gj.domain.PopulationVO">
-		select 
-			age, 
-			sum(population) as population 
-		from 
-			innodep_db.population 
-		where 
-			year = 2021 
-		group by 
-			age
-		order by 
-			age;
-	</select>
-	<select id="year_age" resultType="tms.gj.domain.PopulationVO">
+	<select id="year_age_all" resultType="tms.gj.domain.PopulationVO">
 		select 
 			year, 
 			age, 
 			sum(population) as population 
 		from 
 			innodep_db.population 
-		where
-			year = #{year}
 		group by 
 			year, age
 		order by 
-			age;
+			year, age;
+	</select>
+	<select id="year_age_dong" resultType="tms.gj.domain.PopulationVO">
+		select 
+			dong, 
+			year, 
+			age, 
+			sum(population) as population 
+		from 
+			innodep_db.population 
+		where
+			dong = #{dong}
+		group by 
+			year, age
+		order by 
+			year, age;
 	</select>
 
 </mapper>

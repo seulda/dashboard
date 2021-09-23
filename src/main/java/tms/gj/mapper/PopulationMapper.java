@@ -23,9 +23,9 @@ public interface PopulationMapper {
 	public ArrayList<PopulationVO> year_sex(int year);
 
 	
-	// 2021년 > 나이대별
-	public ArrayList<PopulationVO> year2021_age();
 	// 연도별 > 나이대별
-	public ArrayList<PopulationVO> year_age(int year);
+	public ArrayList<PopulationVO> year_age_all();
+	// 연도별 > 나이대별 > 동별
+	public ArrayList<PopulationVO> year_age_dong(String dong);
 
 }

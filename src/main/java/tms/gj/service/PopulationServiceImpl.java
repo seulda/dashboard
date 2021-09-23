@@ -31,11 +31,6 @@ public class PopulationServiceImpl implements PopulationService {
 	}
 	@Override
 	public ArrayList<PopulationVO> year2021_dong() {
-//		ArrayList<PopulationVO> y2d_before = pm.year2021_dong();
-//		ArrayList<PopulationVO> y2d = new ArrayList<PopulationVO>();
-//		
-//		System.out.println("y2d_before: "+y2d_before);
-//		
 		return pm.year2021_dong();
 	}
 
@@ -51,46 +46,107 @@ public class PopulationServiceImpl implements PopulationService {
 
 
 	@Override
-	public ArrayList<PopulationVO> year2021_age() {
-		ArrayList<PopulationVO> y2a_before = pm.year2021_age();
-		ArrayList<PopulationVO> y2a = new ArrayList<PopulationVO>();
+	public ArrayList<PopulationVO> year_age_all() {
 		
+		ArrayList<PopulationVO> ya_before = pm.year_age_all();
+		ArrayList<PopulationVO> ya = new ArrayList<PopulationVO>();
+
+		for(int j = 2013; j < 2022; j++) {
+			
+			PopulationVO pvo_young = new PopulationVO();
+			pvo_young.setYear(j);
+			pvo_young.setAge("0 - 9세");
+			PopulationVO pvo_teenage = new PopulationVO();
+			pvo_teenage.setYear(j);
+			pvo_teenage.setAge("10 - 19세");
+			PopulationVO pvo_cheong = new PopulationVO();
+			pvo_cheong.setYear(j);
+			pvo_cheong.setAge("20 - 29세");
+			PopulationVO pvo_jung = new PopulationVO();
+			pvo_jung.setYear(j);
+			pvo_jung.setAge("30 - 49세");
+			PopulationVO pvo_jang = new PopulationVO();
+			pvo_jang.setYear(j);
+			pvo_jang.setAge("50 - 64세");
+			PopulationVO pvo_no = new PopulationVO();
+			pvo_no.setYear(j);
+			pvo_no.setAge("65세 이상");
+			
+			for(int i = 0; i < ya_before.size(); i++) {
+				
+				if( j == ya_before.get(i).getYear() ) {
+
+					String test = ya_before.get(i).getAge();
+					
+					if( test.equals("0 - 4세") || test.equals("5 - 9세") ) {
+						// 0 to 9
+						pvo_young.setPopulation(pvo_young.getPopulation() + ya_before.get(i).getPopulation()); 
+					} else if( test.equals("10 - 14세") || test.equals("15 - 19세") ) {
+						// 10 to 19
+						pvo_teenage.setPopulation(pvo_teenage.getPopulation() + ya_before.get(i).getPopulation()); 
+					} else if( test.equals("20 - 24세") || test.equals("25 - 29세") ) {
+						// 20 to 29
+						pvo_cheong.setPopulation(pvo_cheong.getPopulation() + ya_before.get(i).getPopulation());
+					} else if( test.equals("30 - 34세") || test.equals("35 - 39세") || test.equals("40 - 44세") || test.equals("45 - 49세") ) {
+						// 30 to 49
+						pvo_jung.setPopulation(pvo_jung.getPopulation() + ya_before.get(i).getPopulation());
+					} else if( test.equals("50 - 54세") || test.equals("55 - 59세") || test.equals("60 - 64세") ) {
+						// 50 to 64
+						pvo_jang.setPopulation(pvo_jang.getPopulation() + ya_before.get(i).getPopulation());
+					} else if( test.equals("65 - 69세") || test.equals("70 - 74세") || test.equals("75 - 79세")
+							  || test.equals("80 - 84세") || test.equals("85 - 89세") || test.equals("90 - 94세") || test.equals("95 - 99세")
+							  || test.equals("100+") ) {
+						// 65 up
+						pvo_no.setPopulation(pvo_no.getPopulation() + ya_before.get(i).getPopulation());
+					} else {
+						// exception
+					}
+				}
+			}
+			
+			ya.add(pvo_young);
+			ya.add(pvo_teenage);
+			ya.add(pvo_cheong);
+			ya.add(pvo_jung);
+			ya.add(pvo_jang);
+			ya.add(pvo_no);
+		}
+		
+		/*
 		int youngCnt = 0;		// 0 to 9
 		int teenageCnt = 0;		// 10 to 19
 		int cheongCnt = 0;		// 20 to 29
 		int jungCnt = 0;		// 30 to 49
 		int jangCnt = 0;		// 50 to 64
 		int noCnt = 0;			// 65 up
-		
-		for(int i = 0; i < y2a_before.size(); i++) {
+		for(int i = 0; i < ya_before.size(); i++) {
 			
-			String test = y2a_before.get(i).getAge();
+			String test = ya_before.get(i).getAge();
 			if( test.equals("0 - 4세") || test.equals("5 - 9세") ) {
 				// 0 to 9
-				youngCnt += y2a_before.get(i).getPopulation();
+				youngCnt += ya_before.get(i).getPopulation();
 			} else if( test.equals("10 - 14세") || test.equals("15 - 19세") ) {
 				// 10 to 19
-				teenageCnt += y2a_before.get(i).getPopulation();
+				teenageCnt += ya_before.get(i).getPopulation();
 			} else if( test.equals("20 - 24세") || test.equals("25 - 29세") ) {
 				// 20 to 29
-				cheongCnt += y2a_before.get(i).getPopulation();
+				cheongCnt += ya_before.get(i).getPopulation();
 			} else if( test.equals("30 - 34세") || test.equals("35 - 39세") || test.equals("40 - 44세") || test.equals("45 - 49세") ) {
 				// 30 to 49
-				jungCnt += y2a_before.get(i).getPopulation();
+				jungCnt += ya_before.get(i).getPopulation();
 			} else if( test.equals("50 - 54세") || test.equals("55 - 59세") || test.equals("60 - 64세") ) {
 				// 50 to 64
-				jangCnt += y2a_before.get(i).getPopulation();
+				jangCnt += ya_before.get(i).getPopulation();
 			} else if( test.equals("65 - 69세") || test.equals("70 - 74세") || test.equals("75 - 79세")
 					  || test.equals("80 - 84세") || test.equals("85 - 89세") || test.equals("90 - 94세") || test.equals("95 - 99세")
 					  || test.equals("100+") ) {
 				// 65 up
-				noCnt += y2a_before.get(i).getPopulation();
+				noCnt += ya_before.get(i).getPopulation();
 			} else {
 				// exception
 			}
 			
 		}
-		
 		PopulationVO young = new PopulationVO();		// 0 to 9
 		young.setYear(0);
 		young.setDong("");
@@ -122,21 +178,22 @@ public class PopulationServiceImpl implements PopulationService {
 		no.setAge("65세 이상");
 		no.setPopulation(noCnt);
 		
-		y2a.add(young);
-		y2a.add(teenage);
-		y2a.add(cheong);
-		y2a.add(jung);
-		y2a.add(jang);
-		y2a.add(no);
+		ya.add(young);
+		ya.add(teenage);
+		ya.add(cheong);
+		ya.add(jung);
+		ya.add(jang);
+		ya.add(no);
+		*/
 		
-		System.out.println("@@@ y2a_before: "+y2a_before);
-		System.out.println("@@@ y2a_after: "+y2a);
+		//System.out.println("@@@ y2a_before: "+ya_before);
+		//System.out.println("@@@ y2a_after: "+ya);
 		
-		return y2a;
+		return ya;
 	}
 	@Override
-	public ArrayList<PopulationVO> year_age(int year) {
-		return pm.year_age(year);
+	public ArrayList<PopulationVO> year_age_dong(String dong) {
+		return pm.year_age_dong(dong);
 	}
 
 

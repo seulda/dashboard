@@ -68,7 +68,7 @@
 							<div class="card-header">
 								<strong class="card-title mb-0">연간 인구 현황</strong>
 							</div>
-							<div class="card-body">
+							<div class="card-body" style="padding:10px;">
 								<div class="chart-box">
 									<div id="columnChart"></div>
 								</div>
@@ -80,7 +80,7 @@
 							<div class="card-header">
 								<strong class="card-title mb-0">연령별 인구 현황</strong>
 							</div>
-							<div class="card-body">
+							<div class="card-body" style="padding:10px;">
 								<div class="chart-box">
 									<div id="barChart"></div>
 								</div>
@@ -94,7 +94,7 @@
 							<div class="card-header">
 								<strong class="card-title mb-0">인구 변화 요인</strong>
 							</div>
-							<div class="card-body">
+							<div class="card-body" style="padding:10px;">
 								<div class="chart-box">
 									<div id="lineChart"></div>
 								</div>
@@ -187,7 +187,7 @@
                 trim: !1,
                 offsetX: 0,
                 minHeight: void 0,
-                maxHeight: 120,
+                maxHeight: 100,
                 style: {
                     colors: colors.mutedColor,
                     cssClass: "text-muted",
@@ -202,7 +202,7 @@
                 trim: !1,
                 offsetX: -10,
                 minHeight: void 0,
-                maxHeight: 120,
+                maxHeight: 100,
                 style: {
                     colors: colors.mutedColor,
                     cssClass: "text-muted",
@@ -273,39 +273,32 @@
 </script>
 
 <script>
-	/* var dateArea = [], D = [];
-	<c:forEach var="list" items="${yc}">
-		var dt = '${list.year}' + '년';
-	    dateArea.push(dt);
-	    D.push('${list.population}');
-	</c:forEach> */
-	
-	/* var D1 = [], D2 = [], D3 = [], D4 = [], D5 = [], D6 = [];
-	<c:forEach var="list" items="${y2a}">
-		var dt = '${list.year}' + '년';
-	    dateArea.push(dt);
-	    D.push('${list.population}');
-	</c:forEach> */
+	var d1 = [ '${ya[0].population}', '${ya[6].population}', '${ya[12].population}', '${ya[18].population}', '${ya[24].population}', '${ya[30].population}', '${ya[36].population}', '${ya[42].population}', '${ya[48].population}' ];
+	var d2 = [ '${ya[1].population}', '${ya[7].population}', '${ya[13].population}', '${ya[19].population}', '${ya[25].population}', '${ya[31].population}', '${ya[37].population}', '${ya[43].population}', '${ya[49].population}' ];
+	var d3 = [ '${ya[2].population}', '${ya[8].population}', '${ya[14].population}', '${ya[20].population}', '${ya[26].population}', '${ya[32].population}', '${ya[38].population}', '${ya[44].population}', '${ya[50].population}' ];
+	var d4 = [ '${ya[3].population}', '${ya[9].population}', '${ya[15].population}', '${ya[21].population}', '${ya[27].population}', '${ya[33].population}', '${ya[39].population}', '${ya[45].population}', '${ya[51].population}' ];
+	var d5 = [ '${ya[4].population}', '${ya[10].population}', '${ya[16].population}', '${ya[22].population}', '${ya[28].population}', '${ya[34].population}', '${ya[40].population}', '${ya[46].population}', '${ya[52].population}' ];
+	var d6 = [ '${ya[5].population}', '${ya[11].population}', '${ya[17].population}', '${ya[23].population}', '${ya[29].population}', '${ya[35].population}', '${ya[41].population}', '${ya[47].population}', '${ya[53].population}' ];
 	
 	var barChart, barChartoptions = {
 		series : [ {
 			name : "0 - 9세",
-			data : [ 44, 55, 41, 64, 22, 43, 21, 53, 32, 33 ]
+			data : d1
 		}, {
 			name : "10 - 19세",
-			data : [ 53, 32, 33, 52, 13, 44, 32, 53, 32, 33 ]
+			data : d2
 		}, {
 			name : "20 - 29세",
-			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+			data : d3
 		}, {
 			name : "30 - 49세",
-			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+			data : d4
 		}, {
 			name : "50 - 64세",
-			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+			data : d5
 		}, {
 			name : "65세 이상",
-			data : [ 13, 12, 13, 32, 3, 24, 12, 33, 12, 13 ]
+			data : d6
 		} ],
 		chart : {
 			type : "bar",
@@ -316,6 +309,7 @@
 				enabled : !1
 			},
 			toolbar : {
+				show: false,
 				enabled : !1
 			}
 		},
@@ -373,7 +367,7 @@
 			}
 		},
 		legend : {
-			position : "bottom",
+			position : "top",
 			fontFamily : base.defaultFontFamily,
 			fontWeight : 400,
 			labels : {
