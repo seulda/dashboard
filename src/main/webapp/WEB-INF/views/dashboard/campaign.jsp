@@ -35,8 +35,8 @@
                </tr>
             </c:forEach>
          </tbody>
-      </table>
-      </div>
+      </table> 
+      </div>      	      
      </div>
      <div class = "container2">
       <div class="card shadow border-1">
@@ -89,16 +89,26 @@
                      <th style="text-align:center;">담당</th>
                      <th style="text-align:center;">담당자</th>
                      <th style="text-align:center;">공약</th>
-                     <th style="text-align:center;">이행도</th>
+                     <th style="text-align:center;">사업기간</th>
                      <th style="text-align:center; width:50%; padding-right:5%">이행률</th>
+                     <th style="text-align:center;">이행도</th>
                   </tr>
                </thead>
                <tbody>
-                  <c:forEach var="all" items="${ detailList }">   
+                  <c:forEach var="all" items="${ all }">   
+                  	<c:if test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">	
                      <tr>
                         <th scope="col" style="text-align:center;">${ all.section }</th>
                         <td style="text-align:center;">${ all.manager }</td>
                         <td style="text-align:center;">${ all.name }</td>
+                        <td style="text-align:center;">${ all.businessPeriod }</td>                        
+                        <td style="text-align:center; padding-right:5%">
+                           <div class="progress mb-3" style="height: 30px;">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: ${ all.rate }%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="${ all.rate }">
+                                 ${ all.rate }</div>
+                           </div>
+                        </td>
+                        
                         <td style="text-align:center;">
                            <c:if test="${ all.fulfil eq '완료' }">
                               <span class="badge badge-pill badge-primary">
@@ -109,8 +119,28 @@
                               <span class="badge badge-pill badge-warning">
                                  ${ all.fulfil }
                               </span>
-                           </c:if>
-                           <c:if test="${ all.fulfil eq '폐기' }">
+                           </c:if>    
+                        </td> 
+                     </tr>
+                     </c:if>
+                  </c:forEach>
+                  
+                   <c:forEach var="all" items="${ all }">   
+                  	<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">	
+                     <tr>
+                        <th scope="col" style="text-align:center;">${ all.section }</th>
+                        <td style="text-align:center;">${ all.manager }</td>
+                        <td style="text-align:center;">${ all.name }</td>
+                        <td style="text-align:center;">${ all.businessPeriod }</td>                        
+                        <td style="text-align:center; padding-right:5%">
+                           <div class="progress mb-3" style="height: 30px;">
+                              <div class="progress-bar bg-success" role="progressbar" style="width: ${ all.rate }%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="${ all.rate }">
+                                 ${ all.rate }</div>
+                           </div>
+                        </td>
+                        
+                        <td style="text-align:center;">
+                            <c:if test="${ all.fulfil eq '폐기' }">
                               <span class="badge badge-pill badge-danger">
                                  ${ all.fulfil }
                               </span>
@@ -119,16 +149,13 @@
                               <span class="badge badge-pill badge-secondary">
                                  ${ all.fulfil }
                               </span>
-                           </c:if>      
-                        </td>
-                        <td style="text-align:center; padding-right:5%">
-                           <div class="progress mb-3" style="height: 30px;">
-                              <div class="progress-bar bg-success" role="progressbar" style="width: ${ all.rate }%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="${ all.rate }">
-                                 ${ all.rate }</div>
-                           </div>
-                        </td>
+                           </c:if>       
+                        </td> 
                      </tr>
+                     </c:if>
                   </c:forEach>
+                  
+                  
                </tbody>
             </table>
          </div>
@@ -309,7 +336,7 @@
    function pop(department) {
       //alert("onclick success!");
       
-       $( '#origin' ).hide();
+/*        $( '#origin' ).hide();
        $( '#disp' ).show();
        
       var result = '';
@@ -319,30 +346,36 @@
          success  : function(result_data){
             
             //alert(result_data);
+            console.log(result_data);
             result +='<div class="card-header"><strong class="card-title mb-0">공약별 이행 현황</strong></div>'
             result +='<div class="card-body"> <table class="table table-borderless table-striped"><thead><tr role="row">'
-            result +='<th style="text-align:center;">담당</th><th style="text-align:center;">담당자</th><th style="text-align:center;">공약</th><th style="text-align:center;">이행도</th><th style="text-align:center; width:50%; padding-right:5%">이행률</th>'
+            result +='<th style="text-align:center;">담당</th><th style="text-align:center;">담당자</th><th style="text-align:center;">공약</th><th style="text-align:center;">사업기간</th><th style="text-align:center; width:50%; padding-right:5%">이행률</th><th style="text-align:center;">이행도</th>'
             result +='</tr></thead><tbody><c:forEach var="all" items="${ detailList }">'
-            result +='<tr><th scope="col" style="text-align:center;">${ all.section }</th><td style="text-align:center;">${ all.manager }</td><td style="text-align:center;">${ all.name }</td><td style="text-align:center;">'
+            result +='<tr><th scope="col" style="text-align:center;">${ all.section }</th><td style="text-align:center;">${ all.manager }</td><td style="text-align:center;">${ all.name }</td><td style="text-align:center;">${ all.businessPeriod }</td>'
+            result +='<td style="text-align:center; padding-right:5%"><div class="progress mb-3" style="height: 30px;"><div class="progress-bar bg-success" role="progressbar" style="width: ${ all.rate }%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="${ all.rate }">${ all.rate }</div></div></td>'       
+            result +='<td style="text-align:center;">'
             result +='<c:if test="${ all.fulfil eq '완료' }"><span class="badge badge-pill badge-primary">${ all.fulfil }</span></c:if>'
             result +='<c:if test="${ all.fulfil eq '추진중' }"><span class="badge badge-pill badge-warning">${ all.fulfil }</span></c:if>'
             result +='<c:if test="${ all.fulfil eq '폐기' }"><span class="badge badge-pill badge-danger">${ all.fulfil }</span></c:if>'
-            result +='<c:if test="${ all.fulfil eq '보류' }"><span class="badge badge-pill badge-secondary">${ all.fulfil }</span></c:if>'
-            result +='</td><td style="text-align:center; padding-right:5%"><div class="progress mb-3" style="height: 30px;">'
-            result +='<div class="progress-bar bg-success" role="progressbar" style="width: ${ all.rate }%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="${ all.rate }">${ all.rate }</div></div></td></tr></c:forEach></tbody></table></div>' 
-            $('#disp').html(result);
+            result +='<c:if test="${ all.fulfil eq '보류' }"><span class="badge badge-pill badge-secondary">${ all.fulfil }</span></c:if>' 
+            result +='</td></tr></c:forEach></tbody></table></div>' 
+            $('#disp').html(result); 
          },
          error    : function(err){
             alert(err.responseText);
          }
-      }); 
+      });  */
+      
+      
+      location.href='${ pageContext.request.contextPath}/detail_list.do?department=' + department;
+      
    }
    
 </script>
 
 <script>
    var donutchart, donutChartOptions = {
-      series : [ 51, 38, 7, 4],
+      series : [ 54, 40, 4, 2],
       chart : {
          type : "donut",
          height : 305,
@@ -404,7 +437,7 @@
    
    
    var donutChartWidget, donutChartWidgetOptions = {
-      series : [ 51, 33, 7, 4],
+      series : [ 54, 40, 4, 2],
       chart : {
          type : "donut",
          height : 180,

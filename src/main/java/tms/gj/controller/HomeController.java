@@ -26,34 +26,5 @@ public class HomeController {
 		return "/layout/index";
 	}
 
-	@GetMapping("/campaign2")
-	public String campaign2(Model model) {
-		
-		ArrayList<CampaignVO> list = cs.campaignList();
-		ArrayList<CampaignVO> rate = cs.campaignRate();
-		ArrayList<CampaignVO> category = cs.category();
-		ArrayList<CampaignVO> location = cs.location();
-		ArrayList<CampaignVO> period   = cs.businessPeriod();
-		ArrayList<CampaignVO> fulfil   = cs.fulfil();
-		
-		model.addAttribute("list", list);
-		model.addAttribute("rate", rate);
-		model.addAttribute("category", category);
-		model.addAttribute("location", location);
-		model.addAttribute("period", period);
-		model.addAttribute("fulfil", fulfil);
-		
-		return "/dashboard/campaign2";
-	}
-	
-//	@GetMapping("/campaign")
-//	public String campaign() {
-//		return "/dashboard/campaign";
-//	}
-	
-//	@GetMapping("/population")
-//	public String population() {
-//		return "/dashboard/population";
-//	}
-	
+
 }

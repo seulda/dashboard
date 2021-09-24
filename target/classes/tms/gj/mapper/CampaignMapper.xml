@@ -4,94 +4,69 @@
 <!-- <mapper namespace="tms.gj.mapper.CampaignMapper"> -->
 <mapper namespace="tms.gj.mapper.CampaignMapper">
 
-	<select id="campaignCount" resultType="int">
-		select count(*)
-		from campaign
-	</select>
-	
-	<select id="campaignList" resultType="tms.gj.domain.CampaignVO">
-		SELECT 
-		department,
-		sum(if(rate=100,1,0)) as successCount,
-		count(department) as totalCount, 
-		avg(rate) as successRate
-		FROM innodep_db.campaign
-		Group by department
-		order by successRate asc
-		limit 10;
-	</select>
 	
 	<select id="campaignRate" resultType="tms.gj.domain.CampaignVO">
 		SELECT 
-		department,
-		avg(rate) as avgRate
+			department,
+			avg(rate) as avgRate
 		FROM innodep_db.campaign
 		Group by department
         order by avgRate asc;
 	</select>
 	
-	<select id="category" resultType="tms.gj.domain.CampaignVO">
-		SELECT 
-		category,
-		sum(if(rate=100,1,0)) as successCat,
-        count(category) as totalCat,
-		sum(if(rate=100,1,0))/count(category) * 100 as cat
-		FROM innodep_db.campaign
-		Group by category
-		order by cat asc
-	</select>
-	
-	<select id="location" resultType="tms.gj.domain.CampaignVO">
-		SELECT 
-		location,
-        count(location) as totalLoc,
-		avg(rate) as loc
-		FROM innodep_db.campaign
-		Group by location
-		order by loc asc
-	</select>
-	
-	<select id="progress" resultType="tms.gj.domain.CampaignVO">
-		SELECT 
-		,
-        count(location) as totalLoc,
-		avg(rate) as loc
-		FROM innodep_db.campaign
-		Group by location
-		order by loc asc
-	</select>
-	
 	<select id="businessPeriod" resultType="tms.gj.domain.CampaignVO">
 		SELECT
-		name,
-		businessPeriod,
-		rate
+			name,
+			businessPeriod,
+			rate
 		from innodep_db.campaign
 		where substring(current_date(),1,4)  = SUBSTRING_INDEX(businessPeriod, '~', -1)
 		order by rate asc
 	</select>
 	
 	<select id="fulfil" resultType="tms.gj.domain.CampaignVO">
-		SELECT
-		fulfil,
-		count(fulfil) as cnt
-		FROM innodep_db.campaign
-		group by fulfil
-		order by cnt desc
+      SELECT
+         fulfil,
+         count(distinct name) as cnt
+      FROM innodep_db.campaign
+      group by fulfil
+      order by cnt desc
 	</select>
 	
 	<select id="all" resultType="tms.gj.domain.CampaignVO">
 		SELECT
-		section,manager,name,fulfil,rate
+			section,
+			manager,
+			name,
+			fulfil,
+			rate,
+			businessPeriod
 		FROM innodep_db.campaign
+		order by rate,businessPeriod asc
 	</select>
 	
 	<select id="detailList" parameterType="String" resultType="tms.gj.domain.CampaignVO">
 		SELECT
-		section,manager,name,fulfil,rate
+			section,
+			manager,
+			name,
+			fulfil,
+			rate,
+			businessPeriod
 		FROM innodep_db.campaign
 		where department = #{department}
-			
+		order by rate,businessPeriod asc
+	</select>
+	
+	<select id="fulfilCnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
+		SELECT
+			department,
+			fulfil,
+            count(distinct name) as cnt
+		FROM innodep_db.campaign
+        where department = #{department}
+        group by fulfil
+		order by rate,businessPeriod asc
 	</select>
 
 </mapper>
