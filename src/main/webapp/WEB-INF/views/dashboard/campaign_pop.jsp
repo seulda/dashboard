@@ -16,8 +16,7 @@
 			
 				<input id="bt_x" class="btn btn-warning cancle" type="button"  value="x">
 				<p class="f_name">필터</p>
-				<h4 style="text-align: center; margin: 30px 0px;">조선산업일자리과 공약 이행
-					현황 (팝업용)</h4>
+				<h4 style="text-align: center; margin: 30px 0px;">조선산업일자리과 공약 이행 현황 (팝업용)</h4>
 				<table class="table table-borderless table-striped">
 					<thead>
 						<tr role="row">

@@ -85,5 +85,13 @@
 		section,manager,name,fulfil,rate
 		FROM innodep_db.campaign
 	</select>
+	
+	<select id="detailList" parameterType="String" resultType="tms.gj.domain.CampaignVO">
+		SELECT
+		section,manager,name,fulfil,rate
+		FROM innodep_db.campaign
+		where department = #{department}
+			
+	</select>
 
 </mapper>

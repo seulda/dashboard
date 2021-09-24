@@ -9,17 +9,6 @@
 		<div class="row justify-content-center">
 			<div class="col-12">
 				<div class="row">
-
-					<div class="col-md-4">
-						<div class="card shadow mb-4">
-							<div class="card-body">
-								<div class="chart-box">
-									<div id="donutChart"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-
 					<div class="col-md-8">
 
 						<div class="card shadow border-1">

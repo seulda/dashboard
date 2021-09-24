@@ -24,4 +24,6 @@ public interface CampaignMapper {
 	public ArrayList<CampaignVO> fulfil();
 	//전체공약
 	public ArrayList<CampaignVO> all();
+	
+	public ArrayList<CampaignVO> detailList(String department);
 }
