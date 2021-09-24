@@ -2,12 +2,13 @@ package tms.gj.service;
 
 import java.util.ArrayList;
 
+import tms.gj.domain.ItemVO;
 import tms.gj.domain.PopulationVO;
 
 public interface PopulationService {
 	
 	// 2021년 인구수
-	public void year2021_count();
+	public int year2021_count();
 	// 연도별 인구수
 	public ArrayList<PopulationVO> year_count();
 	
@@ -21,12 +22,22 @@ public interface PopulationService {
 	// 2021년 > 성별
 	public ArrayList<PopulationVO> year2021_sex();
 	// 연도별 > 성별
-	public ArrayList<PopulationVO> year_sex(int year);
+	public ArrayList<PopulationVO> year_sex(String dong);
 	
 
 	// 연도별 > 나이대별
 	public ArrayList<PopulationVO> year_age_all();
 	// 연도별 > 나이대별 > 동별
 	public ArrayList<PopulationVO> year_age_dong(String dong);
+	
+
+	// 연도별 변화요인
+	public ArrayList<ItemVO> year_item();
+	// 연도별 > 동별 변화요인
+	public ArrayList<ItemVO> year_item_dong(String dong);
+	
+	
+	// 동 찾기
+	public String nameset(String dName);
 	
 }

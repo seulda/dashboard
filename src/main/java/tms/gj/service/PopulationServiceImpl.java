@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
+import tms.gj.domain.ItemVO;
 import tms.gj.domain.PopulationVO;
 import tms.gj.mapper.PopulationMapper;
 
@@ -16,8 +17,9 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	
 	@Override
-	public void year2021_count() {
-		System.out.println("test population count : " + pm.year2021_count());
+	public int year2021_count() {
+		// System.out.println("test population count : " + pm.year2021_count());
+		return pm.year2021_count();
 	}
 	@Override
 	public ArrayList<PopulationVO> year_count() {
@@ -40,8 +42,8 @@ public class PopulationServiceImpl implements PopulationService {
 		return pm.year2021_sex();
 	}
 	@Override
-	public ArrayList<PopulationVO> year_sex(int year) {
-		return pm.year_sex(year);
+	public ArrayList<PopulationVO> year_sex(String dong) {
+		return pm.year_sex(dong);
 	}
 
 
@@ -112,80 +114,6 @@ public class PopulationServiceImpl implements PopulationService {
 			ya.add(pvo_no);
 		}
 		
-		/*
-		int youngCnt = 0;		// 0 to 9
-		int teenageCnt = 0;		// 10 to 19
-		int cheongCnt = 0;		// 20 to 29
-		int jungCnt = 0;		// 30 to 49
-		int jangCnt = 0;		// 50 to 64
-		int noCnt = 0;			// 65 up
-		for(int i = 0; i < ya_before.size(); i++) {
-			
-			String test = ya_before.get(i).getAge();
-			if( test.equals("0 - 4세") || test.equals("5 - 9세") ) {
-				// 0 to 9
-				youngCnt += ya_before.get(i).getPopulation();
-			} else if( test.equals("10 - 14세") || test.equals("15 - 19세") ) {
-				// 10 to 19
-				teenageCnt += ya_before.get(i).getPopulation();
-			} else if( test.equals("20 - 24세") || test.equals("25 - 29세") ) {
-				// 20 to 29
-				cheongCnt += ya_before.get(i).getPopulation();
-			} else if( test.equals("30 - 34세") || test.equals("35 - 39세") || test.equals("40 - 44세") || test.equals("45 - 49세") ) {
-				// 30 to 49
-				jungCnt += ya_before.get(i).getPopulation();
-			} else if( test.equals("50 - 54세") || test.equals("55 - 59세") || test.equals("60 - 64세") ) {
-				// 50 to 64
-				jangCnt += ya_before.get(i).getPopulation();
-			} else if( test.equals("65 - 69세") || test.equals("70 - 74세") || test.equals("75 - 79세")
-					  || test.equals("80 - 84세") || test.equals("85 - 89세") || test.equals("90 - 94세") || test.equals("95 - 99세")
-					  || test.equals("100+") ) {
-				// 65 up
-				noCnt += ya_before.get(i).getPopulation();
-			} else {
-				// exception
-			}
-			
-		}
-		PopulationVO young = new PopulationVO();		// 0 to 9
-		young.setYear(0);
-		young.setDong("");
-		young.setAge("0 - 9세");
-		young.setPopulation(youngCnt);
-		PopulationVO teenage = new PopulationVO();		// 10 to 19
-		teenage.setYear(0);
-		teenage.setDong("");
-		teenage.setAge("10 - 19세");
-		teenage.setPopulation(teenageCnt);
-		PopulationVO cheong = new PopulationVO();		// 20 to 29
-		cheong.setYear(0);
-		cheong.setDong("");
-		cheong.setAge("20 - 29세");
-		cheong.setPopulation(cheongCnt);
-		PopulationVO jung = new PopulationVO();			// 30 to 49
-		jung.setYear(0);
-		jung.setDong("");
-		jung.setAge("30 - 49세");
-		jung.setPopulation(jungCnt);
-		PopulationVO jang = new PopulationVO();			// 50 to 64
-		jang.setYear(0);
-		jang.setDong("");
-		jang.setAge("50 - 64세");
-		jang.setPopulation(jangCnt);
-		PopulationVO no = new PopulationVO();			// 65 up
-		no.setYear(0);
-		no.setDong("");
-		no.setAge("65세 이상");
-		no.setPopulation(noCnt);
-		
-		ya.add(young);
-		ya.add(teenage);
-		ya.add(cheong);
-		ya.add(jung);
-		ya.add(jang);
-		ya.add(no);
-		*/
-		
 		//System.out.println("@@@ y2a_before: "+ya_before);
 		//System.out.println("@@@ y2a_after: "+ya);
 		
@@ -195,9 +123,61 @@ public class PopulationServiceImpl implements PopulationService {
 	public ArrayList<PopulationVO> year_age_dong(String dong) {
 		return pm.year_age_dong(dong);
 	}
-
-
 	
+	
+	@Override
+	public ArrayList<ItemVO> year_item() {
+		return pm.year_item();
+	}
+	@Override
+	public ArrayList<ItemVO> year_item_dong(String dong) {
+		return pm.year_item_dong(dong);
+	}
+
+
+	@Override
+	public String nameset(String dName) {
+		
+		if(dName.equals("dong01")) {
+			return "거제면";
+		} else if(dName.equals("dong02")) {
+			return "고현동";
+		} else if(dName.equals("dong03")) {
+			return "남부면";
+		} else if(dName.equals("dong04")) {
+			return "능포동";
+		} else if(dName.equals("dong05")) {
+			return "동부면";
+		} else if(dName.equals("dong06")) {
+			return "둔덕면";
+		} else if(dName.equals("dong07")) {
+			return "사등면";
+		} else if(dName.equals("dong08")) {
+			return "상문동";
+		} else if(dName.equals("dong09")) {
+			return "수양동";
+		} else if(dName.equals("dong10")) {
+			return "아주동";
+		} else if(dName.equals("dong11")) {
+			return "연초면";
+		} else if(dName.equals("dong12")) {
+			return "옥포1동";
+		} else if(dName.equals("dong13")) {
+			return "옥포2동";
+		} else if(dName.equals("dong14")) {
+			return "일운면";
+		} else if(dName.equals("dong15")) {
+			return "장목면";
+		} else if(dName.equals("dong16")) {
+			return "장승포동";
+		} else if(dName.equals("dong17")) {
+			return "장평동";
+		} else if(dName.equals("dong18")) {
+			return "하청면";
+		}
+		
+		return "error";
+	}
 	
 
 }

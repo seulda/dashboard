@@ -8,17 +8,17 @@
 			<div class="col-12">
 
 				<div class="row">
-					<div class="col-md-5" style="padding:0">
+					<div class="col-md-5" style="padding:0;">
 						
-						<div class="card shadow mb-0">
+						<div class="card shadow mb-0" style="background-color:#FFF0E0">
 							<div class="card-body text-center">
-								<h3 style="margin-top:2vh">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명</h3>
+								<h3 style="margin-top:2vh; padding-top:10px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
 								<p>(2021년 06월 기준)</p>
-								<div style="margin:2vh 0">
+								<div style="margin:2vh 0; padding:10px;">
 									<h4>인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
-									<h5>구성비 : <fmt:parseNumber value="${yc[8].population/yc[8].population * 100}" integerOnly="true" />% </h5>
+									<h5>구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />% </h5>
 								</div>
-								<div class="progress" style="margin:1vh 0 2vh 0; width:70%;">
+								<div class="progress" style="margin:1vh 0 2vh 8vh; width:70%;">
 									<div class="progress-bar" role="progressbar" style="width: ${men}%" aria-valuenow="${men}" aria-valuemin="0" aria-valuemax="100">
 										<span style="text-align:left; margin-left:1vh;">남</span>
 										${men}%</div>
@@ -27,34 +27,35 @@
 										<span style="text-align:right; margin-right:1vh;">여</span>	
 									</div>
 								</div>
-								<h5 style="margin:1vh 0">전년대비 증감 : <fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
+								<h5 style="margin:1vh 0; padding:20px 10px;">전년대비 증감 : <fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
 							</div>
 						</div>
 						
 						<div class="card shadow mb-0">
 							<div class="card-body">
 								<span>거제시</span>
-								<div style="position:relative; width:100%; margin:auto;">
-									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%;"><a href="#">거제면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:35%; top:44%;"><a href="#">고현동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%;"><a href="#">남부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%;"><a href="#">능포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%;"><a href="#">동부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%;"><a href="#">둔덕면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%;"><a href="#">사등면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%;"><a href="#">상문동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%;"><a href="#">수양동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%;"><a href="#">아주동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:33%;"><a href="#">연초면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%;"><a href="#">옥포1동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%;"><a href="#">옥포2동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:62%;"><a href="#">일운면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%;"><a href="#">장목면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:63%; top:50%;"><a href="#">장승포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%;"><a href="#">장평동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%;"><a href="#">하청면</a></span>
-									<div style="width:100%; height:0; padding-top:100%; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
+								<div style="position:relative; width:110%; margin:auto; padding-left:3vh">
+									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh" name="dong02" onClick="dongClick(this.name)"><a href="#">고현동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh" name="dong03" onClick="dongClick(this.name)"><a href="#">남부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%; padding-left:2vh" name="dong04" onClick="dongClick(this.name)"><a href="#">능포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%; padding-left:2vh" name="dong05" onClick="dongClick(this.name)"><a href="#">동부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%; padding-left:2vh" name="dong06" onClick="dongClick(this.name)"><a href="#">둔덕면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%; padding-left:2vh" name="dong07" onClick="dongClick(this.name)"><a href="#">사등면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%; padding-left:2vh" name="dong08" onClick="dongClick(this.name)"><a href="#">상문동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%; padding-left:2vh" name="dong09" onClick="dongClick(this.name)"><a href="#">수양동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%; padding-left:2vh" name="dong10" onClick="dongClick(this.name)"><a href="#">아주동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:42%; top:33%; padding-left:2vh" name="dong11" onClick="dongClick(this.name)"><a href="#">연초면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%; padding-left:2vh" name="dong12" onClick="dongClick(this.name)"><a href="#">옥포1동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%; padding-left:2vh" name="dong13" onClick="dongClick(this.name)"><a href="#">옥포2동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:55%; top:62%; padding-left:2vh" name="dong14" onClick="dongClick(this.name)"><a href="#">일운면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%; padding-left:2vh" name="dong15" onClick="dongClick(this.name)"><a href="#">장목면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh" name="dong16" onClick="dongClick(this.name)"><a href="#">장승포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh" name="dong17" onClick="dongClick(this.name)"><a href="#">장평동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh" name="dong18" onClick="dongClick(this.name)"><a href="#">하청면</a></span>
+									<div style="width:110%; height:0; padding-top:100%; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
 								</div>
+								<br>
 							</div>
 						</div>
 						
@@ -62,13 +63,13 @@
 					</div>
 					<!-- /. col -->
 					
-					<div class="col-md-7" style="padding:0">
+					<div class="col-md-7" style="padding:0;">
 						
 						<div class="card shadow mb-0">
 							<div class="card-header">
 								<strong class="card-title mb-0">연간 인구 현황</strong>
 							</div>
-							<div class="card-body" style="padding:10px;">
+							<div class="card-body" style="padding:0 15px;">
 								<div class="chart-box">
 									<div id="columnChart"></div>
 								</div>
@@ -80,7 +81,7 @@
 							<div class="card-header">
 								<strong class="card-title mb-0">연령별 인구 현황</strong>
 							</div>
-							<div class="card-body" style="padding:10px;">
+							<div class="card-body" style="padding:0 15px;">
 								<div class="chart-box">
 									<div id="barChart"></div>
 								</div>
@@ -94,7 +95,7 @@
 							<div class="card-header">
 								<strong class="card-title mb-0">인구 변화 요인</strong>
 							</div>
-							<div class="card-body" style="padding:10px;">
+							<div class="card-body" style="padding:0 15px;">
 								<div class="chart-box">
 									<div id="lineChart"></div>
 								</div>
@@ -120,6 +121,34 @@
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
+
+<script>
+	function dongClick(name) {
+		
+		var dongNum = name;
+
+		$.ajax({
+			url: "${pageContext.request.contextPath}/population/click",
+			type: "post",
+			data:{
+				dNum : dongNum
+			},
+			dataType: "text",
+			success: function(data){
+				if(data === "success"){ 
+					alert("graph reload success");
+					location.reload();
+				} else {
+					alert("callback error");
+				}
+			},
+			error: function() {
+				alert("server error");
+			}
+		});
+
+	}
+</script>
 
 <script>
 	var dateArea = [], D = [];
@@ -162,7 +191,7 @@
         plotOptions: {
             bar: {
                 horizontal: !1,
-                columnWidth: "50%",
+                columnWidth: "45%",
                 radius: 0,
                 enableShades: !1,
                 /* endingShape: "rounded", */
@@ -438,22 +467,38 @@
 </script>
 
 <script>
+	/* 사망건수 */
+	var d01 = [ "${yi[0].population}", "${yi[5].population}", "${yi[10].population}", "${yi[15].population}", "${yi[20].population}", "${yi[25].population}", "${yi[30].population}", "${yi[35].population}", "${yi[40].population}" ];
+	/* 이혼건수 */
+	var d02 = [ "${yi[1].population}", "${yi[6].population}", "${yi[11].population}", "${yi[16].population}", "${yi[21].population}", "${yi[26].population}", "${yi[31].population}", "${yi[36].population}", "" ];
+	/* 자연증가건수 */
+	var d03 = [ "${yi[2].population}", "${yi[7].population}", "${yi[12].population}", "${yi[17].population}", "${yi[22].population}", "${yi[27].population}", "${yi[32].population}", "${yi[37].population}", "${yi[41].population}" ];
+	/* 출생건수 */
+	var d04 = [ "${yi[3].population}", "${yi[8].population}", "${yi[13].population}", "${yi[18].population}", "${yi[23].population}", "${yi[28].population}", "${yi[33].population}", "${yi[38].population}", "${yi[42].population}" ];
+	/* 혼인건수 */
+	var d05 = [ "${yi[4].population}", "${yi[9].population}", "${yi[14].population}", "${yi[19].population}", "${yi[24].population}", "${yi[29].population}", "${yi[34].population}", "${yi[39].population}", "" ];
+	
 	var lineChart, lineChartoptions = {
 		series : [
 				{
-					name : "Page views",
-					data : [ 31, 28, 30, 51, 42, 109, 100, 31, 40, 28, 31, 58,
-							30, 51, 42, 109, 100, 116 ]
+					name : "출생",
+					data : d04
 				},
 				{
-					name : "Visitors",
-					data : [ 11, 45, 20, 32, 34, 52, 41, 11, 32, 45, 11, 75,
-							20, 32, 34, 52, 41, 81 ]
+					name : "사망",
+					data : d01
 				},
 				{
-					name : "Orders",
-					data : [ 5, 25, 9, 14, 14, 32, 21, 5, 12, 25, 5, 55, 9, 14,
-							14, 32, 21, 65 ]
+					name : "자연증가",
+					data : d03
+				},
+				{
+					name : "혼인",
+					data : d05
+				},
+				{
+					name : "이혼",
+					data : d02
 				} ],
 		chart : {
 			height : 350,
@@ -512,14 +557,8 @@
 			}
 		},
 		xaxis : {
-			type : "datetime",
-			categories : [ "01/01/2020 GMT", "01/02/2020 GMT",
-					"01/03/2020 GMT", "01/04/2020 GMT", "01/05/2020 GMT",
-					"01/06/2020 GMT", "01/07/2020 GMT", "01/08/2020 GMT",
-					"01/09/2020 GMT", "01/10/2020 GMT", "01/11/2020 GMT",
-					"01/12/2020 GMT", "01/13/2020 GMT", "01/14/2020 GMT",
-					"01/15/2020 GMT", "01/16/2020 GMT", "01/17/2020 GMT",
-					"01/18/2020 GMT" ],
+			/* type : "datetime", */
+			categories : [ "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021" ],
 			labels : {
 				show : !0,
 				trim : !1,

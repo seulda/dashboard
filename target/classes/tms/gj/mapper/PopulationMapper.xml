@@ -6,13 +6,11 @@
 
 	<select id="year2021_count" resultType="int">
 		select
-			sum(population)
+			sum(population) as population
 		from
 			innodep_db.population
 		where
-			year = 2021
-		order by 
-			year;
+			year = 2021;
 	</select>
 	<select id="year_count" resultType="tms.gj.domain.PopulationVO">
 		select 
@@ -71,7 +69,7 @@
 			year, sex;
 	</select>
 	<select id="year_sex" resultType="tms.gj.domain.PopulationVO">
-		select 
+		<!-- select 
 			year, 
 			sex, 
 			sum(population) as population, 
@@ -80,6 +78,19 @@
 			innodep_db.population 
 		where 
 			year = #{year} 
+		group by 
+			year, sex 
+		order by 
+			year, sex; -->
+		
+		select 
+			dong, 
+			sex, 
+			sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = 2021 and dong = #{dong})*100, 1) as per
+		from 
+			innodep_db.population 
+		where 
+			year = 2021 and dong = #{dong}
 		group by 
 			year, sex 
 		order by 
@@ -113,6 +124,35 @@
 			year, age
 		order by 
 			year, age;
+	</select>
+	
+	
+	<select id="year_item" resultType="tms.gj.domain.ItemVO">
+		select 
+			year, 
+			item, 
+			sum(population) as population 
+		from 
+			innodep_db.item 
+		group by 
+			year, item 
+		order by 
+			year, item;
+	</select>
+	<select id="year_item_dong" resultType="tms.gj.domain.ItemVO">
+		select 
+			year, 
+			dong, 
+			item, 
+			sum(population) as population 
+		from 
+			innodep_db.item 
+		where
+			dong = #{dong}
+		group by 
+			year, dong, item 
+		order by 
+			year, dogn, item;
 	</select>
 
 </mapper>
