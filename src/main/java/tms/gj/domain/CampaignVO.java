@@ -1,8 +1,10 @@
 package tms.gj.domain;
 
 import lombok.Data;
+import lombok.Getter;
 
 @Data
+@Getter
 public class CampaignVO {
 
 	private int idx;					// number
@@ -31,4 +33,5 @@ public class CampaignVO {
 	int loc;                            //진행 현황 
 	
 	int cnt;
+	
 }
