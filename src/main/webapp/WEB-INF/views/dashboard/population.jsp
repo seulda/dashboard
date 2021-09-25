@@ -34,7 +34,7 @@
 						<div class="card shadow mb-0">
 							<div class="card-body">
 								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시</a></h5>
-								<div style="position:relative; width:110%; margin:auto; padding-left:3vh">
+								<div style="position:relative; width:51vh; margin:auto; padding-left:3vh">
 									<!-- <span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span> -->
 									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong01" style="text-decoration: none; color:black;">거제면</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong02" style="text-decoration: none; color:black;">고현동</a></span>
@@ -54,7 +54,7 @@
 									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong16" style="text-decoration: none; color:black;">장승포동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong17" style="text-decoration: none; color:black;">장평동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong18" style="text-decoration: none; color:black;">하청면</a></span>
-									<div style="width:110%; height:0; padding-top:100%; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
+									<div style="width:51vh; height:0; padding-top:51vh; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
 								</div>
 								<br>
 							</div>
@@ -67,7 +67,7 @@
 					<div class="col-md-7" style="padding:0;">
 						
 						<div class="card shadow mb-0">
-							<div class="card-header">
+							<div class="card-header" style="padding: 8px 16px;">
 								<h5 class="card-title mb-0">연간 인구 현황</h5>
 							</div>
 							<div class="card-body" style="padding:0 15px;">
@@ -79,7 +79,7 @@
 						
 						
 						<div class="card shadow mb-0">
-							<div class="card-header">
+							<div class="card-header" style="padding: 8px 16px;">
 								<h5 class="card-title mb-0">연령별 인구 현황</h5>
 							</div>
 							<div class="card-body" style="padding:0 15px;">
@@ -93,7 +93,7 @@
 						
 						
 						<div class="card shadow mb-0">
-							<div class="card-header">
+							<div class="card-header" style="padding: 8px 16px;">
 								<h5 class="card-title mb-0">인구 변화 요인</h5>
 							</div>
 							<div class="card-body" style="padding:0 15px;">
@@ -166,7 +166,7 @@
         }],
         chart: {
             type: "bar",
-            height: 300,
+            height: 270,
             stacked: !1,
             columnWidth: "90%",
             zoom: {
@@ -295,7 +295,7 @@
             padding: {
                 top: 0,
                 right: 0,
-                bottom: -5,
+                bottom: -10,
                 left: 0
             }
         }
@@ -313,28 +313,17 @@
 	var d6 = [ '${ya[5].population}', '${ya[11].population}', '${ya[17].population}', '${ya[23].population}', '${ya[29].population}', '${ya[35].population}', '${ya[41].population}', '${ya[47].population}', '${ya[53].population}' ];
 	
 	var barChart, barChartoptions = {
-		series : [ {
-			name : "0 - 9세",
-			data : d1
-		}, {
-			name : "10 - 19세",
-			data : d2
-		}, {
-			name : "20 - 29세",
-			data : d3
-		}, {
-			name : "30 - 49세",
-			data : d4
-		}, {
-			name : "50 - 64세",
-			data : d5
-		}, {
-			name : "65세 이상",
-			data : d6
-		} ],
+		series : [ 
+			{ name : "0 - 9세", data : d1 }, 
+			{ name : "10 - 19세", data : d2 }, 
+			{ name : "20 - 29세", data : d3 }, 
+			{ name : "30 - 49세", data : d4 }, 
+			{ name : "50 - 64세", data : d5 },
+			{ name : "65세 이상", data : d6 } 
+		],
 		chart : {
 			type : "bar",
-			height : 300,
+			height : 270,
 			stacked : !0, /* bar block stack option */
 			columnWidth : "70%",
 			zoom : {
@@ -460,7 +449,7 @@
 			padding : {
 				top : 0,
 				right : 0,
-				bottom : -5,
+				bottom : -10,
 				left : 10
 			}
 		}
@@ -490,7 +479,7 @@
 			{	name : "이혼", data : d02 	} 
 		],
 		chart : {
-			height : 300,
+			height : 270,
 			type : "line",
 			background : !1,
 			zoom : {
@@ -637,9 +626,9 @@
 				opacity : .5
 			},
 			padding : {
-				top : 0,
+				top : -5,
 				right : 0,
-				bottom : -5,
+				bottom : -10,
 				left : 0
 			}
 		}
