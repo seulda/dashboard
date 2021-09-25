@@ -15,7 +15,7 @@
 								<h3 style="margin-top:2vh; padding-top:10px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
 								<p>(2021년 06월 기준)</p>
 								<div style="margin:2vh 0; padding:10px;">
-									<h4>인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
+									<h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
 									<h5>구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />% </h5>
 								</div>
 								<div class="progress" style="margin:1vh 0 2vh 8vh; width:70%;">
@@ -33,26 +33,27 @@
 						
 						<div class="card shadow mb-0">
 							<div class="card-body">
-								<span>거제시</span>
+								<span><a href="${pageContext.request.contextPath}/population/population" style="text-decoration:none; color:black;">거제시</a></span>
 								<div style="position:relative; width:110%; margin:auto; padding-left:3vh">
-									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh" name="dong02" onClick="dongClick(this.name)"><a href="#">고현동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh" name="dong03" onClick="dongClick(this.name)"><a href="#">남부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%; padding-left:2vh" name="dong04" onClick="dongClick(this.name)"><a href="#">능포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%; padding-left:2vh" name="dong05" onClick="dongClick(this.name)"><a href="#">동부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%; padding-left:2vh" name="dong06" onClick="dongClick(this.name)"><a href="#">둔덕면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%; padding-left:2vh" name="dong07" onClick="dongClick(this.name)"><a href="#">사등면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%; padding-left:2vh" name="dong08" onClick="dongClick(this.name)"><a href="#">상문동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%; padding-left:2vh" name="dong09" onClick="dongClick(this.name)"><a href="#">수양동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%; padding-left:2vh" name="dong10" onClick="dongClick(this.name)"><a href="#">아주동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:42%; top:33%; padding-left:2vh" name="dong11" onClick="dongClick(this.name)"><a href="#">연초면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%; padding-left:2vh" name="dong12" onClick="dongClick(this.name)"><a href="#">옥포1동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%; padding-left:2vh" name="dong13" onClick="dongClick(this.name)"><a href="#">옥포2동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:55%; top:62%; padding-left:2vh" name="dong14" onClick="dongClick(this.name)"><a href="#">일운면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%; padding-left:2vh" name="dong15" onClick="dongClick(this.name)"><a href="#">장목면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh" name="dong16" onClick="dongClick(this.name)"><a href="#">장승포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh" name="dong17" onClick="dongClick(this.name)"><a href="#">장평동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh" name="dong18" onClick="dongClick(this.name)"><a href="#">하청면</a></span>
+									<!-- <span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span> -->
+									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong01" style="text-decoration: none; color:black;">거제면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong02" style="text-decoration: none; color:black;">고현동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong03" style="text-decoration: none; color:black;">남부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong04" style="text-decoration: none; color:black;">능포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong05" style="text-decoration: none; color:black;">동부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong06" style="text-decoration: none; color:black;">둔덕면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong07" style="text-decoration: none; color:black;">사등면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong08" style="text-decoration: none; color:black;">상문동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong09" style="text-decoration: none; color:black;">수양동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong10" style="text-decoration: none; color:black;">아주동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:42%; top:33%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong11" style="text-decoration: none; color:black;">연초면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong12" style="text-decoration: none; color:black;">옥포1동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong13" style="text-decoration: none; color:black;">옥포2동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:55%; top:62%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong14" style="text-decoration: none; color:black;">일운면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong15" style="text-decoration: none; color:black;">장목면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong16" style="text-decoration: none; color:black;">장승포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong17" style="text-decoration: none; color:black;">장평동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population/click?dn=dong18" style="text-decoration: none; color:black;">하청면</a></span>
 									<div style="width:110%; height:0; padding-top:100%; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
 								</div>
 								<br>
@@ -125,9 +126,12 @@
 <script>
 	function dongClick(name) {
 		
-		var dongNum = name;
-
-		$.ajax({
+		var dn = name;
+		
+		console.log("click dong name : " + dn);
+		location.href='${pageContext.request.contextPath}/population/click?dn=' + dn;
+		
+		/* $.ajax({
 			url: "${pageContext.request.contextPath}/population/click",
 			type: "post",
 			data:{
@@ -145,7 +149,7 @@
 			error: function() {
 				alert("server error");
 			}
-		});
+		}); */
 
 	}
 </script>

@@ -8,7 +8,7 @@
 		select
 			sum(population) as population
 		from
-			innodep_db.population
+			population
 		where
 			year = 2021;
 	</select>
@@ -17,36 +17,20 @@
 			year, 
 			sum(population) as population
 		from 
-			innodep_db.population 
+			population
 		group by 
 			year
 		order by 
 			year;
 	</select>
-	
-	
-	<select id="year2021_dong" resultType="tms.gj.domain.PopulationVO">
-		select 
-			dong, 
-			sum(population) as population 
-		from 
-			innodep_db.population 
-		where
-			year = 2021 
-		group by 
-			year, dong 
-		order by 
-			year, dong;
-	</select>
-	<select id="year_dong" resultType="tms.gj.domain.PopulationVO">
+	<select id="year_count_dong" resultType="tms.gj.domain.PopulationVO">
 		select 
 			year, 
-			dong, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population
 		where
-			year = #{year} 
+			dong = #{dong} 
 		group by 
 			year, dong 
 		order by 
@@ -54,41 +38,25 @@
 	</select>
 	
 	
-	<select id="year2021_sex" resultType="tms.gj.domain.PopulationVO">
+	<select id="y2021_sex" resultType="tms.gj.domain.PopulationVO">
 		select 
 			sex, 
 			sum(population) as population, 
-			round(sum(population)/(select sum(population) from innodep_db.population where year = 2021)*100, 1) as per
+			round(sum(population)/(select sum(population) from population where year = 2021)*100, 1) as per
 		from 
-			innodep_db.population 
+			population
 		where 
 			year = 2021 
 		group by 
-			year, sex
-		order by 
 			year, sex;
 	</select>
-	<select id="year_sex" resultType="tms.gj.domain.PopulationVO">
-		<!-- select 
-			year, 
+	<select id="y2021_sex_dong" resultType="tms.gj.domain.PopulationVO">
+		select 
 			sex, 
 			sum(population) as population, 
-			round(sum(population)/(select sum(population) from innodep_db.population where year = #{year})*100, 1) as per
+			round(sum(population)/(select sum(population) from population where year = 2021 and dong = #{dong})*100, 1) as per
 		from 
-			innodep_db.population 
-		where 
-			year = #{year} 
-		group by 
-			year, sex 
-		order by 
-			year, sex; -->
-		
-		select 
-			dong, 
-			sex, 
-			sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = 2021 and dong = #{dong})*100, 1) as per
-		from 
-			innodep_db.population 
+			population
 		where 
 			year = 2021 and dong = #{dong}
 		group by 
@@ -98,13 +66,13 @@
 	</select>
 	
 	
-	<select id="year_age_all" resultType="tms.gj.domain.PopulationVO">
+	<select id="year_age" resultType="tms.gj.domain.PopulationVO">
 		select 
 			year, 
 			age, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population
 		group by 
 			year, age
 		order by 
@@ -112,12 +80,11 @@
 	</select>
 	<select id="year_age_dong" resultType="tms.gj.domain.PopulationVO">
 		select 
-			dong, 
 			year, 
 			age, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population
 		where
 			dong = #{dong}
 		group by 
@@ -133,7 +100,7 @@
 			item, 
 			sum(population) as population 
 		from 
-			innodep_db.item 
+			item
 		group by 
 			year, item 
 		order by 
@@ -142,17 +109,16 @@
 	<select id="year_item_dong" resultType="tms.gj.domain.ItemVO">
 		select 
 			year, 
-			dong, 
 			item, 
 			sum(population) as population 
 		from 
-			innodep_db.item 
+			item
 		where
 			dong = #{dong}
 		group by 
 			year, dong, item 
 		order by 
-			year, dogn, item;
+			year, dong, item;
 	</select>
 
 </mapper>

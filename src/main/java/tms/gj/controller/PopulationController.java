@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
@@ -28,66 +29,85 @@ public class PopulationController {
 	@GetMapping("/population")
 	public String population(Model model) {
 		
+		log.info("population controller start");
+		
 		// 연도별 인구
 		ArrayList<PopulationVO> yc = ps.year_count();
-		log.info(" year -> total  count : " + yc);
+		log.info("year_count");
 		// 2021년 거제시 전체 인구
 		int yc2021 = yc.get(8).getPopulation();
-		log.info(" year=2021 -> total  count : " + yc2021);
+		log.info("2021_count");
 		
 		// 2021년 인구 성별 비율
-		ArrayList<PopulationVO> y2s = ps.year2021_sex();
-		log.info(" year=2021 -> sex  count : " + y2s);
-		log.info(" men per : " + y2s.get(0).getPer());
-		log.info(" woman per : " + y2s.get(1).getPer());
+		ArrayList<PopulationVO> ys = ps.y2021_sex();
+		float men = ys.get(0).getPer();
+		float woman = ys.get(1).getPer();
+		log.info("2021_sex");
 		
 		// 연도별 & 연령대별 인구
-		ArrayList<PopulationVO> ya = ps.year_age_all();
-		log.info(" year -> age  count : " + ya);
+		ArrayList<PopulationVO> ya = ps.year_age();
+		log.info("year_age");
 		
 		// 연도별 변화요인
 		ArrayList<ItemVO> yi = ps.year_item();
-		log.info(" year -> item  count : " + yi);
+		log.info("year_item");
 		
+		log.info("population model start");
+
+		model.addAttribute("area", "거제시");
 		model.addAttribute("yc", yc);
 		model.addAttribute("yc2021", yc2021);
-		model.addAttribute("men", y2s.get(0).getPer());
-		model.addAttribute("woman", y2s.get(1).getPer());
+		model.addAttribute("men", men);
+		model.addAttribute("woman", woman);
 		model.addAttribute("ya", ya);
 		model.addAttribute("yi", yi);
+		
+		log.info("population controller end");
 		
 		return "/dashboard/population";
 	}
 	
-	//@GetMapping("/population/click")
-	@RequestMapping(value="/population/click", method=RequestMethod.POST, produces="application/text; charset=utf8")
-	@ResponseBody
-	public String pClick(Model model, String dName) {
+	@GetMapping("/population/click")
+//	@RequestMapping(value="/population/click", method=RequestMethod.POST, produces="application/text; charset=utf8")
+//	@ResponseBody
+	public String pClick(Model model, @RequestParam(value="dn", required=false) String dn) {
 		
-		log.info("===== ajax start =====");
+		log.info("===== click start =====");
 		
-		String dong = ps.nameset(dName);
+		String dong = ps.nameset(dn);
 		
 		// 2021년 거제시 전체 인구
 		int yc2021 =ps.year2021_count();
 
-		// 2021년 input 동 인구 성비
-		ArrayList<PopulationVO> ys = ps.year_sex(dong);
-		log.info(" year-> sex  count : " + ys);
+		// 동 > 연도별 인구
+		ArrayList<PopulationVO> ycd = ps.year_count_dong(dong);
+		log.info(dong + " >> year_count");
 		
-		// 2021년 동별 인구
-		ArrayList<PopulationVO> y2d = ps.year2021_dong();
-		log.info(" year -> dong  count : " + y2d);
+		// 동 > 2021년 인구 성비
+		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
+		float men = ysd.get(0).getPer();
+		float woman = ysd.get(1).getPer();
+		log.info(dong + " >> 2021_sex");
+		
+		// 동 > 연도별 & 연령대별 인구
+		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
+		log.info(dong + " >> year_age");
+		
+		// 동 > 연도별 변화요인
+		ArrayList<ItemVO> yid = ps.year_item_dong(dong);
+		log.info(dong + " >> year_item");
 
-		
+		model.addAttribute("area", dong);
 		model.addAttribute("yc2021", yc2021);
-		model.addAttribute("ys", ys);
-		model.addAttribute("yd", y2d);
+		model.addAttribute("yc", ycd);
+		model.addAttribute("men", men);
+		model.addAttribute("woman", woman);
+		model.addAttribute("ya", yad);
+		model.addAttribute("yi", yid);
 		
-		log.info("===== ajax end =====");
+		log.info("===== click end =====");
 		
-		return "success";
-		//return "/dashboard/population";
+		return "/dashboard/population";
 	}
 	
 }
