@@ -7,17 +7,136 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/campaign.css">
+</head>
 <script
 	src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
+<link rel="stylesheet"
+	href="${ pageContext.request.contextPath }/resources/css/campaign.css">
 
+<script>
+	function pop(department) {
 
-</head>
+		location.href = '${ pageContext.request.contextPath}/campaign?department='
+				+ department;
+
+	}
+	var donutchart, donutChartOptions = {
+		series : [ 54, 40, 4, 2 ],
+		chart : {
+			type : "donut",
+			height : 305,
+			zoom : {
+				enabled : !1
+			}
+		},
+		theme : {
+			mode : colors.chartTheme
+		},
+		plotOptions : {
+			pie : {
+				donut : {
+					size : "30%"
+				},
+				expandOnClick : !1
+			}
+		},
+		labels : [ "완료", "진행중", "보류", "폐기" ],
+		legend : {
+			position : "top",
+			fontFamily : base.defaultFontFamily,
+			fontWeight : 400,
+			labels : {
+				colors : colors.mutedColor,
+				useSeriesColors : !1
+			},
+			horizontalAlign : "center",
+			fontFamily : base.defaultFontFamily,
+			markers : {
+				width : 10,
+				height : 10,
+				strokeWidth : 0,
+				strokeColor : "#fff",
+				radius : 6
+			},
+			itemMargin : {
+				horizontal : 10,
+				vertical : 2
+			},
+			onItemClick : {
+				toggleDataSeries : !0
+			},
+			onItemHover : {
+				highlightDataSeries : !0
+			}
+		},
+		stroke : {
+			colors : [ colors.borderColor ],
+			width : 1
+		},
+		fill : {
+			opacity : 1,
+			colors : chartColors
+		}
+	}, donutchartCtn = document.querySelector("#donutChart");
+	donutchartCtn
+			&& (donutchart = new ApexCharts(donutchartCtn, donutChartOptions))
+					.render();
+
+	var donutChartWidget, donutChartWidgetOptions = {
+		series : [ 54, 40, 4, 2 ],
+		chart : {
+			type : "donut",
+			height : 180,
+			zoom : {
+				enabled : !1
+			},
+			toolbar : {
+				show : !1
+			}
+		},
+		theme : {
+			mode : colors.chartTheme
+		},
+		plotOptions : {
+			pie : {
+				donut : {
+					size : "30%",
+					background : "transparent"
+				},
+				expandOnClick : !1
+			}
+		},
+		labels : [ "완료", "추진중", "폐기", "보류" ],
+		dataLabels : {
+			enabled : !0,
+			style : {
+				fontSize : "10px",
+				fontFamily : base.defaultFontFamily,
+				fontWeight : "300"
+			}
+		},
+		legend : {
+			show : !1
+		},
+		stroke : {
+			show : !1,
+			colors : colors.borderColor,
+			width : 1,
+			dashArray : 0
+		},
+		fill : {
+			opacity : 1,
+			colors : chartColors
+		}
+	}, donutChartWidgetCtn = document.querySelector("#donutChartWidget");
+	donutChartWidgetCtn
+			&& (donutChartWidget = new ApexCharts(donutChartWidgetCtn,
+					donutChartWidgetOptions)).render();
+</script>
+
 <body>
 
 	<main role="main" class="main-content" style="margin: 0">
@@ -58,11 +177,6 @@
 						</tbody>
 					</table>
 				</div>
-				
-				<div>
-					
-				</div>
-				
 			</div>
 			<div class="container2">
 				<div class="card shadow border-1">
@@ -212,7 +326,7 @@
 										</c:if>
 									</c:forEach>
 
-									<c:forEach var="all" items="${ detailList }">
+									<c:forEach var="all" items="${ all }">
 										<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">
 											<tr>
 												<th scope="col" style="text-align: center;">${ all.section }</th>
@@ -256,284 +370,5 @@
 	<%@ include file="../layout/footer.jsp"%>
 
 </body>
-
-<script>
-   var dateArea = [], D = [];
-   <c:forEach var="list" items="${alist}">
-      var dt = '${list.stateDt}';
-      dt = dt.substr(4,2) + "월 " + dt.substr(6,2) + "일";
-       dateArea.push(dt);
-       D.push('${list.ADecideCnt}');
-   </c:forEach>
-   dateArea.reverse();
-   D.reverse();
-   
-   var columnChart, columnChartoptions = {
-        series: [{
-            name: "일일 확진자",
-            data: D
-        }],
-        chart: {
-            type: "bar",
-            height: 350,
-            stacked: !1,
-            columnWidth: "90%",
-            zoom: {
-                enabled: !1
-            },
-            toolbar: {
-                show: !1
-            },
-            background: "transparent"
-        },
-        dataLabels: { enabled: !1 },
-        theme: { mode: colors.chartTheme },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                legend: {
-                    position: "bottom",
-                    offsetX: -10,
-                    offsetY: 0
-                }
-            }
-        }],
-        plotOptions: {
-            bar: {
-                horizontal: !1,
-                columnWidth: "12%",
-                radius: 30,
-                enableShades: !1,
-                endingShape: "rounded",
-                dataLabels: {
-               position: 'top',
-            },
-            }
-        },
-        dataLabels: {
-            enabled: true,
-            offsetY: -30,
-            style: {
-              fontSize: '12px',
-              colors: [colors.chartTheme]
-            }
-          },
-        xaxis: {
-            /* type: "datetime", */
-            categories: dateArea,
-            labels: {
-                show: !0,
-                trim: !1,
-                offsetX: 0,
-                minHeight: void 0,
-                maxHeight: 120,
-                style: {
-                    colors: colors.mutedColor,
-                    cssClass: "text-muted",
-                    fontFamily: base.defaultFontFamily
-                }
-            },
-            axisBorder: { show: !1 }
-        },
-        yaxis: {
-            labels: {
-                show: !0,
-                trim: !1,
-                offsetX: -10,
-                minHeight: void 0,
-                maxHeight: 120,
-                style: {
-                    colors: colors.mutedColor,
-                    cssClass: "text-muted",
-                    fontFamily: base.defaultFontFamily
-                }
-            }
-        },
-        legend: {
-            position: "top",
-            fontFamily: base.defaultFontFamily,
-            fontWeight: 400,
-            labels: {
-                colors: colors.mutedColor,
-                useSeriesColors: !1
-            },
-            markers: {
-                width: 10,
-                height: 10,
-                strokeWidth: 0,
-                strokeColor: "#fff",
-                fillColors: [extend.primaryColor, extend.primaryColorLighter],
-                radius: 6,
-                customHTML: void 0,
-                onClick: void 0,
-                offsetX: 0,
-                offsetY: 0
-            },
-            itemMargin: {
-                horizontal: 10,
-                vertical: 0
-            },
-            onItemClick: { toggleDataSeries: !0 },
-            onItemHover: { highlightDataSeries: !0 }
-        },
-        fill: {
-            opacity: 1,
-            colors: [base.primaryColor, extend.primaryColorLighter]
-        },
-        grid: {
-            show: !0,
-            borderColor: colors.borderColor,
-            strokeDashArray: 0,
-            position: "back",
-            xaxis: {
-                lines: { show: !1 }
-            },
-            yaxis: {
-                lines: { show: !0 }
-            },
-            row: {
-                colors: void 0,
-                opacity: .5
-            },
-            column: {
-                colors: void 0,
-                opacity: .5
-            },
-            padding: {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0
-            }
-        }
-    },
-    columnChartCtn = document.querySelector("#columnChart");
-   columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
-
-  
-</script>
-
-<script>
-	function pop(department) {
-
-		location.href = '${ pageContext.request.contextPath}/campaign?department='
-				+ department;
-
-	}
-	var donutchart, donutChartOptions = {
-		series : [ 54, 40, 4, 2 ],
-		chart : {
-			type : "donut",
-			height : 305,
-			zoom : {
-				enabled : !1
-			}
-		},
-		theme : {
-			mode : colors.chartTheme
-		},
-		plotOptions : {
-			pie : {
-				donut : {
-					size : "30%"
-				},
-				expandOnClick : !1
-			}
-		},
-		labels : [ "완료", "진행중", "보류", "폐기" ],
-		legend : {
-			position : "top",
-			fontFamily : base.defaultFontFamily,
-			fontWeight : 400,
-			labels : {
-				colors : colors.mutedColor,
-				useSeriesColors : !1
-			},
-			horizontalAlign : "center",
-			fontFamily : base.defaultFontFamily,
-			markers : {
-				width : 10,
-				height : 10,
-				strokeWidth : 0,
-				strokeColor : "#fff",
-				radius : 6
-			},
-			itemMargin : {
-				horizontal : 10,
-				vertical : 2
-			},
-			onItemClick : {
-				toggleDataSeries : !0
-			},
-			onItemHover : {
-				highlightDataSeries : !0
-			}
-		},
-		stroke : {
-			colors : [ colors.borderColor ],
-			width : 1
-		},
-		fill : {
-			opacity : 1,
-			colors : chartColors
-		}
-	}, donutchartCtn = document.querySelector("#donutChart");
-	donutchartCtn
-			&& (donutchart = new ApexCharts(donutchartCtn, donutChartOptions))
-					.render();
-
-	var donutChartWidget, donutChartWidgetOptions = {
-		series : [ 54, 40, 4, 2 ],
-		chart : {
-			type : "donut",
-			height : 180,
-			zoom : {
-				enabled : !1
-			},
-			toolbar : {
-				show : !1
-			}
-		},
-		theme : {
-			mode : colors.chartTheme
-		},
-		plotOptions : {
-			pie : {
-				donut : {
-					size : "30%",
-					background : "transparent"
-				},
-				expandOnClick : !1
-			}
-		},
-		labels : [ "완료", "추진중", "폐기", "보류" ],
-		dataLabels : {
-			enabled : !0,
-			style : {
-				fontSize : "10px",
-				fontFamily : base.defaultFontFamily,
-				fontWeight : "300"
-			}
-		},
-		legend : {
-			show : !1
-		},
-		stroke : {
-			show : !1,
-			colors : colors.borderColor,
-			width : 1,
-			dashArray : 0
-		},
-		fill : {
-			opacity : 1,
-			colors : chartColors
-		}
-	}, donutChartWidgetCtn = document.querySelector("#donutChartWidget");
-	donutChartWidgetCtn
-			&& (donutChartWidget = new ApexCharts(donutChartWidgetCtn,
-					donutChartWidgetOptions)).render();
-</script>
-
-
 </html>
 

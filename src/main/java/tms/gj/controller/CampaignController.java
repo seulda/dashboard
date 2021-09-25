@@ -23,14 +23,15 @@ public class CampaignController {
 	
 	
 	@GetMapping("/campaign")
-	public String campaign(Model model) {
+	public String campaign(@RequestParam(value = "department",required = false) String department,Model model) {
 		
+		ArrayList<CampaignVO> detailList = cs.detailList(department);
 		ArrayList<CampaignVO> rate = cs.campaignRate();
 		ArrayList<CampaignVO> period   = cs.businessPeriod();
 		ArrayList<CampaignVO> fulfil   = cs.fulfil();
 		ArrayList<CampaignVO> all   = cs.all();
 		
-		
+		model.addAttribute("detailList", detailList);
 		model.addAttribute("rate", rate);
 		model.addAttribute("period", period);
 		model.addAttribute("fulfil", fulfil);
@@ -38,26 +39,8 @@ public class CampaignController {
 
 		
 		return "/dashboard/campaign";
+		
 	}
 	
-	@GetMapping("/detail_list.do")
-	public String detail(@RequestParam(value = "department",required = false) String department,
-						Model model) {
-		
-		ArrayList<CampaignVO> detailList = cs.detailList(department);
-		ArrayList<CampaignVO> rate = cs.campaignRate(); 
-		ArrayList<CampaignVO> period   = cs.businessPeriod();
-		ArrayList<CampaignVO> fulfil   = cs.fulfil();
-		ArrayList<CampaignVO> all   = cs.all();
-		
-		
-		model.addAttribute("rate", rate);
-		model.addAttribute("period", period);
-		model.addAttribute("fulfil", fulfil);
-		model.addAttribute("all", all);
-		model.addAttribute("detailList", detailList);
-		
-		return "/dashboard/campaign_pop";
-	}
 	
 }

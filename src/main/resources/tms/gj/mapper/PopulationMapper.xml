@@ -8,7 +8,7 @@
 		select
 			sum(population) as population
 		from
-			innodep_db.population
+			population
 		where
 			year = 2021;
 	</select>
@@ -17,7 +17,7 @@
 			year, 
 			sum(population) as population
 		from 
-			innodep_db.population 
+			population 
 		group by 
 			year
 		order by 
@@ -30,7 +30,7 @@
 			dong, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population 
 		where
 			year = 2021 
 		group by 
@@ -44,7 +44,7 @@
 			dong, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population 
 		where
 			year = #{year} 
 		group by 
@@ -58,9 +58,9 @@
 		select 
 			sex, 
 			sum(population) as population, 
-			round(sum(population)/(select sum(population) from innodep_db.population where year = 2021)*100, 1) as per
+			round(sum(population)/(select sum(population) from population where year = 2021)*100, 1) as per
 		from 
-			innodep_db.population 
+			population 
 		where 
 			year = 2021 
 		group by 
@@ -73,9 +73,9 @@
 			year, 
 			sex, 
 			sum(population) as population, 
-			round(sum(population)/(select sum(population) from innodep_db.population where year = #{year})*100, 1) as per
+			round(sum(population)/(select sum(population) from population where year = #{year})*100, 1) as per
 		from 
-			innodep_db.population 
+			population 
 		where 
 			year = #{year} 
 		group by 
@@ -86,9 +86,9 @@
 		select 
 			dong, 
 			sex, 
-			sum(population) as population, round(sum(population)/(select sum(population) from innodep_db.population where year = 2021 and dong = #{dong})*100, 1) as per
+			sum(population) as population, round(sum(population)/(select sum(population) from population where year = 2021 and dong = #{dong})*100, 1) as per
 		from 
-			innodep_db.population 
+			population 
 		where 
 			year = 2021 and dong = #{dong}
 		group by 
@@ -104,7 +104,7 @@
 			age, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population 
 		group by 
 			year, age
 		order by 
@@ -117,7 +117,7 @@
 			age, 
 			sum(population) as population 
 		from 
-			innodep_db.population 
+			population 
 		where
 			dong = #{dong}
 		group by 
@@ -133,7 +133,7 @@
 			item, 
 			sum(population) as population 
 		from 
-			innodep_db.item 
+			item 
 		group by 
 			year, item 
 		order by 
@@ -146,7 +146,7 @@
 			item, 
 			sum(population) as population 
 		from 
-			innodep_db.item 
+			item 
 		where
 			dong = #{dong}
 		group by 

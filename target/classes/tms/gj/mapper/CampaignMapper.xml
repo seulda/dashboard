@@ -9,7 +9,7 @@
 		SELECT 
 			department,
 			avg(rate) as avgRate
-		FROM innodep_db.campaign
+		FROM campaign
 		Group by department
         order by avgRate asc;
 	</select>
@@ -19,7 +19,7 @@
 			name,
 			businessPeriod,
 			rate
-		from innodep_db.campaign
+		from campaign
 		where substring(current_date(),1,4)  = SUBSTRING_INDEX(businessPeriod, '~', -1)
 		order by rate asc
 	</select>
@@ -28,7 +28,7 @@
       SELECT
          fulfil,
          count(distinct name) as cnt
-      FROM innodep_db.campaign
+      FROM campaign
       group by fulfil
       order by cnt desc
 	</select>
@@ -41,7 +41,7 @@
 			fulfil,
 			rate,
 			businessPeriod
-		FROM innodep_db.campaign
+		FROM campaign
 		order by rate,businessPeriod asc
 	</select>
 	
@@ -53,7 +53,7 @@
 			fulfil,
 			rate,
 			businessPeriod
-		FROM innodep_db.campaign
+		FROM campaign
 		where department = #{department}
 		order by rate,businessPeriod asc
 	</select>
@@ -63,7 +63,7 @@
 			department,
 			fulfil,
             count(distinct name) as cnt
-		FROM innodep_db.campaign
+		FROM campaign
         where department = #{department}
         group by fulfil
 		order by rate,businessPeriod asc
