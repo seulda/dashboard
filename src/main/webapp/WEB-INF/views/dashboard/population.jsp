@@ -27,13 +27,13 @@
 										<span style="text-align:right; margin-right:1vh;">여</span>	
 									</div>
 								</div>
-								<h5 style="margin:1vh 0; padding:20px 10px;">전년대비 증감 : <fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
+								<h5 style="margin:1vh 0; padding:20px 10px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
 							</div>
 						</div>
 						
 						<div class="card shadow mb-0">
 							<div class="card-body">
-								<span><a href="${pageContext.request.contextPath}/population/population" style="text-decoration:none; color:black;">거제시</a></span>
+								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시</a></h5>
 								<div style="position:relative; width:110%; margin:auto; padding-left:3vh">
 									<!-- <span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span> -->
 									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong01" style="text-decoration: none; color:black;">거제면</a></span>
@@ -68,7 +68,7 @@
 						
 						<div class="card shadow mb-0">
 							<div class="card-header">
-								<strong class="card-title mb-0">연간 인구 현황</strong>
+								<h5 class="card-title mb-0">연간 인구 현황</h5>
 							</div>
 							<div class="card-body" style="padding:0 15px;">
 								<div class="chart-box">
@@ -80,7 +80,7 @@
 						
 						<div class="card shadow mb-0">
 							<div class="card-header">
-								<strong class="card-title mb-0">연령별 인구 현황</strong>
+								<h5 class="card-title mb-0">연령별 인구 현황</h5>
 							</div>
 							<div class="card-body" style="padding:0 15px;">
 								<div class="chart-box">
@@ -94,7 +94,7 @@
 						
 						<div class="card shadow mb-0">
 							<div class="card-header">
-								<strong class="card-title mb-0">인구 변화 요인</strong>
+								<h5 class="card-title mb-0">인구 변화 요인</h5>
 							</div>
 							<div class="card-body" style="padding:0 15px;">
 								<div class="chart-box">
@@ -166,7 +166,7 @@
         }],
         chart: {
             type: "bar",
-            height: 350,
+            height: 300,
             stacked: !1,
             columnWidth: "90%",
             zoom: {
@@ -192,7 +192,7 @@
         plotOptions: {
             bar: {
                 horizontal: !1,
-                columnWidth: "45%",
+                columnWidth: "40%",
                 radius: 0,
                 enableShades: !1,
                 /* endingShape: "rounded", */
@@ -227,6 +227,8 @@
             axisBorder: { show: !1 }
         },
         yaxis: {
+        	min: (${yc[0].population} + ${yc[8].population}) / 2 * 0.79,
+        	forceNiceScale: 1,
             labels: {
                 show: !0,
                 trim: !1,
@@ -293,7 +295,7 @@
             padding: {
                 top: 0,
                 right: 0,
-                bottom: 0,
+                bottom: -5,
                 left: 0
             }
         }
@@ -332,7 +334,7 @@
 		} ],
 		chart : {
 			type : "bar",
-			height : 350,
+			height : 300,
 			stacked : !0, /* bar block stack option */
 			columnWidth : "70%",
 			zoom : {
@@ -402,15 +404,15 @@
 			fontWeight : 400,
 			labels : {
 				colors : colors.mutedColor,
-				useSeriesColors : !1
+				useSeriesColors : !0 /* 범주 글자 색 변경 여부 */
 			},
 			offsetY : 10,
 			markers : {
 				width : 10,
 				height : 10,
 				strokeWidth : 0,
-				strokeColor : colors.borderColor,
-				fillColors : chartColors,
+				/* strokeColor : colors.borderColor,
+				fillColors : chartColors, */
 				radius : 6,
 				customHTML : void 0,
 				onClick : void 0,
@@ -428,10 +430,10 @@
 				highlightDataSeries : !0
 			}
 		},
-		fill : {
+		/* fill : {
 			opacity : 1,
 			colors : chartColors
-		},
+		}, */
 		grid : {
 			show : !0,
 			borderColor : colors.borderColor,
@@ -458,7 +460,7 @@
 			padding : {
 				top : 0,
 				right : 0,
-				bottom : 0,
+				bottom : -5,
 				left : 10
 			}
 		}
@@ -481,28 +483,14 @@
 	
 	var lineChart, lineChartoptions = {
 		series : [
-				{
-					name : "출생",
-					data : d04
-				},
-				{
-					name : "사망",
-					data : d01
-				},
-				{
-					name : "자연증가",
-					data : d03
-				},
-				{
-					name : "혼인",
-					data : d05
-				},
-				{
-					name : "이혼",
-					data : d02
-				} ],
+			{	name : "출생", data : d04		},
+			{	name : "사망", data : d01 	},
+			{	name : "자연증가", data : d03 		},
+			{	name : "혼인", data : d05 	},
+			{	name : "이혼", data : d02 	} 
+		],
 		chart : {
-			height : 350,
+			height : 300,
 			type : "line",
 			background : !1,
 			zoom : {
@@ -513,13 +501,14 @@
 			}
 		},
 		theme : {
-			mode : colors.chartTheme
+			/* mode : colors.chartTheme, */
+			palette: 'palette6'
 		},
 		stroke : {
 			show : !0,
-			curve : "smooth",
+			curve : "smooth", /* smooth / straight / stepline */
 			lineCap : "round",
-			colors : chartColors,
+			/* colors : chartColors, */
 			width : [ 3, 2, 3 ],
 			dashArray : [ 0, 0, 0 ]
 		},
@@ -594,15 +583,15 @@
 			fontFamily : base.defaultFontFamily,
 			fontWeight : 400,
 			labels : {
-				colors : colors.mutedColor,
+				/* colors : colors.mutedColor, */
 				useSeriesColors : !1
 			},
 			markers : {
 				width : 10,
 				height : 10,
 				strokeWidth : 0,
-				strokeColor : colors.borderColor,
-				fillColors : chartColors,
+				/* strokeColor : colors.borderColor,
+				fillColors : chartColors, */
 				radius : 6,
 				customHTML : void 0,
 				onClick : void 0,
@@ -611,7 +600,7 @@
 			},
 			itemMargin : {
 				horizontal : 10,
-				vertical : 0
+				vertical : 10
 			},
 			onItemClick : {
 				toggleDataSeries : !0
@@ -619,6 +608,10 @@
 			onItemHover : {
 				highlightDataSeries : !0
 			}
+		},
+		fill : {
+			opacity : 1,
+			colors : chartColors
 		},
 		grid : {
 			show : !0,
@@ -646,7 +639,7 @@
 			padding : {
 				top : 0,
 				right : 0,
-				bottom : 0,
+				bottom : -5,
 				left : 0
 			}
 		}

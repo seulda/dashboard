@@ -18,7 +18,6 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	@Override
 	public int year2021_count() {
-		// System.out.println("test population count : " + pm.year2021_count());
 		return pm.year2021_count();
 	}
 	@Override
@@ -180,8 +179,8 @@ public class PopulationServiceImpl implements PopulationService {
 			yad.add(pvo_no);
 		}
 		
-		System.out.println("@@@ yad_before: "+yad_before);
-		System.out.println("@@@ yad_after: "+yad);
+		//System.out.println("@@@ yad_before: "+yad_before);
+		//System.out.println("@@@ yad_after: "+yad);
 		
 		return yad;
 	}
