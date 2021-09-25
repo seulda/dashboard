@@ -17,45 +17,18 @@
 			year, 
 			sum(population) as population
 		from 
-<<<<<<< HEAD
-			population 
-=======
 			population
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		group by 
 			year
 		order by 
 			year;
 	</select>
-<<<<<<< HEAD
-	
-	
-	<select id="year2021_dong" resultType="tms.gj.domain.PopulationVO">
-		select 
-			dong, 
-			sum(population) as population 
-		from 
-			population 
-		where
-			year = 2021 
-		group by 
-			year, dong 
-		order by 
-			year, dong;
-	</select>
-	<select id="year_dong" resultType="tms.gj.domain.PopulationVO">
-=======
 	<select id="year_count_dong" resultType="tms.gj.domain.PopulationVO">
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		select 
 			year, 
 			sum(population) as population 
 		from 
-<<<<<<< HEAD
-			population 
-=======
 			population
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		where
 			dong = #{dong} 
 		group by 
@@ -71,47 +44,19 @@
 			sum(population) as population, 
 			round(sum(population)/(select sum(population) from population where year = 2021)*100, 1) as per
 		from 
-<<<<<<< HEAD
-			population 
-=======
 			population
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		where 
 			year = 2021 
 		group by 
 			year, sex;
 	</select>
-<<<<<<< HEAD
-	<select id="year_sex" resultType="tms.gj.domain.PopulationVO">
-		<!-- select 
-			year, 
-			sex, 
-			sum(population) as population, 
-			round(sum(population)/(select sum(population) from population where year = #{year})*100, 1) as per
-		from 
-			population 
-		where 
-			year = #{year} 
-		group by 
-			year, sex 
-		order by 
-			year, sex; -->
-		
-=======
 	<select id="y2021_sex_dong" resultType="tms.gj.domain.PopulationVO">
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		select 
 			sex, 
-<<<<<<< HEAD
-			sum(population) as population, round(sum(population)/(select sum(population) from population where year = 2021 and dong = #{dong})*100, 1) as per
-		from 
-			population 
-=======
 			sum(population) as population, 
 			round(sum(population)/(select sum(population) from population where year = 2021 and dong = #{dong})*100, 1) as per
 		from 
 			population
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		where 
 			year = 2021 and dong = #{dong}
 		group by 
@@ -127,11 +72,7 @@
 			age, 
 			sum(population) as population 
 		from 
-<<<<<<< HEAD
-			population 
-=======
 			population
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		group by 
 			year, age
 		order by 
@@ -143,11 +84,7 @@
 			age, 
 			sum(population) as population 
 		from 
-<<<<<<< HEAD
-			population 
-=======
 			population
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		where
 			dong = #{dong}
 		group by 
@@ -163,11 +100,7 @@
 			item, 
 			sum(population) as population 
 		from 
-<<<<<<< HEAD
-			item 
-=======
 			item
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		group by 
 			year, item 
 		order by 
@@ -179,11 +112,7 @@
 			item, 
 			sum(population) as population 
 		from 
-<<<<<<< HEAD
-			item 
-=======
 			item
->>>>>>> 56e89c61bd3f5f6e4897ffd3cbd3d8407fe47c4a
 		where
 			dong = #{dong}
 		group by 

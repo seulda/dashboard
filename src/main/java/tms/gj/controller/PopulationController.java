@@ -67,8 +67,8 @@ public class PopulationController {
 		return "/dashboard/population";
 	}
 	
-	@GetMapping("/population/click")
-//	@RequestMapping(value="/population/click", method=RequestMethod.POST, produces="application/text; charset=utf8")
+	@GetMapping("/populationArea")
+//	@RequestMapping(value="/populationArea", method=RequestMethod.POST, produces="application/text; charset=utf8")
 //	@ResponseBody
 	public String pClick(Model model, @RequestParam(value="dn", required=false) String dn) {
 		
