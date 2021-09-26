@@ -34,6 +34,7 @@
 						<div class="card shadow mb-0">
 							<div class="card-body">
 								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시</a></h5>
+								<span onClick="dongClick('dong01')">거제면 TEST</span>
 								<div style="position:relative; width:51vh; margin:auto; padding-left:3vh">
 									<!-- <span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span> -->
 									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong01" style="text-decoration: none; color:black;">거제면</a></span>
@@ -67,10 +68,10 @@
 					<div class="col-md-7" style="padding:0;">
 						
 						<div class="card shadow mb-0">
-							<div class="card-header" style="padding: 8px 16px;">
+							<div class="card-header" style="padding: 7px 16px;">
 								<h5 class="card-title mb-0">연간 인구 현황</h5>
 							</div>
-							<div class="card-body" style="padding:0 15px;">
+							<div class="card-body" style="padding:0 10px;">
 								<div class="chart-box">
 									<div id="columnChart"></div>
 								</div>
@@ -79,10 +80,10 @@
 						
 						
 						<div class="card shadow mb-0">
-							<div class="card-header" style="padding: 8px 16px;">
+							<div class="card-header" style="padding: 7px 16px;">
 								<h5 class="card-title mb-0">연령별 인구 현황</h5>
 							</div>
-							<div class="card-body" style="padding:0 15px;">
+							<div class="card-body" style="padding:0 10px;">
 								<div class="chart-box">
 									<div id="barChart"></div>
 								</div>
@@ -93,10 +94,10 @@
 						
 						
 						<div class="card shadow mb-0">
-							<div class="card-header" style="padding: 8px 16px;">
+							<div class="card-header" style="padding: 7px 16px;">
 								<h5 class="card-title mb-0">인구 변화 요인</h5>
 							</div>
-							<div class="card-body" style="padding:0 15px;">
+							<div class="card-body" style="padding:0 10px;">
 								<div class="chart-box">
 									<div id="lineChart"></div>
 								</div>
@@ -128,25 +129,45 @@
 		
 		var dn = name;
 		
-		/* $.ajax({
-			url: "${pageContext.request.contextPath}/population/click",
+		console.log("dong Click : " + dn);
+		
+		$.ajax({
+			url: "${pageContext.request.contextPath}/population_Area",
 			type: "post",
-			data:{
-				dNum : dongNum
-			},
-			dataType: "text",
+			data: { dn : dn },
+			dataType: "json",
 			success: function(data){
-				if(data === "success"){ 
-					alert("graph reload success");
-					location.reload();
-				} else {
-					alert("callback error");
-				}
+				
+				area = data.area;
+				console.log("data.area : " + area);
+				yc2021 = data.yc2021;
+				console.log("data.yc2021 : " + yc2021);
+				
+				yc = data.yc;
+				console.log("data.yc : " + yc);
+				console.log("yc[0].population : " + yc[0].population);
+				
+				men = data.men;
+				console.log("data.men : " + men);
+				woman = data.woman;
+				console.log("data.woman : " + woman);
+				
+				ya = data.ya;
+				console.log("data.ya : " + ya);
+				console.log("ya[0].population : " + ya[0].population);
+				
+				yi = data.yi;
+				console.log("data.yi : " + yi);
+				console.log("yi[0].population : " + yi[0].population);
+				
+				alert("graph reload success");
+				//location.reload();
+				
 			},
 			error: function() {
 				alert("server error");
 			}
-		}); */
+		});
 
 	}
 </script>
