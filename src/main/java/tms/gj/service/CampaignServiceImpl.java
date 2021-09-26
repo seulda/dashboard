@@ -46,5 +46,11 @@ public class CampaignServiceImpl implements CampaignService {
 		// TODO Auto-generated method stub
 		return cm.detailList(department);
 	}
+
+	@Override
+	public ArrayList<CampaignVO> cnt(String department) {
+		// TODO Auto-generated method stub
+		return cm.cnt(department);
+	}
 	
 }

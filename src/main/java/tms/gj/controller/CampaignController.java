@@ -26,17 +26,18 @@ public class CampaignController {
 	public String campaign(@RequestParam(value = "department",required = false) String department,Model model) {
 		
 		ArrayList<CampaignVO> detailList = cs.detailList(department);
-		ArrayList<CampaignVO> rate = cs.campaignRate();
-		ArrayList<CampaignVO> period   = cs.businessPeriod();
-		ArrayList<CampaignVO> fulfil   = cs.fulfil();
-		ArrayList<CampaignVO> all   = cs.all();
+		ArrayList<CampaignVO> rate       = cs.campaignRate();
+		ArrayList<CampaignVO> period     = cs.businessPeriod();
+		ArrayList<CampaignVO> fulfil     = cs.fulfil();
+		ArrayList<CampaignVO> all        = cs.all();
+		ArrayList<CampaignVO> cnt        = cs.cnt(department);
 		
 		model.addAttribute("detailList", detailList);
 		model.addAttribute("rate", rate);
 		model.addAttribute("period", period);
 		model.addAttribute("fulfil", fulfil);
 		model.addAttribute("all", all);
-
+		model.addAttribute("cnt", cnt);
 		
 		return "/dashboard/campaign";
 		

@@ -16,4 +16,6 @@ public interface CampaignService {
 	public ArrayList<CampaignVO> all();
 	
 	public ArrayList<CampaignVO> detailList(String department);
+	
+	public ArrayList<CampaignVO> cnt(String department);
 }

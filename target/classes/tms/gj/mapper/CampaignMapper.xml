@@ -68,5 +68,15 @@
         group by fulfil
 		order by rate,businessPeriod asc
 	</select>
+	
+	<select id="cnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
+		SELECT
+			fulfil,
+			count(fulfil) as cnt
+		FROM campaign
+		where department = #{department}
+		group by fulfil
+		order by rate desc
+	</select>
 
 </mapper>

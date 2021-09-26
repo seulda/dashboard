@@ -85,6 +85,11 @@
 								<div class="num0">0%</div>
 							</div>
 						</div>
+	                    <div class="bar_l2">
+	                       <c:forEach var="rate" items="${ rate }">
+	                          <div onclick="" class="bar_l20" style="font-size: 10px; color:#000000;"><b>${ rate.avgRate }</b></div>
+	                       </c:forEach>
+	                    </div>
 						<div class="bar_t">
 							<c:forEach var="rate" items="${ rate }">
 								<div onclick="pop('${ rate.department }');" class="barcharts">
@@ -96,7 +101,7 @@
 						</div>
 						<div class="bar_l">
 							<c:forEach var="rate" items="${ rate }">
-								<div onclick="" class="bar_l0" style="font-size: 10px;">${ rate.department }</div>
+								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 10px;">${ rate.department }</div>
 							</c:forEach>
 						</div>
 					</div>
@@ -104,23 +109,46 @@
 			</div>
 			<div class="container3">
 				<div id="origin" class="card shadow border-2">
-					<div class="card-header">
-						<strong class="card-title mb-0">공약별 이행 현황</strong>
-					</div>
+	               <div class="card-header">
+                    	<div class ="card_h_t">
+		                     <c:if test="${ empty param.department }">
+		                        <strong class="card-title mb-0">공약별 이행 현황</strong>
+		                     </c:if>
+		                     <c:if test="${ not empty param.department }">
+		                        <strong class="card-title mb-0">${ param.department } 공약별 이행 현황</strong>   &nbsp                     
+		                           <b>[</b><c:forEach var="fulfil" items="${ cnt }">
+		                           	  <c:if test="${(fulfil.fulfil eq '추진중')}">
+		                           	  	    <span style="color: red">
+		                                    	<b>${ fulfil.fulfil } ${ fulfil.cnt }건</b>
+		                                    </span>
+		                           	  </c:if>
+		                              <c:if
+		                                 test="${ (fulfil.fulfil eq '완료') or (fulfil.fulfil eq '폐기') or (fulfil.fulfil eq '보류') }">
+		                                    <span style="color: gray">
+		                                    	<b>${ fulfil.fulfil } ${ fulfil.cnt }건</b>
+		                                    </span>
+		                              </c:if>     
+		                           </c:forEach><b>]</b>                     
+		                     </c:if>
+	                 	</div>
+		                <div class ="card_t_t">
+	                 		<a href="${ pageContext.request.contextPath}/campaign">전체공약보기</a>
+		                </div> 
+	               </div>
 					<div class="card-body">
 						<table class="table table-borderless table-striped">
-							<thead>
-								<tr role="row">
-									<th style="text-align: center;">담당</th>
-									<th style="text-align: center;">담당자</th>
-									<th style="text-align: center;">공약</th>
-									<th style="text-align: center;">사업기간</th>
-									<th style="text-align: center; width: 50%; padding-right: 5%">이행률</th>
-									<th style="text-align: center;">이행도</th>
-								</tr>
-							</thead>
+		                     <thead class ="hh">
+		                        <tr role="row">
+		                           <th style="text-align: center; width:10%; color:#000;"><b>담당</b></th>
+		                           <th style="text-align: center; width:10%; color:#000;"><b>담당자</b></th>
+		                           <th style="text-align: center; width:20%; color:#000;"><b>공약</b></th>
+		                           <th style="text-align: center; width:10%; color:#000;"><b>사업기간</b></th>
+		                           <th style="text-align: center; width: 40%; padding-right: 5%; color:#000;"><b>이행률</b></th>
+		                           <th style="text-align: center; width:10%; color:#000;"><b>이행도</b></th>
+		                        </tr>
+		                     </thead>
 
-							<c:if test="${ empty detailList }">
+							<c:if test="${ empty param.department }">
 
 								<tbody>
 									<c:forEach var="all" items="${ all }">
@@ -165,7 +193,6 @@
 															aria-valuemin="0" aria-valuemax="${ all.rate }">${ all.rate }</div>
 													</div>
 												</td>
-
 												<td style="text-align: center;"><c:if
 														test="${ all.fulfil eq '폐기' }">
 														<span class="badge badge-pill badge-danger"> ${ all.fulfil }
@@ -181,7 +208,7 @@
 
 							</c:if>
 
-							<c:if test="${not empty detailList }">
+							<c:if test="${not empty param.department }">
 
 								<tbody>
 									<c:forEach var="all" items="${ detailList }">
@@ -258,168 +285,13 @@
 </body>
 
 <script>
-   var dateArea = [], D = [];
-   <c:forEach var="list" items="${alist}">
-      var dt = '${list.stateDt}';
-      dt = dt.substr(4,2) + "월 " + dt.substr(6,2) + "일";
-       dateArea.push(dt);
-       D.push('${list.ADecideCnt}');
-   </c:forEach>
-   dateArea.reverse();
-   D.reverse();
-   
-   var columnChart, columnChartoptions = {
-        series: [{
-            name: "일일 확진자",
-            data: D
-        }],
-        chart: {
-            type: "bar",
-            height: 350,
-            stacked: !1,
-            columnWidth: "90%",
-            zoom: {
-                enabled: !1
-            },
-            toolbar: {
-                show: !1
-            },
-            background: "transparent"
-        },
-        dataLabels: { enabled: !1 },
-        theme: { mode: colors.chartTheme },
-        responsive: [{
-            breakpoint: 480,
-            options: {
-                legend: {
-                    position: "bottom",
-                    offsetX: -10,
-                    offsetY: 0
-                }
-            }
-        }],
-        plotOptions: {
-            bar: {
-                horizontal: !1,
-                columnWidth: "12%",
-                radius: 30,
-                enableShades: !1,
-                endingShape: "rounded",
-                dataLabels: {
-               position: 'top',
-            },
-            }
-        },
-        dataLabels: {
-            enabled: true,
-            offsetY: -30,
-            style: {
-              fontSize: '12px',
-              colors: [colors.chartTheme]
-            }
-          },
-        xaxis: {
-            /* type: "datetime", */
-            categories: dateArea,
-            labels: {
-                show: !0,
-                trim: !1,
-                offsetX: 0,
-                minHeight: void 0,
-                maxHeight: 120,
-                style: {
-                    colors: colors.mutedColor,
-                    cssClass: "text-muted",
-                    fontFamily: base.defaultFontFamily
-                }
-            },
-            axisBorder: { show: !1 }
-        },
-        yaxis: {
-            labels: {
-                show: !0,
-                trim: !1,
-                offsetX: -10,
-                minHeight: void 0,
-                maxHeight: 120,
-                style: {
-                    colors: colors.mutedColor,
-                    cssClass: "text-muted",
-                    fontFamily: base.defaultFontFamily
-                }
-            }
-        },
-        legend: {
-            position: "top",
-            fontFamily: base.defaultFontFamily,
-            fontWeight: 400,
-            labels: {
-                colors: colors.mutedColor,
-                useSeriesColors: !1
-            },
-            markers: {
-                width: 10,
-                height: 10,
-                strokeWidth: 0,
-                strokeColor: "#fff",
-                fillColors: [extend.primaryColor, extend.primaryColorLighter],
-                radius: 6,
-                customHTML: void 0,
-                onClick: void 0,
-                offsetX: 0,
-                offsetY: 0
-            },
-            itemMargin: {
-                horizontal: 10,
-                vertical: 0
-            },
-            onItemClick: { toggleDataSeries: !0 },
-            onItemHover: { highlightDataSeries: !0 }
-        },
-        fill: {
-            opacity: 1,
-            colors: [base.primaryColor, extend.primaryColorLighter]
-        },
-        grid: {
-            show: !0,
-            borderColor: colors.borderColor,
-            strokeDashArray: 0,
-            position: "back",
-            xaxis: {
-                lines: { show: !1 }
-            },
-            yaxis: {
-                lines: { show: !0 }
-            },
-            row: {
-                colors: void 0,
-                opacity: .5
-            },
-            column: {
-                colors: void 0,
-                opacity: .5
-            },
-            padding: {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0
-            }
-        }
-    },
-    columnChartCtn = document.querySelector("#columnChart");
-   columnChartCtn && (columnChart = new ApexCharts(columnChartCtn, columnChartoptions)).render();
-
-  
-</script>
-
-<script>
 	function pop(department) {
 
 		location.href = '${ pageContext.request.contextPath}/campaign?department='
 				+ department;
 
 	}
+
 	var donutchart, donutChartOptions = {
 		series : [ 54, 40, 4, 2 ],
 		chart : {
