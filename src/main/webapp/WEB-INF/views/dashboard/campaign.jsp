@@ -85,7 +85,7 @@
 						</div>
 						<div class="bar_l">
 							<c:forEach var="rate" items="${ rate }">
-								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 12px;">${ rate.department }</div>
+								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 11px;">${ rate.department }</div>
 							</c:forEach>
 						</div>
 					</div>

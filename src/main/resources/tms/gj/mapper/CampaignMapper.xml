@@ -7,8 +7,9 @@
 	
 	<select id="campaignRate" resultType="tms.gj.domain.CampaignVO">
 		SELECT 
-			department,
-			avg(rate) as avgRate
+			case when department = '셍헐체육과' then replace(department,'셍헐체육과','생활체육과') 
+			else department end as department,
+			round(avg(rate*100),0) as avgRate
 		FROM campaign
 		Group by department
         order by avgRate,department asc;
@@ -16,12 +17,17 @@
 	
 	<select id="businessPeriod" resultType="tms.gj.domain.CampaignVO">
 		SELECT
+			A.name,
+			A.businessPeriod,
+			round(A.rate *100,0) as rate
+		FROM(
+			SELECT 
 			name,
-			businessPeriod,
-			rate
-		from campaign
-		where substring(current_date(),1,4)  = SUBSTRING_INDEX(businessPeriod, '~', -1)
-		order by rate asc
+			rate,
+			REPLACE(businessPeriod, ' ', '') AS businessPeriod
+			FROM innodb.campaign) A
+		where substring(current_date(),1,4)  = SUBSTRING_INDEX(A.businessPeriod, '~', -1)
+		order by A.rate asc
 	</select>
 	
 	<select id="fulfil" resultType="tms.gj.domain.CampaignVO">
@@ -35,28 +41,47 @@
 	
 	<select id="all" resultType="tms.gj.domain.CampaignVO">
 		SELECT
+			A.department,
+			A.section,
+			A.manager,
+			A.name,
+			A.fulfil,
+			round(A.rate *100,0) as rate,
+			A.businessPeriod
+		FROM(
+			SELECT 
 			department,
 			section,
 			manager,
 			name,
 			fulfil,
 			rate,
-			businessPeriod
-		FROM campaign
-		order by rate,businessPeriod asc
+			REPLACE(businessPeriod, ' ', '') AS businessPeriod
+			FROM campaign
+			) A
+		order by A.rate,A.businessPeriod asc
 	</select>
-	
+
 	<select id="detailList" parameterType="String" resultType="tms.gj.domain.CampaignVO">
 		SELECT
-			section,
+			A.section,
+			A.manager,
+			A.name,
+			A.fulfil,
+			round(A.rate *100,0) as rate,
+			A.businessPeriod
+		FROM(
+			SELECT 
+			case when section = '바댜행정' then replace(section,'바댜행정','바다행정') else section end as section,
 			manager,
 			name,
 			fulfil,
 			rate,
-			businessPeriod
-		FROM campaign
-		where department = #{department}
-		order by rate,businessPeriod asc
+			REPLACE(businessPeriod, ' ', '') AS businessPeriod,
+			department
+			FROM campaign) A
+		where A.department = #{department}
+		order by A.rate,A.businessPeriod asc
 	</select>
 
 	<select id="cnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
