@@ -35,6 +35,7 @@ public class PopulationController {
 		// 연도별 인구
 		ArrayList<PopulationVO> yc = ps.year_count();
 		// 2021년 거제시 전체 인구
+		//int yc2021 =ps.year2021_count();
 		int yc2021 = yc.get(8).getPopulation();
 		// 2021년 인구 성별 비율
 		ArrayList<PopulationVO> ys = ps.y2021_sex();
