@@ -11,7 +11,7 @@
 			avg(rate) as avgRate
 		FROM campaign
 		Group by department
-        order by avgRate asc;
+        order by avgRate,department asc;
 	</select>
 	
 	<select id="businessPeriod" resultType="tms.gj.domain.CampaignVO">
@@ -35,6 +35,7 @@
 	
 	<select id="all" resultType="tms.gj.domain.CampaignVO">
 		SELECT
+			department,
 			section,
 			manager,
 			name,
@@ -57,18 +58,7 @@
 		where department = #{department}
 		order by rate,businessPeriod asc
 	</select>
-	
-	<select id="fulfilCnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
-		SELECT
-			department,
-			fulfil,
-            count(distinct name) as cnt
-		FROM campaign
-        where department = #{department}
-        group by fulfil
-		order by rate,businessPeriod asc
-	</select>
-	
+
 	<select id="cnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
 		SELECT
 			fulfil,

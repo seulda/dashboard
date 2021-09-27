@@ -85,7 +85,7 @@
 						</div>
 						<div class="bar_l">
 							<c:forEach var="rate" items="${ rate }">
-								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 10px;">${ rate.department }</div>
+								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 12px;">${ rate.department }</div>
 							</c:forEach>
 						</div>
 					</div>
@@ -121,8 +121,11 @@
 	               </div>
 					<div class="card-body">
 						<table class="table table-borderless table-striped">
-		                     <thead class ="hh">
+							<c:if test="${ empty param.department }">
+							
+							<thead class ="hh">
 		                        <tr role="row">
+		                           <th style="text-align: center; width:10%; color:#000;"><b>부서</b></th>
 		                           <th style="text-align: center; width:10%; color:#000;"><b>담당</b></th>
 		                           <th style="text-align: center; width:10%; color:#000;"><b>담당자</b></th>
 		                           <th style="text-align: center; width:20%; color:#000;"><b>공약</b></th>
@@ -132,13 +135,12 @@
 		                        </tr>
 		                     </thead>
 
-							<c:if test="${ empty param.department }">
-
 								<tbody>
 									<c:forEach var="all" items="${ all }">
 										<c:if
 											test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">
 											<tr>
+												<th scope="col" style="text-align: center;">${ all.department }</th>
 												<th scope="col" style="text-align: center;">${ all.section }</th>
 												<td style="text-align: center;">${ all.manager }</td>
 												<td style="text-align: center;">${ all.name }</td>
@@ -193,8 +195,18 @@
 							</c:if>
 
 							<c:if test="${not empty param.department }">
+							<thead class="hh">
+								<tr role="row">
+									<th style="text-align: center; width: 10%; color: #000;"><b>담당</b></th>
+									<th style="text-align: center; width: 10%; color: #000;"><b>담당자</b></th>
+									<th style="text-align: center; width: 20%; color: #000;"><b>공약</b></th>
+									<th style="text-align: center; width: 10%; color: #000;"><b>사업기간</b></th>
+									<th style="text-align: center; width: 40%; padding-right: 5%; color: #000;"><b>이행률</b></th>
+									<th style="text-align: center; width: 10%; color: #000;"><b>이행도</b></th>
+								</tr>
+							</thead>
 
-								<tbody>
+							<tbody>
 									<c:forEach var="all" items="${ detailList }">
 										<c:if
 											test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">
@@ -250,10 +262,7 @@
 										</c:if>
 									</c:forEach>
 								</tbody>
-
 							</c:if>
-
-
 						</table>
 					</div>
 				</div>

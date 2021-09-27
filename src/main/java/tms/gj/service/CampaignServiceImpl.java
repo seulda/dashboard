@@ -22,13 +22,13 @@ public class CampaignServiceImpl implements CampaignService {
 		// TODO Auto-generated method stub
 		return cm.campaignRate();
 	}
-
+	// 이번년도 종료되는 공약
 	@Override
 	public ArrayList<CampaignVO> businessPeriod() {
 		// TODO Auto-generated method stub
 		return cm.businessPeriod();
 	}
-
+	//
 	@Override
 	public ArrayList<CampaignVO> fulfil() {
 		// TODO Auto-generated method stub
