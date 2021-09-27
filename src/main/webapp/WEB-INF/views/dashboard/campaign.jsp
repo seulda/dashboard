@@ -168,6 +168,7 @@
 									<c:forEach var="all" items="${ all }">
 										<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">
 											<tr>
+												<th scope="col" style="text-align: center;">${ all.department }</th>
 												<th scope="col" style="text-align: center;">${ all.section }</th>
 												<td style="text-align: center;">${ all.manager }</td>
 												<td style="text-align: center;">${ all.name }</td>
@@ -341,7 +342,7 @@
 		},
 		fill : {
 			opacity : 1,
-			colors : chartColors
+			/* colors : chartColors */
 		}
 	}, donutchartCtn = document.querySelector("#donutChart");
 	donutchartCtn
