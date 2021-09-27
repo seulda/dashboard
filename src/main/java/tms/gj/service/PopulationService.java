@@ -36,8 +36,4 @@ public interface PopulationService {
 	// 동 : 연도별 변화요인
 	public ArrayList<ItemVO> year_item_dong(String dong);
 	
-	
-	// 동 찾기
-	public String nameset(String dName);
-	
 }

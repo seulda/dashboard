@@ -66,7 +66,7 @@ public class PopulationController {
 	@GetMapping("/populationArea")
 	public String populationArea(Model model, @RequestParam String dn) {
 		
-		String dong = ps.nameset(dn);
+		String dong = dn;
 		log.info("dong filter : " + dong);
 		
 		// 2021년 거제시 전체 인구
@@ -105,7 +105,7 @@ public class PopulationController {
 	@ResponseBody
 	public Map<String, Object> pClick(@RequestParam String dn) {
 		
-		String dong = ps.nameset(dn);
+		String dong = dn;
 		log.info("dong filter : " + dong);
 		
 		// 2021년 거제시 전체 인구

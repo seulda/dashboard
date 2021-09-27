@@ -39,26 +39,26 @@
 							<div class="card-body">
 								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시</a></h5>
 								<!-- <span onClick="dongClick('dong01')">거제면 TEST</span> -->
-								<div style="position:relative; width:51vh; margin:auto; padding-left:3vh">
-									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong01" style="text-decoration: none; color:black;">거제면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong02" style="text-decoration: none; color:black;">고현동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong03" style="text-decoration: none; color:black;">남부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong04" style="text-decoration: none; color:black;">능포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong05" style="text-decoration: none; color:black;">동부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong06" style="text-decoration: none; color:black;">둔덕면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong07" style="text-decoration: none; color:black;">사등면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong08" style="text-decoration: none; color:black;">상문동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong09" style="text-decoration: none; color:black;">수양동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong10" style="text-decoration: none; color:black;">아주동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:42%; top:33%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong11" style="text-decoration: none; color:black;">연초면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong12" style="text-decoration: none; color:black;">옥포1동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong13" style="text-decoration: none; color:black;">옥포2동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:55%; top:62%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong14" style="text-decoration: none; color:black;">일운면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong15" style="text-decoration: none; color:black;">장목면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong16" style="text-decoration: none; color:black;">장승포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong17" style="text-decoration: none; color:black;">장평동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong18" style="text-decoration: none; color:black;">하청면</a></span>
-									<div style="width:51vh; height:0; padding-top:51vh; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
+								<div style="position:relative; width:70vh; margin:auto; padding-left:3vh">
+									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=거제면" style="text-decoration: none; color:black;">거제면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=고현동" style="text-decoration: none; color:black;">고현동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=남부면" style="text-decoration: none; color:black;">남부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=능포동" style="text-decoration: none; color:black;">능포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=동부면" style="text-decoration: none; color:black;">동부면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=둔덕면" style="text-decoration: none; color:black;">둔덕면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=사등면" style="text-decoration: none; color:black;">사등면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=상문동" style="text-decoration: none; color:black;">상문동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=수양동" style="text-decoration: none; color:black;">수양동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=아주동" style="text-decoration: none; color:black;">아주동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:42%; top:33%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=연초면" style="text-decoration: none; color:black;">연초면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=옥포1동" style="text-decoration: none; color:black;">옥포1동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=옥포2동" style="text-decoration: none; color:black;">옥포2동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:55%; top:62%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=일운면" style="text-decoration: none; color:black;">일운면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장목면" style="text-decoration: none; color:black;">장목면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장승포동" style="text-decoration: none; color:black;">장승포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장평동" style="text-decoration: none; color:black;">장평동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=하청면" style="text-decoration: none; color:black;">하청면</a></span>
+									<div style="width:70vh; height:0; padding-top:70vh; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
 								</div>
 								<br>
 							</div>
@@ -94,7 +94,7 @@
 						<!-- /.card -->
 						
 						
-						<%-- <div class="card shadow mb-0">
+						<div class="card shadow mb-0">
 							<div class="card-header" style="padding: 10px 16px 4px 16px;">
 								<h5 class="card-title mb-0">${area} 연령별 인구 현황 test</h5>
 							</div>
@@ -104,7 +104,7 @@
 								</div>
 							</div>
 							<!-- /.card-body -->
-						</div> --%>
+						</div>
 						<!-- /.card -->
 						
 						
@@ -642,24 +642,20 @@
 </script>
 
 <script>
-	/* 사망건수 */
+
 	var d01 = [ "${yi[0].population}", "${yi[5].population}", "${yi[10].population}", "${yi[15].population}", "${yi[20].population}", "${yi[25].population}", "${yi[30].population}", "${yi[35].population}", "${yi[40].population}" ];
-	/* 이혼건수 */
-	var d02 = [ "${yi[1].population}", "${yi[6].population}", "${yi[11].population}", "${yi[16].population}", "${yi[21].population}", "${yi[26].population}", "${yi[31].population}", "${yi[36].population}", "" ];
-	/* 자연증가건수 */
-	var d03 = [ "${yi[2].population}", "${yi[7].population}", "${yi[12].population}", "${yi[17].population}", "${yi[22].population}", "${yi[27].population}", "${yi[32].population}", "${yi[37].population}", "${yi[41].population}" ];
-	/* 출생건수 */
-	var d04 = [ "${yi[3].population}", "${yi[8].population}", "${yi[13].population}", "${yi[18].population}", "${yi[23].population}", "${yi[28].population}", "${yi[33].population}", "${yi[38].population}", "${yi[42].population}" ];
-	/* 혼인건수 */
-	var d05 = [ "${yi[4].population}", "${yi[9].population}", "${yi[14].population}", "${yi[19].population}", "${yi[24].population}", "${yi[29].population}", "${yi[34].population}", "${yi[39].population}", "" ];
+	var d02 = [ "${yi[1].population}", "${yi[6].population}", "${yi[11].population}", "${yi[16].population}", "${yi[21].population}", "${yi[26].population}", "${yi[31].population}", "${yi[36].population}", "${yi[41].population}" ];
+	var d03 = [ "${yi[2].population}", "${yi[7].population}", "${yi[12].population}", "${yi[17].population}", "${yi[22].population}", "${yi[27].population}", "${yi[32].population}", "${yi[37].population}", "${yi[42].population}" ];
+	var d04 = [ "${yi[3].population}", "${yi[8].population}", "${yi[13].population}", "${yi[18].population}", "${yi[23].population}", "${yi[28].population}", "${yi[33].population}", "${yi[38].population}", "${yi[43].population}" ];
+	var d05 = [ "${yi[4].population}", "${yi[9].population}", "${yi[14].population}", "${yi[19].population}", "${yi[24].population}", "${yi[29].population}", "${yi[34].population}", "${yi[39].population}", "${yi[44].population}" ];
 	
 	var lineChart, lineChartoptions = {
 		series : [
-			{	name : "출생", data : d04		},
-			{	name : "사망", data : d01 	},
-			{	name : "자연증가", data : d03 		},
-			{	name : "혼인", data : d05 	},
-			{	name : "이혼", data : d02 	} 
+			{ name : "출생", data : d01 },
+			{ name : "사망", data : d02 },
+			{ name : "자연증가", data : d03 },
+			{ name : "혼인", data : d04 },
+			{ name : "이혼", data : d05 } 
 		],
 		chart : {
 			height : 270,

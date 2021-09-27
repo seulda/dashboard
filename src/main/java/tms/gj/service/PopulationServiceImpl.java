@@ -292,62 +292,127 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	
 	
-	
-	
-	
-	
 	@Override
 	public ArrayList<ItemVO> year_item() {
-		return pm.year_item();
+		
+		ArrayList<ItemVO> yi_before = pm.year_item();
+		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
+		
+		for(int j = 2013; j < 2022; j++) {
+			
+			ItemVO ivo_one = new ItemVO();
+			ivo_one.setYear(j);
+			ivo_one.setItem("출생");
+			ItemVO ivo_two = new ItemVO();
+			ivo_two.setYear(j);
+			ivo_two.setItem("사망");
+			ItemVO ivo_three = new ItemVO();
+			ivo_three.setYear(j);
+			ivo_three.setItem("자연증가");
+			ItemVO ivo_four = new ItemVO();
+			ivo_four.setYear(j);
+			ivo_four.setItem("혼인");
+			ItemVO ivo_five = new ItemVO();
+			ivo_five.setYear(j);
+			ivo_five.setItem("이혼");
+			
+			for(int i = 0; i < yi_before.size(); i++) {
+				
+				if( j == yi_before.get(i).getYear() ) {
+
+					String test = yi_before.get(i).getItem();
+					
+					if( test.equals("출생건수") ) {
+						ivo_one.setPopulation(yi_before.get(i).getPopulation()); 
+					} 
+					else if( test.equals("사망건수") ) {
+						ivo_two.setPopulation(yi_before.get(i).getPopulation()); 
+					} 
+					else if( test.equals("자연증가건수") ) {
+						ivo_three.setPopulation(yi_before.get(i).getPopulation());
+					} 
+					else if( test.equals("혼인건수") ) {
+						ivo_four.setPopulation(yi_before.get(i).getPopulation());
+					} 
+					else if( test.equals("이혼건수") ) {
+						ivo_five.setPopulation(yi_before.get(i).getPopulation());
+					}
+				}
+			}
+			
+			yi.add(ivo_one);
+			yi.add(ivo_two);
+			yi.add(ivo_three);
+			yi.add(ivo_four);
+			yi.add(ivo_five);
+		}
+		
+		//System.out.println("@@@ yi_before: " + yi_before);
+		System.out.println("@@@ yi_after: " + yi);
+		
+		//return pm.year_item();
+		return yi;
 	}
 	@Override
 	public ArrayList<ItemVO> year_item_dong(String dong) {
-		return pm.year_item_dong(dong);
-	}
-
-
-	@Override
-	public String nameset(String dn) {
 		
-		if(dn.equals("dong01")) {
-			return "거제면";
-		} else if(dn.equals("dong02")) {
-			return "고현동";
-		} else if(dn.equals("dong03")) {
-			return "남부면";
-		} else if(dn.equals("dong04")) {
-			return "능포동";
-		} else if(dn.equals("dong05")) {
-			return "동부면";
-		} else if(dn.equals("dong06")) {
-			return "둔덕면";
-		} else if(dn.equals("dong07")) {
-			return "사등면";
-		} else if(dn.equals("dong08")) {
-			return "상문동";
-		} else if(dn.equals("dong09")) {
-			return "수양동";
-		} else if(dn.equals("dong10")) {
-			return "아주동";
-		} else if(dn.equals("dong11")) {
-			return "연초면";
-		} else if(dn.equals("dong12")) {
-			return "옥포1동";
-		} else if(dn.equals("dong13")) {
-			return "옥포2동";
-		} else if(dn.equals("dong14")) {
-			return "일운면";
-		} else if(dn.equals("dong15")) {
-			return "장목면";
-		} else if(dn.equals("dong16")) {
-			return "장승포동";
-		} else if(dn.equals("dong17")) {
-			return "장평동";
-		} else if(dn.equals("dong18")) {
-			return "하청면";
+		ArrayList<ItemVO> yi_before = pm.year_item_dong(dong);
+		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
+		
+		for(int j = 2013; j < 2022; j++) {
+			
+			ItemVO ivo_one = new ItemVO();
+			ivo_one.setYear(j);
+			ivo_one.setItem("출생");
+			ItemVO ivo_two = new ItemVO();
+			ivo_two.setYear(j);
+			ivo_two.setItem("사망");
+			ItemVO ivo_three = new ItemVO();
+			ivo_three.setYear(j);
+			ivo_three.setItem("자연증가");
+			ItemVO ivo_four = new ItemVO();
+			ivo_four.setYear(j);
+			ivo_four.setItem("혼인");
+			ItemVO ivo_five = new ItemVO();
+			ivo_five.setYear(j);
+			ivo_five.setItem("이혼");
+			
+			for(int i = 0; i < yi_before.size(); i++) {
+				
+				if( j == yi_before.get(i).getYear() ) {
+
+					String test = yi_before.get(i).getItem();
+					
+					if( test.equals("출생건수") ) {
+						ivo_one.setPopulation(yi_before.get(i).getPopulation()); 
+					} 
+					else if( test.equals("사망건수") ) {
+						ivo_two.setPopulation(yi_before.get(i).getPopulation()); 
+					} 
+					else if( test.equals("자연증가건수") ) {
+						ivo_three.setPopulation(yi_before.get(i).getPopulation());
+					} 
+					else if( test.equals("혼인건수") ) {
+						ivo_four.setPopulation(yi_before.get(i).getPopulation());
+					} 
+					else if( test.equals("이혼건수") ) {
+						ivo_five.setPopulation(yi_before.get(i).getPopulation());
+					}
+				}
+			}
+			
+			yi.add(ivo_one);
+			yi.add(ivo_two);
+			yi.add(ivo_three);
+			yi.add(ivo_four);
+			yi.add(ivo_five);
 		}
 		
-		return "error";
+		//System.out.println("@@@ yi_before: " + yi_before);
+		System.out.println("@@@ yi(dong)_after: " + yi);
+		
+		//return pm.year_item_dong(dong);
+		return yi;
 	}
 	
 
