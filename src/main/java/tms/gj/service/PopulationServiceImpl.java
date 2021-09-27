@@ -177,106 +177,6 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	
 	@Override
-	public ArrayList<PopulationVO> year_age_test() {
-		
-		ArrayList<PopulationVO> ya_before = pm.year_age();
-		ArrayList<PopulationVO> ya = new ArrayList<PopulationVO>();
-
-		for(int j = 2013; j < 2022; j++) {
-			
-			PopulationVO pvo_one = new PopulationVO();
-			pvo_one.setYear(j);
-			pvo_one.setAge("0 - 14세");
-			PopulationVO pvo_two = new PopulationVO();
-			pvo_two.setYear(j);
-			pvo_two.setAge("15 - 64세");
-			PopulationVO pvo_three = new PopulationVO();
-			pvo_three.setYear(j);
-			pvo_three.setAge("65세 이상");
-			
-			for(int i = 0; i < ya_before.size(); i++) {
-				
-				if( j == ya_before.get(i).getYear() ) {
-
-					String test = ya_before.get(i).getAge();
-					
-					if( test.equals("0 - 4세") || test.equals("5 - 9세") || test.equals("10 - 14세") ) {
-						// 0 to 14
-						pvo_one.setPopulation(pvo_one.getPopulation() + ya_before.get(i).getPopulation()); 
-					} else if( test.equals("15 - 19세") || test.equals("20 - 24세") || test.equals("25 - 29세")
-							 || test.equals("30 - 34세") || test.equals("35 - 39세") || test.equals("40 - 44세")
-							 || test.equals("45 - 49세") || test.equals("50 - 54세") || test.equals("55 - 59세") || test.equals("60 - 64세") ) {
-						// 15 to 64
-						pvo_two.setPopulation(pvo_two.getPopulation() + ya_before.get(i).getPopulation()); 
-					} else if( test.equals("65 - 69세") || test.equals("70 - 74세") || test.equals("75 - 79세")
-							  || test.equals("80 - 84세") || test.equals("85 - 89세") || test.equals("90 - 94세") || test.equals("95 - 99세")
-							  || test.equals("100+") ) {
-						// 65 up
-						pvo_three.setPopulation(pvo_three.getPopulation() + ya_before.get(i).getPopulation());
-					}
-				}
-			}
-			
-			ya.add(pvo_one);
-			ya.add(pvo_two);
-			ya.add(pvo_three);
-		}
-		
-		return ya;
-	}
-	@Override
-	public ArrayList<PopulationVO> year_age_dong_test(String dong) {
-		
-		ArrayList<PopulationVO> yad_before = pm.year_age_dong(dong);
-		ArrayList<PopulationVO> yad = new ArrayList<PopulationVO>();
-
-		for(int j = 2013; j < 2022; j++) {
-			
-			PopulationVO pvo_one = new PopulationVO();
-			pvo_one.setYear(j);
-			pvo_one.setAge("0 - 14세");
-			PopulationVO pvo_two = new PopulationVO();
-			pvo_two.setYear(j);
-			pvo_two.setAge("15 - 64세");
-			PopulationVO pvo_three = new PopulationVO();
-			pvo_three.setYear(j);
-			pvo_three.setAge("65세 이상");
-			
-			for(int i = 0; i < yad_before.size(); i++) {
-				
-				if( j == yad_before.get(i).getYear() ) {
-
-					String test = yad_before.get(i).getAge();
-					
-					if( test.equals("0 - 4세") || test.equals("5 - 9세") || test.equals("10 - 14세") ) {
-						// 0 to 14
-						pvo_one.setPopulation(pvo_one.getPopulation() + yad_before.get(i).getPopulation()); 
-					} else if( test.equals("15 - 19세") || test.equals("20 - 24세") || test.equals("25 - 29세")
-							 || test.equals("30 - 34세") || test.equals("35 - 39세") || test.equals("40 - 44세")
-							 || test.equals("45 - 49세") || test.equals("50 - 54세") || test.equals("55 - 59세") || test.equals("60 - 64세") ) {
-						// 15 to 64
-						pvo_two.setPopulation(pvo_two.getPopulation() + yad_before.get(i).getPopulation()); 
-					} else if( test.equals("65 - 69세") || test.equals("70 - 74세") || test.equals("75 - 79세")
-							  || test.equals("80 - 84세") || test.equals("85 - 89세") || test.equals("90 - 94세") || test.equals("95 - 99세")
-							  || test.equals("100+") ) {
-						// 65 up
-						pvo_three.setPopulation(pvo_three.getPopulation() + yad_before.get(i).getPopulation());
-					}
-				}
-			}
-			
-			yad.add(pvo_one);
-			yad.add(pvo_two);
-			yad.add(pvo_three);
-		}
-		
-		return yad;
-	}
-	
-	
-	
-	
-	@Override
 	public ArrayList<ItemVO> year_item() {
 		
 		ArrayList<ItemVO> yi_before = pm.year_item();
@@ -344,18 +244,23 @@ public class PopulationServiceImpl implements PopulationService {
 			ItemVO ivo_one = new ItemVO();
 			ivo_one.setYear(j);
 			ivo_one.setItem("출생");
+			ivo_one.setPopulation(-999);
 			ItemVO ivo_two = new ItemVO();
 			ivo_two.setYear(j);
 			ivo_two.setItem("사망");
+			ivo_two.setPopulation(-999);
 			ItemVO ivo_three = new ItemVO();
 			ivo_three.setYear(j);
 			ivo_three.setItem("자연증가");
+			ivo_three.setPopulation(-999);
 			ItemVO ivo_four = new ItemVO();
 			ivo_four.setYear(j);
 			ivo_four.setItem("혼인");
+			ivo_four.setPopulation(-999);
 			ItemVO ivo_five = new ItemVO();
 			ivo_five.setYear(j);
 			ivo_five.setItem("이혼");
+			ivo_five.setPopulation(-999);
 			
 			for(int i = 0; i < yi_before.size(); i++) {
 				
@@ -386,6 +291,16 @@ public class PopulationServiceImpl implements PopulationService {
 			yi.add(ivo_three);
 			yi.add(ivo_four);
 			yi.add(ivo_five);
+		}
+
+		
+		for(int i = 0; i < yi.size(); i++) {
+			
+			int c = yi.get(i).getPopulation();
+			
+			if( c == -999 ) {
+				yi.get(i).setPopulation(null); 
+			}
 		}
 		
 		return yi;

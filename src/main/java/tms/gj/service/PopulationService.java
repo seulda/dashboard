@@ -25,11 +25,7 @@ public interface PopulationService {
 	public ArrayList<PopulationVO> year_age();
 	// 동 : 연도별 > 나이대별
 	public ArrayList<PopulationVO> year_age_dong(String dong);
-	// 연도별 > 나이대별
-	public ArrayList<PopulationVO> year_age_test();
-	// 동 : 연도별 > 나이대별
-	public ArrayList<PopulationVO> year_age_dong_test(String dong);
-	
+
 
 	// 연도별 변화요인
 	public ArrayList<ItemVO> year_item();

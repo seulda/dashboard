@@ -40,7 +40,6 @@ public class PopulationController {
 		ArrayList<PopulationVO> ys = ps.y2021_sex();
 		// 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> ya = ps.year_age();
-		ArrayList<PopulationVO> yat = ps.year_age_test();
 		// 연도별 변화요인
 		ArrayList<ItemVO> yi = ps.year_item();
 
@@ -49,7 +48,6 @@ public class PopulationController {
 		model.addAttribute("yc2021", yc2021);
 		model.addAttribute("ys", ys);
 		model.addAttribute("ya", ya);
-		model.addAttribute("yat", yat);
 		model.addAttribute("yi", yi);
 		
 		return "/dashboard/population";
@@ -69,7 +67,6 @@ public class PopulationController {
 		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
 		// 동 > 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
-		ArrayList<PopulationVO> yadt = ps.year_age_dong_test(dong);
 		// 동 > 연도별 변화요인
 		ArrayList<ItemVO> yid = ps.year_item_dong(dong);
 
@@ -78,7 +75,6 @@ public class PopulationController {
 		model.addAttribute("yc", ycd);
 		model.addAttribute("ys", ysd);
 		model.addAttribute("ya", yad);
-		model.addAttribute("yat", yadt);
 		model.addAttribute("yi", yid);
 		
 		return "/dashboard/population";
