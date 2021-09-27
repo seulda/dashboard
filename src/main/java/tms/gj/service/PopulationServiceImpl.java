@@ -105,9 +105,6 @@ public class PopulationServiceImpl implements PopulationService {
 			ya.add(pvo_no);
 		}
 		
-		//System.out.println("@@@ y2a_before: "+ya_before);
-		//System.out.println("@@@ y2a_after: "+ya);
-		
 		return ya;
 	}
 	@Override
@@ -175,15 +172,8 @@ public class PopulationServiceImpl implements PopulationService {
 			yad.add(pvo_no);
 		}
 		
-		//System.out.println("@@@ yad_before: "+yad_before);
-		//System.out.println("@@@ yad_after: "+yad);
-		
 		return yad;
 	}
-	
-	
-	
-	
 	
 	
 	@Override
@@ -232,9 +222,6 @@ public class PopulationServiceImpl implements PopulationService {
 			ya.add(pvo_three);
 		}
 		
-		//System.out.println("@@@ y2a_before: "+ya_before);
-		//System.out.println("@@@ y2a_after: "+ya);
-		
 		return ya;
 	}
 	@Override
@@ -282,9 +269,6 @@ public class PopulationServiceImpl implements PopulationService {
 			yad.add(pvo_two);
 			yad.add(pvo_three);
 		}
-		
-		//System.out.println("@@@ y2a_before: "+ya_before);
-		//System.out.println("@@@ y2a_after: "+ya);
 		
 		return yad;
 	}
@@ -347,10 +331,6 @@ public class PopulationServiceImpl implements PopulationService {
 			yi.add(ivo_five);
 		}
 		
-		//System.out.println("@@@ yi_before: " + yi_before);
-		System.out.println("@@@ yi_after: " + yi);
-		
-		//return pm.year_item();
 		return yi;
 	}
 	@Override
@@ -408,10 +388,6 @@ public class PopulationServiceImpl implements PopulationService {
 			yi.add(ivo_five);
 		}
 		
-		//System.out.println("@@@ yi_before: " + yi_before);
-		System.out.println("@@@ yi(dong)_after: " + yi);
-		
-		//return pm.year_item_dong(dong);
 		return yi;
 	}
 	

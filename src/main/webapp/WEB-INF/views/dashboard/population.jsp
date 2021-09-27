@@ -16,7 +16,9 @@
 								<h3 style="margin-top:2vh;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
 								<div style="margin:2vh 0; padding:10px;">
 									<h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
-									<h5>구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />% </h5>
+									<c:if test="${area ne '거제시'}">
+										<h6>거제시 대비 구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />% </h6>
+									</c:if>
 								</div>
 								<div class="progress" style="margin:1vh 0vh 1vh 9vh; height:2rem; width:70%;">
 									<div class="progress-bar" role="progressbar" style="width: ${ys[0].per}%; font-size:18px;" aria-valuenow="${ys[0].per}" aria-valuemin="0" aria-valuemax="100">
@@ -37,27 +39,27 @@
 						
 						<div class="card shadow mb-0">
 							<div class="card-body">
-								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시</a></h5>
+								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시 전체</a></h5>
 								<!-- <span onClick="dongClick('dong01')">거제면 TEST</span> -->
 								<div style="position:relative; width:70vh; margin:auto; padding-left:3vh">
-									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=거제면" style="text-decoration: none; color:black;">거제면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=고현동" style="text-decoration: none; color:black;">고현동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:26%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=거제면" style="text-decoration: none; color:black;">거제면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:37%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=고현동" style="text-decoration: none; color:black;">고현동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=남부면" style="text-decoration: none; color:black;">남부면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:66%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=능포동" style="text-decoration: none; color:black;">능포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:67%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=능포동" style="text-decoration: none; color:black;">능포동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:68%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=동부면" style="text-decoration: none; color:black;">동부면</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:8%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=둔덕면" style="text-decoration: none; color:black;">둔덕면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:10%; top:39%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=사등면" style="text-decoration: none; color:black;">사등면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:11%; top:39%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=사등면" style="text-decoration: none; color:black;">사등면</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:41%; top:52%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=상문동" style="text-decoration: none; color:black;">상문동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:44%; top:43%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=수양동" style="text-decoration: none; color:black;">수양동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:45%; top:43%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=수양동" style="text-decoration: none; color:black;">수양동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:48%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=아주동" style="text-decoration: none; color:black;">아주동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:42%; top:33%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=연초면" style="text-decoration: none; color:black;">연초면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:42%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=옥포1동" style="text-decoration: none; color:black;">옥포1동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:36%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=옥포2동" style="text-decoration: none; color:black;">옥포2동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:53%; top:43%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=옥포1동" style="text-decoration: none; color:black;">옥포1동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:56%; top:37%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=옥포2동" style="text-decoration: none; color:black;">옥포2동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:55%; top:62%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=일운면" style="text-decoration: none; color:black;">일운면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:52%; top:4%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장목면" style="text-decoration: none; color:black;">장목면</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:64%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장승포동" style="text-decoration: none; color:black;">장승포동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:30%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장평동" style="text-decoration: none; color:black;">장평동</a></span>
-									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=하청면" style="text-decoration: none; color:black;">하청면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:54%; top:4%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장목면" style="text-decoration: none; color:black;">장목면</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:65%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장승포동" style="text-decoration: none; color:black;">장승포동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=장평동" style="text-decoration: none; color:black;">장평동</a></span>
+									<span style="text-align:center; position:absolute; z-index:1; left:37%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=하청면" style="text-decoration: none; color:black;">하청면</a></span>
 									<div style="width:70vh; height:0; padding-top:70vh; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
 								</div>
 								<br>

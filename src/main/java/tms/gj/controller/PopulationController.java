@@ -34,23 +34,15 @@ public class PopulationController {
 		
 		// 연도별 인구
 		ArrayList<PopulationVO> yc = ps.year_count();
-		//log.info("year_count");
 		// 2021년 거제시 전체 인구
 		int yc2021 = yc.get(8).getPopulation();
-		//log.info("2021_count");
-		
 		// 2021년 인구 성별 비율
 		ArrayList<PopulationVO> ys = ps.y2021_sex();
-		//log.info("2021_sex");
-		
 		// 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> ya = ps.year_age();
 		ArrayList<PopulationVO> yat = ps.year_age_test();
-		//log.info("year_age");
-		
 		// 연도별 변화요인
 		ArrayList<ItemVO> yi = ps.year_item();
-		//log.info("year_item");
 
 		model.addAttribute("area", "거제시");
 		model.addAttribute("yc", yc);
@@ -71,23 +63,15 @@ public class PopulationController {
 		
 		// 2021년 거제시 전체 인구
 		int yc2021 =ps.year2021_count();
-
 		// 동 > 연도별 인구
 		ArrayList<PopulationVO> ycd = ps.year_count_dong(dong);
-		//log.info(dong + " >> year_count");
-		
 		// 동 > 2021년 인구 성비
 		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
-		//log.info(dong + " >> 2021_sex");
-		
 		// 동 > 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
 		ArrayList<PopulationVO> yadt = ps.year_age_dong_test(dong);
-		//log.info(dong + " >> year_age");
-		
 		// 동 > 연도별 변화요인
 		ArrayList<ItemVO> yid = ps.year_item_dong(dong);
-		//log.info(dong + " >> year_item");
 
 		model.addAttribute("area", dong);
 		model.addAttribute("yc2021", yc2021);
@@ -110,23 +94,14 @@ public class PopulationController {
 		
 		// 2021년 거제시 전체 인구
 		int yc2021 =ps.year2021_count();
-
 		// 동 > 연도별 인구
 		ArrayList<PopulationVO> ycd = ps.year_count_dong(dong);
-		//log.info(dong + " >> year_count");
-		
 		// 동 > 2021년 인구 성비
 		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
-		//log.info(dong + " >> 2021_sex");
-		
 		// 동 > 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
-		//log.info(dong + " >> year_age");
-		
 		// 동 > 연도별 변화요인
 		ArrayList<ItemVO> yid = ps.year_item_dong(dong);
-		//log.info(dong + " >> year_item");
-		
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
