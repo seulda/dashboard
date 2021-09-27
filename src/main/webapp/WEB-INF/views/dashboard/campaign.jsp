@@ -1,24 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="../layout/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/resources/css/campaign.css">
 
-<link rel="stylesheet"
-	href="${ pageContext.request.contextPath }/resources/css/campaign.css">
-<script
-	src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
-
-
-</head>
-<body>
 
 	<main role="main" class="main-content" style="margin: 0">
 		<div class="container">
@@ -280,9 +264,10 @@
 	</main>
 	<!-- main -->
 
-	<%@ include file="../layout/footer.jsp"%>
 
-</body>
+<script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
 
 <script>
 	function pop(department) {
@@ -407,5 +392,5 @@
 </script>
 
 
-</html>
+<%@ include file="../layout/footer.jsp"%>
 
