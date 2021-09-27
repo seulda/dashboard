@@ -12,31 +12,34 @@
 						
 						<div class="card shadow mb-0" style="background-color:#FFF0E0">
 							<div class="card-body text-center">
-								<h3 style="margin-top:2vh; padding-top:10px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
-								<p>(2021년 06월 기준)</p>
+								<p style="padding-top:10px;">(2021년 06월 기준)</p>
+								<h3 style="margin-top:2vh;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
 								<div style="margin:2vh 0; padding:10px;">
 									<h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
 									<h5>구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />% </h5>
 								</div>
-								<div class="progress" style="margin:1vh 0 2vh 8vh; width:70%;">
-									<div class="progress-bar" role="progressbar" style="width: ${men}%" aria-valuenow="${men}" aria-valuemin="0" aria-valuemax="100">
-										<span style="text-align:left; margin-left:1vh;">남</span>
-										${men}%</div>
-									<div class="progress-bar bg-danger" role="progressbar" style="width: ${woman}%" aria-valuenow="${woman}" aria-valuemin="0" aria-valuemax="100">
-										${woman}%
-										<span style="text-align:right; margin-right:1vh;">여</span>	
+								<div class="progress" style="margin:1vh 0vh 1vh 9vh; height:2rem; width:70%;">
+									<div class="progress-bar" role="progressbar" style="width: ${ys[0].per}%; font-size:18px;" aria-valuenow="${ys[0].per}" aria-valuemin="0" aria-valuemax="100">
+										<span style="text-align:left; margin-left:1vh; font-size:18px;">남</span>
+										${ys[0].per}%</div>
+									<div class="progress-bar bg-danger" role="progressbar" style="width: ${ys[1].per}%; font-size:18px;" aria-valuenow="${ys[1].per}" aria-valuemin="0" aria-valuemax="100">
+										${ys[1].per}%
+										<span style="text-align:right; margin-right:1vh; font-size:18px;">여</span>	
 									</div>
 								</div>
-								<h5 style="margin:1vh 0; padding:20px 10px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
+								<div style="margin:0vh 0vh 3vh 9vh; width:70%;">
+									<span style="float:left; margin-left:1vh; font-size:16px;"><fmt:formatNumber value="${ys[0].population}" pattern="#,###,###" />명</span>
+									<span style="float:right; margin-right:1vh; font-size:16px;"><fmt:formatNumber value="${ys[1].population}" pattern="#,###,###" />명</span>	
+								</div>
+								<h5 style="margin:2vh 0; padding-top:30px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
 							</div>
 						</div>
 						
 						<div class="card shadow mb-0">
 							<div class="card-body">
 								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시</a></h5>
-								<span onClick="dongClick('dong01')">거제면 TEST</span>
+								<!-- <span onClick="dongClick('dong01')">거제면 TEST</span> -->
 								<div style="position:relative; width:51vh; margin:auto; padding-left:3vh">
-									<!-- <span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh" name="dong01" onClick="dongClick(this.name)">거제면</span> -->
 									<span style="text-align:center; position:absolute; z-index:1; left:25%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong01" style="text-decoration: none; color:black;">거제면</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:36%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong02" style="text-decoration: none; color:black;">고현동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:85%; padding-left:2vh"><a href="${pageContext.request.contextPath}/populationArea?dn=dong03" style="text-decoration: none; color:black;">남부면</a></span>
@@ -60,16 +63,14 @@
 								<br>
 							</div>
 						</div>
-						
-						
 					</div>
 					<!-- /. col -->
 					
 					<div class="col-md-7" style="padding:0;">
 						
 						<div class="card shadow mb-0">
-							<div class="card-header" style="padding: 7px 16px;">
-								<h5 class="card-title mb-0">연간 인구 현황</h5>
+							<div class="card-header" style="padding: 10px 16px 4px 16px;">
+								<h5 class="card-title mb-0">${area} 연간 인구 현황</h5>
 							</div>
 							<div class="card-body" style="padding:0 10px;">
 								<div class="chart-box">
@@ -80,8 +81,8 @@
 						
 						
 						<div class="card shadow mb-0">
-							<div class="card-header" style="padding: 7px 16px;">
-								<h5 class="card-title mb-0">연령별 인구 현황</h5>
+							<div class="card-header" style="padding: 10px 16px 4px 16px;">
+								<h5 class="card-title mb-0">${area} 연령별 인구 현황</h5>
 							</div>
 							<div class="card-body" style="padding:0 10px;">
 								<div class="chart-box">
@@ -93,9 +94,23 @@
 						<!-- /.card -->
 						
 						
+						<%-- <div class="card shadow mb-0">
+							<div class="card-header" style="padding: 10px 16px 4px 16px;">
+								<h5 class="card-title mb-0">${area} 연령별 인구 현황 test</h5>
+							</div>
+							<div class="card-body" style="padding:0 10px;">
+								<div class="chart-box">
+									<div id="barChart1"></div>
+								</div>
+							</div>
+							<!-- /.card-body -->
+						</div> --%>
+						<!-- /.card -->
+						
+						
 						<div class="card shadow mb-0">
-							<div class="card-header" style="padding: 7px 16px;">
-								<h5 class="card-title mb-0">인구 변화 요인</h5>
+							<div class="card-header" style="padding: 10px 16px 4px 16px;">
+								<h5 class="card-title mb-0">${area} 인구 변화 요인</h5>
 							</div>
 							<div class="card-body" style="padding:0 10px;">
 								<div class="chart-box">
@@ -476,6 +491,153 @@
 		}
 	},
 	barChartCtn = document.querySelector("#barChart");
+	barChartCtn && (barChart = new ApexCharts(barChartCtn, barChartoptions)).render();
+</script>
+<script>
+	var one = [ '${yat[0].population}', '${yat[3].population}', '${yat[6].population}', '${yat[9].population}', '${yat[12].population}', '${yat[15].population}', '${yat[18].population}', '${yat[21].population}', '${yat[24].population}' ];
+	var two = [ '${yat[1].population}', '${yat[4].population}', '${yat[7].population}', '${yat[10].population}', '${yat[13].population}', '${yat[16].population}', '${yat[19].population}', '${yat[22].population}', '${yat[25].population}' ];
+	var three = [ '${yat[2].population}', '${yat[5].population}', '${yat[8].population}', '${yat[11].population}', '${yat[14].population}', '${yat[17].population}', '${yat[20].population}', '${yat[23].population}', '${yat[26].population}' ];
+	
+	var barChart, barChartoptions = {
+		series : [ 
+			{ name : "0 - 14세", data : one }, 
+			{ name : "15 - 64세", data : two },
+			{ name : "65세 이상", data : three } 
+		],
+		chart : {
+			type : "bar",
+			height : 270,
+			stacked : !0, /* bar block stack option */
+			columnWidth : "70%",
+			zoom : {
+				enabled : !1
+			},
+			toolbar : {
+				show: false,
+				enabled : !1
+			}
+		},
+		theme : {
+			mode : colors.chartTheme
+		},
+		dataLabels : {
+			enabled : !0 /* Displaying data on the bar */
+		},
+		responsive : [ {
+			breakpoint : 480,
+			options : {
+				legend : {
+					position : "bottom",
+					offsetX : -10,
+					offsetY : 0
+				}
+			}
+		} ],
+		plotOptions : {
+			bar : {
+				horizontal : !0,
+				columnWidth : "30%"
+			}
+		},
+		xaxis : {
+			categories : [ 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021 ],
+			labels : {
+				show : !0,
+				trim : !1,
+				minHeight : void 0,
+				maxHeight : 120,
+				style : {
+					colors : colors.mutedColor,
+					cssClass : "text-muted",
+					fontFamily : base.defaultFontFamily
+				}
+			},
+			axisBorder : {
+				show : !1
+			}
+		},
+		yaxis : {
+			labels : {
+				show : !0,
+				trim : !1,
+				offsetX : -5,
+				minHeight : void 0,
+				maxHeight : 120,
+				style : {
+					colors : colors.mutedColor,
+					cssClass : "text-muted",
+					fontFamily : base.defaultFontFamily
+				}
+			}
+		},
+		legend : {
+			position : "top",
+			fontFamily : base.defaultFontFamily,
+			fontWeight : 400,
+			labels : {
+				colors : colors.mutedColor,
+				useSeriesColors : !0 /* 범주 글자 색 변경 여부 */
+			},
+			offsetY : 10,
+			markers : {
+				width : 10,
+				height : 10,
+				strokeWidth : 0,
+				/* strokeColor : colors.borderColor,
+				fillColors : chartColors, */
+				radius : 6,
+				customHTML : void 0,
+				onClick : void 0,
+				offsetX : 0,
+				offsetY : 0
+			},
+			itemMargin : {
+				horizontal : 10,
+				vertical : 0
+			},
+			onItemClick : {
+				toggleDataSeries : !1
+			},
+			onItemHover : {
+				highlightDataSeries : !0
+			}
+		},
+		/* fill : {
+			opacity : 1,
+			colors : chartColors
+		}, */
+		grid : {
+			show : !0,
+			borderColor : colors.borderColor,
+			strokeDashArray : 0,
+			position : "back",
+			xaxis : {
+				lines : {
+					show : !0
+				}
+			},
+			yaxis : {
+				lines : {
+					show : !1
+				}
+			},
+			row : {
+				colors : void 0,
+				opacity : .5
+			},
+			column : {
+				colors : void 0,
+				opacity : .5
+			},
+			padding : {
+				top : 0,
+				right : 0,
+				bottom : -10,
+				left : 10
+			}
+		}
+	},
+	barChartCtn = document.querySelector("#barChart1");
 	barChartCtn && (barChart = new ApexCharts(barChartCtn, barChartoptions)).render();
 </script>
 

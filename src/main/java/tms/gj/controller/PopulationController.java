@@ -41,12 +41,11 @@ public class PopulationController {
 		
 		// 2021년 인구 성별 비율
 		ArrayList<PopulationVO> ys = ps.y2021_sex();
-		float men = ys.get(0).getPer();
-		float woman = ys.get(1).getPer();
 		//log.info("2021_sex");
 		
 		// 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> ya = ps.year_age();
+		ArrayList<PopulationVO> yat = ps.year_age_test();
 		//log.info("year_age");
 		
 		// 연도별 변화요인
@@ -56,9 +55,9 @@ public class PopulationController {
 		model.addAttribute("area", "거제시");
 		model.addAttribute("yc", yc);
 		model.addAttribute("yc2021", yc2021);
-		model.addAttribute("men", men);
-		model.addAttribute("woman", woman);
+		model.addAttribute("ys", ys);
 		model.addAttribute("ya", ya);
+		model.addAttribute("yat", yat);
 		model.addAttribute("yi", yi);
 		
 		return "/dashboard/population";
@@ -79,12 +78,11 @@ public class PopulationController {
 		
 		// 동 > 2021년 인구 성비
 		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
-		float men = ysd.get(0).getPer();
-		float woman = ysd.get(1).getPer();
 		//log.info(dong + " >> 2021_sex");
 		
 		// 동 > 연도별 & 연령대별 인구
 		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
+		ArrayList<PopulationVO> yadt = ps.year_age_dong_test(dong);
 		//log.info(dong + " >> year_age");
 		
 		// 동 > 연도별 변화요인
@@ -94,9 +92,9 @@ public class PopulationController {
 		model.addAttribute("area", dong);
 		model.addAttribute("yc2021", yc2021);
 		model.addAttribute("yc", ycd);
-		model.addAttribute("men", men);
-		model.addAttribute("woman", woman);
+		model.addAttribute("ys", ysd);
 		model.addAttribute("ya", yad);
+		model.addAttribute("yat", yadt);
 		model.addAttribute("yi", yid);
 		
 		return "/dashboard/population";
@@ -119,8 +117,6 @@ public class PopulationController {
 		
 		// 동 > 2021년 인구 성비
 		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
-		float men = ysd.get(0).getPer();
-		float woman = ysd.get(1).getPer();
 		//log.info(dong + " >> 2021_sex");
 		
 		// 동 > 연도별 & 연령대별 인구
@@ -137,8 +133,7 @@ public class PopulationController {
 		result.put("area", dong);
 		result.put("yc2021", yc2021);
 		result.put("yc", ycd);
-		result.put("men", men);
-		result.put("woman", woman);
+		result.put("ys", ysd);
 		result.put("ya", yad);
 		result.put("yi", yid);
 		
