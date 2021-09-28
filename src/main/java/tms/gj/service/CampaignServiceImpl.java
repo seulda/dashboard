@@ -31,11 +31,6 @@ public class CampaignServiceImpl implements CampaignService {
 	public ArrayList<CampaignVO> fulfil() {
 		return cm.fulfil();
 	}
-	// 전체 공약
-	@Override
-	public ArrayList<CampaignVO> all() {
-		return cm.all();
-	}
 	// 부서별 공약
 	@Override
 	public ArrayList<CampaignVO> detailList(String department) {

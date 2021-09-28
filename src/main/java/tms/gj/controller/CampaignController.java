@@ -29,14 +29,12 @@ public class CampaignController {
 		ArrayList<CampaignVO> rate       = cs.campaignRate();
 		ArrayList<CampaignVO> period     = cs.businessPeriod();
 		ArrayList<CampaignVO> fulfil     = cs.fulfil();
-		ArrayList<CampaignVO> all        = cs.all();
 		ArrayList<CampaignVO> cnt        = cs.cnt(department);
 		
 		model.addAttribute("detailList", detailList);
 		model.addAttribute("rate", rate);
 		model.addAttribute("period", period);
 		model.addAttribute("fulfil", fulfil);
-		model.addAttribute("all", all);
 		model.addAttribute("cnt", cnt);
 		
 		return "/dashboard/campaign";

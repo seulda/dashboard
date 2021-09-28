@@ -128,7 +128,7 @@
 		                     </thead>
 
 								<tbody>
-									<c:forEach var="all" items="${ all }">
+									<c:forEach var="all" items="${ detailList }">
 										<c:if
 											test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">
 											<tr>
@@ -157,7 +157,7 @@
 										</c:if>
 									</c:forEach>
 
-									<c:forEach var="all" items="${ all }">
+									<c:forEach var="all" items="${ detailList }">
 										<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">
 											<tr>
 												<th scope="col" style="text-align: center; color:#000;">${ all.department }</th>
@@ -200,55 +200,55 @@
 							</thead>
 
 							<tbody>
-									<c:forEach var="all" items="${ detailList }">
+									<c:forEach var="dl" items="${ detailList }">
 										<c:if
-											test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">
+											test="${ (dl.fulfil eq '완료') or (dl.fulfil eq '추진중') }">
 											<tr>
-												<th scope="col" style="text-align: center; color:#000;">${ all.section }</th>
-												<td style="text-align: center; color:#000;">${ all.manager }</td>
-												<td style="text-align: center; color:#000;">${ all.name }</td>
-												<td style="text-align: center; color:#000;">${ all.businessPeriod }</td>
+												<th scope="col" style="text-align: center; color:#000;">${ dl.section }</th>
+												<td style="text-align: center; color:#000;">${ dl.manager }</td>
+												<td style="text-align: center; color:#000;">${ dl.name }</td>
+												<td style="text-align: center; color:#000;">${ dl.businessPeriod }</td>
 												<td style="text-align: center; padding-right: 5%">
 													<div class="progress mb-3" style="height: 30px;">
 														<div class="progress-bar bg-success" role="progressbar"
-															style="width: ${ all.rate }%" aria-valuenow="25"
-															aria-valuemin="0" aria-valuemax="${ all.rate }">${ all.rate }</div>
+															style="width: ${ dl.rate }%" aria-valuenow="25"
+															aria-valuemin="0" aria-valuemax="${ dl.rate }">${ dl.rate }</div>
 													</div>
 												</td>
 
 												<td style="text-align: center;"><c:if
-														test="${ all.fulfil eq '완료' }">
-														<span class="badge badge-pill badge-primary"> ${ all.fulfil }
+														test="${ dl.fulfil eq '완료' }">
+														<span class="badge badge-pill badge-primary"> ${ dl.fulfil }
 														</span>
-													</c:if> <c:if test="${ all.fulfil eq '추진중' }">
-														<span class="badge badge-pill badge-warning"> ${ all.fulfil }
+													</c:if> <c:if test="${ dl.fulfil eq '추진중' }">
+														<span class="badge badge-pill badge-warning"> ${ dl.fulfil }
 														</span>
 													</c:if></td>
 											</tr>
 										</c:if>
 									</c:forEach>
 
-									<c:forEach var="all" items="${ detailList }">
-										<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">
+									<c:forEach var="dl" items="${ detailList }">
+										<c:if test="${ (dl.fulfil eq '폐기') or (dl.fulfil eq '보류') }">
 											<tr>
-												<th scope="col" style="text-align: center; color:#000;">${ all.section }</th>
-												<td style="text-align: center; color:#000;">${ all.manager }</td>
-												<td style="text-align: center; color:#000;">${ all.name }</td>
-												<td style="text-align: center; color:#000;">${ all.businessPeriod }</td>
+												<th scope="col" style="text-align: center; color:#000;">${ dl.section }</th>
+												<td style="text-align: center; color:#000;">${ dl.manager }</td>
+												<td style="text-align: center; color:#000;">${ dl.name }</td>
+												<td style="text-align: center; color:#000;">${ dl.businessPeriod }</td>
 												<td style="text-align: center; padding-right: 5%">
 													<div class="progress mb-3" style="height: 30px;">
 														<div class="progress-bar bg-success" role="progressbar"
-															style="width: ${ all.rate }%" aria-valuenow="25"
-															aria-valuemin="0" aria-valuemax="${ all.rate }">${ all.rate }</div>
+															style="width: ${ dl.rate }%" aria-valuenow="25"
+															aria-valuemin="0" aria-valuemax="${ dl.rate }">${ dl.rate }</div>
 													</div>
 												</td>
 
 												<td style="text-align: center;"><c:if
-														test="${ all.fulfil eq '폐기' }">
-														<span class="badge badge-pill badge-danger"> ${ all.fulfil }
+														test="${ dl.fulfil eq '폐기' }">
+														<span class="badge badge-pill badge-danger"> ${ dl.fulfil }
 														</span>
-													</c:if> <c:if test="${ all.fulfil eq '보류' }">
-														<span class="badge badge-pill badge-secondary"> ${ all.fulfil }
+													</c:if> <c:if test="${ dl.fulfil eq '보류' }">
+														<span class="badge badge-pill badge-secondary"> ${ dl.fulfil }
 														</span>
 													</c:if></td>
 											</tr>

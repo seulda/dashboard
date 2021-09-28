@@ -22,9 +22,9 @@
 			round(A.rate *100,0) as rate
 		FROM(
 			SELECT 
-			name,
-			rate,
-			REPLACE(businessPeriod, ' ', '') AS businessPeriod
+				name,
+				rate,
+				REPLACE(businessPeriod, ' ', '') AS businessPeriod
 			FROM innodb.campaign) A
 		where substring(current_date(),1,4)  = SUBSTRING_INDEX(A.businessPeriod, '~', -1)
 		order by A.rate asc
@@ -38,8 +38,44 @@
       group by fulfil
       order by fulfil
 	</select>
+
+	<select id="detailList" parameterType="String" resultType="tms.gj.domain.CampaignVO">
+		SELECT
+			A.department,
+			A.section,
+			A.manager,
+			A.name,
+			A.fulfil,
+			round(A.rate *100,0) as rate,
+			A.businessPeriod
+		FROM(
+			SELECT 
+				case when department = '셍헐체육과' then replace(department,'셍헐체육과','생활체육과') 
+				else department end as department,
+				case when section = '바댜행정' then replace(section,'바댜행정','바다행정') else section end as section,
+				manager,
+				name,
+				fulfil,
+				rate,
+				REPLACE(businessPeriod, ' ', '') AS businessPeriod
+			FROM campaign) A
+		<if test="_parameter != null">	
+		where A.department = #{_parameter}
+		</if>
+		order by A.rate,A.businessPeriod asc
+	</select>
+
+	<select id="cnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
+		SELECT
+			fulfil,
+			count(fulfil) as cnt
+		FROM campaign
+		where department = #{department}
+		group by fulfil
+		order by rate desc
+	</select>
 	
-	<select id="all" resultType="tms.gj.domain.CampaignVO">
+	<!-- 	<select id="all" resultType="tms.gj.domain.CampaignVO">
 		SELECT
 			A.department,
 			A.section,
@@ -61,38 +97,6 @@
 			FROM campaign
 			) A
 		order by A.rate,A.businessPeriod asc
-	</select>
-
-	<select id="detailList" parameterType="String" resultType="tms.gj.domain.CampaignVO">
-		SELECT
-			A.section,
-			A.manager,
-			A.name,
-			A.fulfil,
-			round(A.rate *100,0) as rate,
-			A.businessPeriod
-		FROM(
-			SELECT 
-			case when section = '바댜행정' then replace(section,'바댜행정','바다행정') else section end as section,
-			manager,
-			name,
-			fulfil,
-			rate,
-			REPLACE(businessPeriod, ' ', '') AS businessPeriod,
-			department
-			FROM campaign) A
-		where A.department = #{department}
-		order by A.rate,A.businessPeriod asc
-	</select>
-
-	<select id="cnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">
-		SELECT
-			fulfil,
-			count(fulfil) as cnt
-		FROM campaign
-		where department = #{department}
-		group by fulfil
-		order by rate desc
-	</select>
+	</select>  -->
 
 </mapper>
