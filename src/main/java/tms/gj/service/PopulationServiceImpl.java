@@ -104,9 +104,10 @@ public class PopulationServiceImpl implements PopulationService {
 						pvo_no.setPopulation(pvo_no.getPopulation() + ya_before.get(i).getPopulation());
 					}
 					
-					if(count == 21) {
-						break;
-					}
+				}
+				
+				if(count == 21 || j < ya_before.get(i).getYear()) {
+					break;
 				}
 			}
 			
@@ -173,7 +174,7 @@ public class PopulationServiceImpl implements PopulationService {
 					}
 				}
 				
-				if(count == 5) {
+				if(count == 5 || j < yi_before.get(i).getYear()) {
 					break;
 				}
 			}

@@ -16,9 +16,7 @@
 								<h3 style="margin-top:15px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
 								<div style="margin:20px;">
 									<h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
-									
 									<h6>&nbsp;<c:if test="${area ne '거제시'}">거제시 대비 구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />%</c:if>&nbsp;</h6>
-									
 								</div>
 								<div class="progress" style="margin:1vh 0vh 1vh 8vh; height:2rem; width:70%;">
 									<div class="progress-bar" role="progressbar" style="width: ${ys[0].per}%; font-size:18px;" aria-valuenow="${ys[0].per}" aria-valuemin="0" aria-valuemax="100">
