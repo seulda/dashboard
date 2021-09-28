@@ -34,7 +34,7 @@
 		group by 
 			year, dong 
 		order by 
-			year, dong;
+			year;
 	</select>
 	
 	
@@ -48,7 +48,7 @@
 		where 
 			year = 2021 
 		group by 
-			year, sex;
+			sex;
 	</select>
 	<select id="y2021_sex_dong" resultType="tms.gj.domain.PopulationVO">
 		select 
@@ -60,9 +60,9 @@
 		where 
 			year = 2021 and dong = #{dong}
 		group by 
-			year, sex 
+			sex 
 		order by 
-			year, sex;
+			sex;
 	</select>
 	
 	
@@ -116,9 +116,9 @@
 		where
 			dong = #{dong}
 		group by 
-			year, dong, item 
+			year, item 
 		order by 
-			year, dong, item;
+			year, item;
 	</select>
 
 </mapper>

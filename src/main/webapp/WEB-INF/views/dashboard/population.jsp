@@ -13,12 +13,12 @@
 						<div class="card shadow mb-0" style="background-color:#FFF0E0">
 							<div class="card-body text-center">
 								<p style="padding-top:10px;">(2021년 06월 기준)</p>
-								<h3 style="margin-top:2vh;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
-								<div style="margin:2vh 0; padding:10px;">
+								<h3 style="margin-top:15px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
+								<div style="margin:20px;">
 									<h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
-									<c:if test="${area ne '거제시'}">
-										<h6>거제시 대비 구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />% </h6>
-									</c:if>
+									
+									<h6>&nbsp;<c:if test="${area ne '거제시'}">거제시 대비 구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />%</c:if>&nbsp;</h6>
+									
 								</div>
 								<div class="progress" style="margin:1vh 0vh 1vh 8vh; height:2rem; width:70%;">
 									<div class="progress-bar" role="progressbar" style="width: ${ys[0].per}%; font-size:18px;" aria-valuenow="${ys[0].per}" aria-valuemin="0" aria-valuemax="100">
@@ -33,7 +33,7 @@
 									<span style="float:left; margin-left:1vh; font-size:16px;"><fmt:formatNumber value="${ys[0].population}" pattern="#,###,###" />명</span>
 									<span style="float:right; margin-right:1vh; font-size:16px;"><fmt:formatNumber value="${ys[1].population}" pattern="#,###,###" />명</span>	
 								</div>
-								<h5 style="margin:2vh 0; padding-top:30px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
+								<h5 style="margin:7px 0; padding-top:30px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
 							</div>
 						</div>
 						
@@ -356,7 +356,10 @@
 			toolbar : {
 				show: false,
 				enabled : !1
-			}
+			},
+			animations: {
+	            enabled: false
+	        }
 		},
 		theme : {
 			mode : colors.chartTheme
@@ -521,7 +524,7 @@
 			curve : "smooth", /* smooth / straight / stepline */
 			lineCap : "round",
 			/* colors : chartColors, */
-			width : [ 3, 3, 3, 3, 3 ],
+			width : [ 3, 3, 4, 3, 3 ],
 			dashArray : [ 0, 0, 0, 0, 0 ]
 		},
 		dataLabels : {
