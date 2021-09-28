@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class CampaignVO {
 
-	private int idx;					// number
+	//private int idx;					// number
 	private String category;			// 분류
 	private String name;	         	// 공약명
 	private String location;			// 사업위치
@@ -24,6 +24,6 @@ public class CampaignVO {
 	int successRate;                    //진행률
 	int avgRate;                        //평균 이행 현황
 	
-	int cnt;
+	int cnt;                            //진행현황 갯수(완료,추진중,보류,폐기)
 	
 }

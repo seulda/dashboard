@@ -19,37 +19,31 @@ public class CampaignServiceImpl implements CampaignService {
 	// 부서별 공약 이행 현황
 	@Override
 	public ArrayList<CampaignVO> campaignRate() {
-		// TODO Auto-generated method stub
 		return cm.campaignRate();
 	}
 	// 이번년도 종료되는 공약
 	@Override
 	public ArrayList<CampaignVO> businessPeriod() {
-		// TODO Auto-generated method stub
 		return cm.businessPeriod();
 	}
-	//
+	// 진행현황(완료,추진중,보류,폐기) 갯수
 	@Override
 	public ArrayList<CampaignVO> fulfil() {
-		// TODO Auto-generated method stub
 		return cm.fulfil();
 	}
-
+	// 전체 공약
 	@Override
 	public ArrayList<CampaignVO> all() {
-		// TODO Auto-generated method stub
 		return cm.all();
 	}
-
+	// 부서별 공약
 	@Override
 	public ArrayList<CampaignVO> detailList(String department) {
-		// TODO Auto-generated method stub
 		return cm.detailList(department);
 	}
-
+	// 부서별 진행현황(완료,추진중,보류,폐기) 갯수
 	@Override
 	public ArrayList<CampaignVO> cnt(String department) {
-		// TODO Auto-generated method stub
 		return cm.cnt(department);
 	}
 	
