@@ -36,7 +36,7 @@
          count(distinct name) as cnt
       FROM campaign
       group by fulfil
-      order by cnt desc
+      order by fulfil
 	</select>
 	
 	<select id="all" resultType="tms.gj.domain.CampaignVO">
@@ -50,8 +50,9 @@
 			A.businessPeriod
 		FROM(
 			SELECT 
-			department,
-			section,
+			case when department = '셍헐체육과' then replace(department,'셍헐체육과','생활체육과') 
+			else department end as department,
+			case when section = '바댜행정' then replace(section,'바댜행정','바다행정') else section end as section,
 			manager,
 			name,
 			fulfil,

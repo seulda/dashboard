@@ -5,22 +5,14 @@
 
 
 	<main role="main" class="main-content" style="margin: 0">
-		<div class="container">
+		<div class="container" style="padding:0;">
 			<div class="container1">
 				<div id="donutChart"></div>
 				<div class="center_c">
-					<c:forEach var="fulfil" items="${ fulfil }">
-						<c:if test="${ fulfil.fulfil eq '완료' }">
-							<div class="c_txt0">${ fulfil.fulfil }${ fulfil.cnt }건</div>
-						</c:if>
-						<c:if test="${ fulfil.fulfil eq '추진중' }">
-							<div class="c_txt">${ fulfil.fulfil }${ fulfil.cnt }건</div>
-						</c:if>
-						<c:if
-							test="${ (fulfil.fulfil eq '보류') or (fulfil.fulfil eq '폐기') }">
-							<div class="c_txt1">${ fulfil.fulfil }${ fulfil.cnt }건</div>
-						</c:if>
-					</c:forEach>
+							<div class="c_txt0">${ fulfil[1].fulfil } ${ fulfil[1].cnt }건</div>
+							<div class="c_txt">${ fulfil[2].fulfil } ${ fulfil[2].cnt }건</div>
+							<div class="c_txt1">${ fulfil[0].fulfil } ${ fulfil[0].cnt }건</div>
+							<div class="c_txt1">${ fulfil[3].fulfil } ${ fulfil[3].cnt }건</div>
 				</div>
 				<div class="center_tt">
 					<div class="c_img">
@@ -28,15 +20,15 @@
 							src="${ pageContext.request.contextPath }/resources/img/doc1.png"
 							style="width: 30px; height: 30px;">
 					</div>
-					<div class="c_img_txt">이번년도 종료되는 공약</div>
+					<div class="c_img_txt" style="color: #000;">이번년도 종료되는 공약</div>
 				</div>
 				<div class="center_tk">
 					<table class="table table-borderless table-striped">
 						<tbody>
 							<c:forEach var="period" items="${ period }">
 								<tr>
-									<td style="text-align: center;">${ period.name }</td>
-									<td style="text-align: center;">${ period.rate }%</td>
+									<td style="text-align: center; color: #000;">${ period.name }</td>
+									<td style="text-align: center; color: #000;">${ period.rate }%</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -56,17 +48,17 @@
 					<div class="card-body">
 						<div class="bar_t_com">
 							<div class="bar_ch">
-								<div class="num1">100%</div>
-								<div class="num1">90%</div>
-								<div class="num1">80%</div>
-								<div class="num1">70%</div>
-								<div class="num1">60%</div>
-								<div class="num1">50%</div>
-								<div class="num1">40%</div>
-								<div class="num1">30%</div>
-								<div class="num1">20%</div>
-								<div class="num1">10%</div>
-								<div class="num0">0%</div>
+								<div class="num1" style="color: #000;">100%</div>
+								<div class="num1" style="color: #000;">90%</div>
+								<div class="num1" style="color: #000;">80%</div>
+								<div class="num1" style="color: #000;">70%</div>
+								<div class="num1" style="color: #000;">60%</div>
+								<div class="num1" style="color: #000;">50%</div>
+								<div class="num1" style="color: #000;">40%</div>
+								<div class="num1" style="color: #000;">30%</div>
+								<div class="num1" style="color: #000;">20%</div>
+								<div class="num1" style="color: #000;">10%</div>
+								<div class="num0" style="color: #000;">0%</div>
 							</div>
 						</div>
 	                    <div class="bar_l2">
@@ -85,7 +77,7 @@
 						</div>
 						<div class="bar_l">
 							<c:forEach var="rate" items="${ rate }">
-								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 11px;">${ rate.department }</div>
+								<div onclick="pop('${ rate.department }');" class="bar_l0" style="font-size: 11px; color:#000;">${ rate.department }</div>
 							</c:forEach>
 						</div>
 					</div>
@@ -140,11 +132,11 @@
 										<c:if
 											test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">
 											<tr>
-												<th scope="col" style="text-align: center;">${ all.department }</th>
-												<th scope="col" style="text-align: center;">${ all.section }</th>
-												<td style="text-align: center;">${ all.manager }</td>
-												<td style="text-align: center;">${ all.name }</td>
-												<td style="text-align: center;">${ all.businessPeriod }</td>
+												<th scope="col" style="text-align: center; color:#000;">${ all.department }</th>
+												<th scope="col" style="text-align: center; color:#000;">${ all.section }</th>
+												<td style="text-align: center; color:#000;">${ all.manager }</td>
+												<td style="text-align: center; color:#000;">${ all.name }</td>
+												<td style="text-align: center; color:#000;">${ all.businessPeriod }</td>
 												<td style="text-align: center; padding-right: 5%">
 													<div class="progress mb-3" style="height: 30px;">
 														<div class="progress-bar bg-success" role="progressbar"
@@ -168,11 +160,11 @@
 									<c:forEach var="all" items="${ all }">
 										<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">
 											<tr>
-												<th scope="col" style="text-align: center;">${ all.department }</th>
-												<th scope="col" style="text-align: center;">${ all.section }</th>
-												<td style="text-align: center;">${ all.manager }</td>
-												<td style="text-align: center;">${ all.name }</td>
-												<td style="text-align: center;">${ all.businessPeriod }</td>
+												<th scope="col" style="text-align: center; color:#000;">${ all.department }</th>
+												<th scope="col" style="text-align: center; color:#000;">${ all.section }</th>
+												<td style="text-align: center; color:#000;">${ all.manager }</td>
+												<td style="text-align: center; color:#000;">${ all.name }</td>
+												<td style="text-align: center; color:#000;">${ all.businessPeriod }</td>
 												<td style="text-align: center; padding-right: 5%">
 													<div class="progress mb-3" style="height: 30px;">
 														<div class="progress-bar bg-success" role="progressbar"
@@ -212,10 +204,10 @@
 										<c:if
 											test="${ (all.fulfil eq '완료') or (all.fulfil eq '추진중') }">
 											<tr>
-												<th scope="col" style="text-align: center;">${ all.section }</th>
-												<td style="text-align: center;">${ all.manager }</td>
-												<td style="text-align: center;">${ all.name }</td>
-												<td style="text-align: center;">${ all.businessPeriod }</td>
+												<th scope="col" style="text-align: center; color:#000;">${ all.section }</th>
+												<td style="text-align: center; color:#000;">${ all.manager }</td>
+												<td style="text-align: center; color:#000;">${ all.name }</td>
+												<td style="text-align: center; color:#000;">${ all.businessPeriod }</td>
 												<td style="text-align: center; padding-right: 5%">
 													<div class="progress mb-3" style="height: 30px;">
 														<div class="progress-bar bg-success" role="progressbar"
@@ -239,10 +231,10 @@
 									<c:forEach var="all" items="${ detailList }">
 										<c:if test="${ (all.fulfil eq '폐기') or (all.fulfil eq '보류') }">
 											<tr>
-												<th scope="col" style="text-align: center;">${ all.section }</th>
-												<td style="text-align: center;">${ all.manager }</td>
-												<td style="text-align: center;">${ all.name }</td>
-												<td style="text-align: center;">${ all.businessPeriod }</td>
+												<th scope="col" style="text-align: center; color:#000;">${ all.section }</th>
+												<td style="text-align: center; color:#000;">${ all.manager }</td>
+												<td style="text-align: center; color:#000;">${ all.name }</td>
+												<td style="text-align: center; color:#000;">${ all.businessPeriod }</td>
 												<td style="text-align: center; padding-right: 5%">
 													<div class="progress mb-3" style="height: 30px;">
 														<div class="progress-bar bg-success" role="progressbar"
@@ -288,7 +280,7 @@
 	}
 
 	var donutchart, donutChartOptions = {
-		series : [ 54, 40, 4, 2 ],
+		series : [ ${fulfil[1].cnt}, ${fulfil[2].cnt}, ${fulfil[0].cnt}, ${fulfil[3].cnt} ],
 		chart : {
 			type : "donut",
 			height : 305,
@@ -307,7 +299,7 @@
 				expandOnClick : !1
 			}
 		},
-		labels : [ "완료", "진행중", "보류", "폐기" ],
+		labels : [ "완료", "추진중", "보류", "폐기" ],
 		legend : {
 			position : "top",
 			fontFamily : base.defaultFontFamily,
@@ -344,61 +336,10 @@
 			opacity : 1,
 			/* colors : chartColors */
 		}
-	}, donutchartCtn = document.querySelector("#donutChart");
-	donutchartCtn
-			&& (donutchart = new ApexCharts(donutchartCtn, donutChartOptions))
-					.render();
+	}, 
+	donutchartCtn = document.querySelector("#donutChart");
+	donutchartCtn && (donutchart = new ApexCharts(donutchartCtn, donutChartOptions)).render();
 
-	var donutChartWidget, donutChartWidgetOptions = {
-		series : [ 54, 40, 4, 2 ],
-		chart : {
-			type : "donut",
-			height : 180,
-			zoom : {
-				enabled : !1
-			},
-			toolbar : {
-				show : !1
-			}
-		},
-		theme : {
-			mode : colors.chartTheme
-		},
-		plotOptions : {
-			pie : {
-				donut : {
-					size : "30%",
-					background : "transparent"
-				},
-				expandOnClick : !1
-			}
-		},
-		labels : [ "완료", "추진중", "폐기", "보류" ],
-		dataLabels : {
-			enabled : !0,
-			style : {
-				fontSize : "10px",
-				fontFamily : base.defaultFontFamily,
-				fontWeight : "300"
-			}
-		},
-		legend : {
-			show : !1
-		},
-		stroke : {
-			show : !1,
-			colors : colors.borderColor,
-			width : 1,
-			dashArray : 0
-		},
-		fill : {
-			opacity : 1,
-			colors : chartColors
-		}
-	}, donutChartWidgetCtn = document.querySelector("#donutChartWidget");
-	donutChartWidgetCtn
-			&& (donutChartWidget = new ApexCharts(donutChartWidgetCtn,
-					donutChartWidgetOptions)).render();
 </script>
 
 
