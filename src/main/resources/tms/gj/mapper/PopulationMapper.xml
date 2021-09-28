@@ -46,7 +46,7 @@
 		from 
 			population
 		where 
-			year = 2021 
+			year = 2021
 		group by 
 			sex;
 	</select>
@@ -73,20 +73,8 @@
 			sum(population) as population 
 		from 
 			population
-		group by 
-			year, age
-		order by 
-			year, age;
-	</select>
-	<select id="year_age_dong" resultType="tms.gj.domain.PopulationVO">
-		select 
-			year, 
-			age, 
-			sum(population) as population 
-		from 
-			population
-		where
-			dong = #{dong}
+		where 
+			( (#{dong} IS NULL) OR (#{dong} IS NOT NULL AND dong = #{dong}) )
 		group by 
 			year, age
 		order by 
@@ -101,24 +89,13 @@
 			sum(population) as population 
 		from 
 			item
+		where 
+			( (#{dong} IS NULL) OR (#{dong} IS NOT NULL AND dong = #{dong}) )
 		group by 
 			year, item 
 		order by 
 			year, item;
 	</select>
-	<select id="year_item_dong" resultType="tms.gj.domain.ItemVO">
-		select 
-			year, 
-			item, 
-			sum(population) as population 
-		from 
-			item
-		where
-			dong = #{dong}
-		group by 
-			year, item 
-		order by 
-			year, item;
-	</select>
+
 
 </mapper>

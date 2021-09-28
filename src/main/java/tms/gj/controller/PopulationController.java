@@ -30,86 +30,39 @@ public class PopulationController {
 	
 	
 	@GetMapping("/population")
-	public String population(Model model) {
+	public String population(Model model, @RequestParam(value = "dn", required = false) String dn) {
 		
-		// 연도별 인구
-		ArrayList<PopulationVO> yc = ps.year_count();
 		// 2021년 거제시 전체 인구
-		//int yc2021 =ps.year2021_count();
-		int yc2021 = yc.get(8).getPopulation();
-		// 2021년 인구 성별 비율
-		ArrayList<PopulationVO> ys = ps.y2021_sex();
-		// 연도별 & 연령대별 인구
-		ArrayList<PopulationVO> ya = ps.year_age();
-		// 연도별 변화요인
-		ArrayList<ItemVO> yi = ps.year_item();
+		int yc2021 =ps.year2021_count();
 
-		model.addAttribute("area", "거제시");
-		model.addAttribute("yc", yc);
+		if(dn == null) {
+			ArrayList<PopulationVO> yc = ps.year_count();		// 연도별 인구
+			ArrayList<PopulationVO> ys = ps.y2021_sex();		// 2021년 인구 성별 비율
+			model.addAttribute("yc", yc);
+			model.addAttribute("ys", ys);
+		} else {
+			ArrayList<PopulationVO> yc = ps.year_count_dong(dn);	// 동 > 연도별 인구
+			ArrayList<PopulationVO> ys = ps.y2021_sex_dong(dn);		// 동 > 2021년 인구 성별 비율
+			model.addAttribute("yc", yc);
+			model.addAttribute("ys", ys);
+		}
+		// 연도별 & 연령대별 인구
+		ArrayList<PopulationVO> ya = ps.year_age(dn);
+		// 연도별 변화요인
+		ArrayList<ItemVO> yi = ps.year_item(dn);
+
+		if(dn == null) {
+			model.addAttribute("area", "거제시");
+		} else {
+			model.addAttribute("area", dn);
+		}
+
 		model.addAttribute("yc2021", yc2021);
-		model.addAttribute("ys", ys);
 		model.addAttribute("ya", ya);
 		model.addAttribute("yi", yi);
 		
 		return "/dashboard/population";
 	}
 	
-	@GetMapping("/populationArea")
-	public String populationArea(Model model, @RequestParam String dn) {
-		
-		String dong = dn;
-		log.info("dong filter : " + dong);
-		
-		// 2021년 거제시 전체 인구
-		int yc2021 =ps.year2021_count();
-		// 동 > 연도별 인구
-		ArrayList<PopulationVO> ycd = ps.year_count_dong(dong);
-		// 동 > 2021년 인구 성비
-		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
-		// 동 > 연도별 & 연령대별 인구
-		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
-		// 동 > 연도별 변화요인
-		ArrayList<ItemVO> yid = ps.year_item_dong(dong);
-
-		model.addAttribute("area", dong);
-		model.addAttribute("yc2021", yc2021);
-		model.addAttribute("yc", ycd);
-		model.addAttribute("ys", ysd);
-		model.addAttribute("ya", yad);
-		model.addAttribute("yi", yid);
-		
-		return "/dashboard/population";
-	}
-	
-	@PostMapping("/population_Area")
-	//@RequestMapping(value="/population_Area", method=RequestMethod.POST, produces="application/text; charset=utf8")
-	@ResponseBody
-	public Map<String, Object> pClick(@RequestParam String dn) {
-		
-		String dong = dn;
-		log.info("dong filter : " + dong);
-		
-		// 2021년 거제시 전체 인구
-		int yc2021 =ps.year2021_count();
-		// 동 > 연도별 인구
-		ArrayList<PopulationVO> ycd = ps.year_count_dong(dong);
-		// 동 > 2021년 인구 성비
-		ArrayList<PopulationVO> ysd = ps.y2021_sex_dong(dong);
-		// 동 > 연도별 & 연령대별 인구
-		ArrayList<PopulationVO> yad = ps.year_age_dong(dong);
-		// 동 > 연도별 변화요인
-		ArrayList<ItemVO> yid = ps.year_item_dong(dong);
-		
-		Map<String, Object> result = new HashMap<String, Object>();
-		
-		result.put("area", dong);
-		result.put("yc2021", yc2021);
-		result.put("yc", ycd);
-		result.put("ys", ysd);
-		result.put("ya", yad);
-		result.put("yi", yid);
-		
-		return result;
-	}
 	
 }

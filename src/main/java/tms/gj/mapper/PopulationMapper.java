@@ -22,14 +22,10 @@ public interface PopulationMapper {
 
 	
 	// 연도별 > 나이대별
-	public ArrayList<PopulationVO> year_age();
-	// 동 : 연도별 > 나이대별
-	public ArrayList<PopulationVO> year_age_dong(String dong);
+	public ArrayList<PopulationVO> year_age(String dong);
 	
 
 	// 연도별 변화요인
-	public ArrayList<ItemVO> year_item();
-	// 동 : 연도별 변화요인
-	public ArrayList<ItemVO> year_item_dong(String dong);
+	public ArrayList<ItemVO> year_item(String dong);
 
 }
