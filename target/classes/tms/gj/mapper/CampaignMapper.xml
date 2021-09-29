@@ -24,7 +24,7 @@
 			SELECT 
 				name,
 				rate,
-				REPLACE(businessPeriod, ' ', '') AS businessPeriod
+				REPLACE(REPLACE(businessPeriod, ' ', ''), '.', '') AS businessPeriod
 			FROM innodb.campaign) A
 		where substring(current_date(),1,4)  = SUBSTRING_INDEX(A.businessPeriod, '~', -1)
 		order by A.rate asc
@@ -51,13 +51,14 @@
 		FROM(
 			SELECT 
 				case when department = '셍헐체육과' then replace(department,'셍헐체육과','생활체육과') 
-				else department end as department,
-				case when section = '바댜행정' then replace(section,'바댜행정','바다행정') else section end as section,
+					else department end as department,
+				case when section = '바댜행정' then replace(section,'바댜행정','바다행정') 
+					else section end as section,
 				manager,
 				name,
 				fulfil,
 				rate,
-				REPLACE(businessPeriod, ' ', '') AS businessPeriod
+				REPLACE(REPLACE(businessPeriod, ' ', ''), '.', '') AS businessPeriod
 			FROM campaign) A
 			where 
 			( (#{department} IS NULL) OR (#{department} IS NOT NULL AND department = #{department}) )

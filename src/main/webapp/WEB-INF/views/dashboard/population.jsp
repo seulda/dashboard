@@ -39,7 +39,7 @@
 							<div class="card-body">
 								<h5><a href="${pageContext.request.contextPath}/population" style="text-decoration:none; color:black;">거제시 전체</a></h5>
 								<!-- <span onClick="dongClick('dong01')">거제면 TEST</span> -->
-								<div style="position:relative; width:513px; margin:auto; padding-left:3vh">
+								<div style="position:relative; width:565px; margin:auto; padding-left:3vh">
 									<span style="text-align:center; position:absolute; z-index:1; left:28%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population?dn=거제면" style="text-decoration: none; color:black;">거제면</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:37%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population?dn=고현동" style="text-decoration: none; color:black;">고현동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:34%; top:85%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population?dn=남부면" style="text-decoration: none; color:black;">남부면</a></span>
@@ -58,7 +58,7 @@
 									<span style="text-align:center; position:absolute; z-index:1; left:65%; top:50%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population?dn=장승포동" style="text-decoration: none; color:black;">장승포동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:32%; top:40%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population?dn=장평동" style="text-decoration: none; color:black;">장평동</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:38%; top:23%; padding-left:2vh"><a href="${pageContext.request.contextPath}/population?dn=하청면" style="text-decoration: none; color:black;">하청면</a></span>
-									<div style="width:513px; height:0; padding-top:513px; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
+									<div style="width:565px; height:0; padding-top:565px; background-image:url(${pageContext.request.contextPath}/resources/img/gj.png); background-size:contain; background-repeat:no-repeat;"></div>
 								</div>
 								<br>
 							</div>

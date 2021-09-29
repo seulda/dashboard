@@ -13,14 +13,14 @@
 				<div class="row">
 					<div class="col-md-6" style="padding:5px;">
 						<div class="card shadow mb-1">
-							<div class="card-body text-center" style="height:91vh;">
+							<div class="card-body text-center" style="height:89vh;">
 								<h1 style="margin-top:40vh;"><a href="${pageContext.request.contextPath}/campaign" style="text-decoration:none;">100대 공약사항 이행 현황</a></h1>
 							</div>
 						</div>
 					</div>
 					<div class="col-md-6" style="padding:5px;">
 						<div class="card shadow mb-1">
-							<div class="card-body text-center" style="height:91vh;">
+							<div class="card-body text-center" style="height:89vh;">
 								<h1 style="margin-top:40vh;"><a href="${pageContext.request.contextPath}/population" style="text-decoration:none;">인구 현황</a></h1>
 							</div>
 						</div>
