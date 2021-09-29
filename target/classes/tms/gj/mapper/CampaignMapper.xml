@@ -39,7 +39,7 @@
       order by fulfil
 	</select>
 
-	<select id="detailList" parameterType="String" resultType="tms.gj.domain.CampaignVO">
+	<select id="detailList" resultType="tms.gj.domain.CampaignVO">
 		SELECT
 			A.department,
 			A.section,
@@ -59,9 +59,8 @@
 				rate,
 				REPLACE(businessPeriod, ' ', '') AS businessPeriod
 			FROM campaign) A
-		<if test="_parameter != null">	
-		where A.department = #{_parameter}
-		</if>
+			where 
+			( (#{department} IS NULL) OR (#{department} IS NOT NULL AND department = #{department}) )
 		order by A.rate,A.businessPeriod asc
 	</select>
 
