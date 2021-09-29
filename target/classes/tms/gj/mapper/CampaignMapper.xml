@@ -8,7 +8,7 @@
 	<select id="campaignRate" resultType="tms.gj.domain.CampaignVO">
 		SELECT 
 			case when department = '셍헐체육과' then replace(department,'셍헐체육과','생활체육과') 
-			else department end as department,
+				else department end as department,
 			round(avg(rate*100),0) as avgRate
 		FROM campaign
 		Group by department
@@ -50,19 +50,20 @@
 			A.businessPeriod
 		FROM(
 			SELECT 
-				case when department = '셍헐체육과' then replace(department,'셍헐체육과','생활체육과') 
-					else department end as department,
-				case when section = '바댜행정' then replace(section,'바댜행정','바다행정') 
-					else section end as section,
+				CASE WHEN department = '셍헐체육과' THEN replace(department,'셍헐체육과','생활체육과') 
+					ELSE department END AS department,
+				CASE WHEN section = '바댜행정' THEN replace(section,'바댜행정','바다행정') 
+					ELSE section END AS section,
 				manager,
 				name,
 				fulfil,
 				rate,
 				REPLACE(REPLACE(businessPeriod, ' ', ''), '.', '') AS businessPeriod
-			FROM campaign) A
-			where 
+			FROM campaign 
+			) A
+		WHERE 
 			( (#{department} IS NULL) OR (#{department} IS NOT NULL AND department = #{department}) )
-		order by A.rate,A.businessPeriod asc
+		ORDER BY A.rate,A.businessPeriod asc
 	</select>
 
 	<select id="cnt" parameterType="String" resultType="tms.gj.domain.CampaignVO">

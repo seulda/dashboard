@@ -495,7 +495,7 @@
 		series : [
 			{ name : "출생", data : d01 },
 			{ name : "사망", data : d02 },
-			{ name : "자연증가", data : d03 },
+			{ name : "전입전출", data : d03 },
 			{ name : "혼인", data : d04 },
 			{ name : "이혼", data : d05 } 
 		],
