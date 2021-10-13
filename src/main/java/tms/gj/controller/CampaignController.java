@@ -2,11 +2,13 @@ package tms.gj.controller;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -21,9 +23,9 @@ public class CampaignController {
 	
 	private CampaignService cs;
 	
-	
-	@GetMapping("/campaign")
-	public String campaign(@RequestParam(value = "department",required = false) String department,Model model) {
+	@ResponseBody
+	@GetMapping("/campaignAPI")
+	public HashMap<String, Object> campaign(@RequestParam(value = "department",required = false) String department,Model model) {
 		
 		ArrayList<CampaignVO> detailList = cs.detailList(department);
 		ArrayList<CampaignVO> rate       = cs.campaignRate();
@@ -31,13 +33,15 @@ public class CampaignController {
 		ArrayList<CampaignVO> fulfil     = cs.fulfil();
 		ArrayList<CampaignVO> cnt        = cs.cnt(department);
 		
-		model.addAttribute("detailList", detailList);
-		model.addAttribute("rate", rate);
-		model.addAttribute("period", period);
-		model.addAttribute("fulfil", fulfil);
-		model.addAttribute("cnt", cnt);
+		HashMap<String, Object> result = new HashMap<String, Object>();
 		
-		return "/dashboard/campaign";
+		result.put("detailList", detailList);
+		result.put("rate", rate);
+		result.put("period", period);
+		result.put("fulfil", fulfil);
+		result.put("cnt", cnt);
+		
+		return result;
 		
 
 	}
