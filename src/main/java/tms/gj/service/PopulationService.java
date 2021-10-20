@@ -1,5 +1,6 @@
 package tms.gj.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import tms.gj.domain.ItemVO;
@@ -27,5 +28,8 @@ public interface PopulationService {
 
 	// 연도별 변화요인
 	public ArrayList<ItemVO> year_item(String dong);
+	
+	// go server : getPopulation API
+	public String getPopulation() throws IOException ;
 	
 }

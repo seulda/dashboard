@@ -1,10 +1,12 @@
 package tms.gj.controller;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +31,7 @@ public class PopulationController {
 	@GetMapping("/population")
 	public String population(Model model, @RequestParam(value = "dn", required = false) String dn) {
 		
-		int yc2021 =ps.year2021_count();								// 2021년 거제시 전체 인구
+		int yc2021 = ps.year2021_count();								// 2021년 거제시 전체 인구
 		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();		// 연도별 인구
 		ArrayList<PopulationVO> ys = new ArrayList<PopulationVO>();		// 2021년 인구 성별 비율
 		if(dn == null) {
@@ -61,7 +63,7 @@ public class PopulationController {
 	@GetMapping("/populationAPI")
 	public HashMap<String, Object> populationTest(Model model, @RequestParam(value = "dn", required = false) String dn) {
 		
-		int yc2021 =ps.year2021_count();								// 2021년 거제시 전체 인구
+		int yc2021 = ps.year2021_count();								// 2021년 거제시 전체 인구
 		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();		// 연도별 인구
 		ArrayList<PopulationVO> ys = new ArrayList<PopulationVO>();		// 2021년 인구 성별 비율
 		if(dn == null) {
@@ -90,5 +92,37 @@ public class PopulationController {
 		return result;
 	}
 	
+	@GetMapping("/goPopulation")
+	public String goPopulation(Model model, @RequestParam(value = "dn", required = false) String dn) throws IOException {
+		
+		String result = ps.getPopulation();
+		
+		int yc2021 = 0;													// 2021년 거제시 전체 인구
+		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();		// 연도별 인구
+		ArrayList<PopulationVO> ys = new ArrayList<PopulationVO>();		// 2021년 인구 성별 비율
+		ArrayList<PopulationVO> ya = new ArrayList<PopulationVO>();		// 연도별 & 연령대별 인구
+		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();					// 연도별 변화요인
+		
+		// json 작업 start
+		
+		JSONObject jObject = new JSONObject(result);
+		JSONObject responseObject = jObject.getJSONObject("response");
+		
+		// json 작업 end
+		
+		if(dn == null) {
+			model.addAttribute("area", "거제시");
+		} else {
+			model.addAttribute("area", dn);
+		}
+		model.addAttribute("yc2021", yc2021);
+		model.addAttribute("yc", yc);
+		model.addAttribute("ys", ys);
+		model.addAttribute("ya", ya);
+		model.addAttribute("yi", yi);
+		
+		return "/dashboard/population";
+		
+	}
 	
 }
