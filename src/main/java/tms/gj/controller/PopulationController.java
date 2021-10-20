@@ -4,8 +4,8 @@ package tms.gj.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,24 +97,41 @@ public class PopulationController {
 		
 		String result = ps.getPopulation();
 		
-		int yc2021 = 0;													// 2021년 거제시 전체 인구
-		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();		// 연도별 인구
-		ArrayList<PopulationVO> ys = new ArrayList<PopulationVO>();		// 2021년 인구 성별 비율
-		ArrayList<PopulationVO> ya = new ArrayList<PopulationVO>();		// 연도별 & 연령대별 인구
-		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();					// 연도별 변화요인
+//		String area = "";												// 기준 지역
+//		int yc2021 = 0;													// 2021년 거제시 전체 인구
+//		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();		// 연도별 인구
+//		ArrayList<PopulationVO> ys = new ArrayList<PopulationVO>();		// 2021년 인구 성별 비율
+//		ArrayList<PopulationVO> ya = new ArrayList<PopulationVO>();		// 연도별 & 연령대별 인구
+//		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();					// 연도별 변화요인
 		
 		// json 작업 start
 		
 		JSONObject jObject = new JSONObject(result);
+		int codeObject = jObject.getInt("code");
+		String messageObject = jObject.getString("message");
+		String responseTimeObject = jObject.getString("responseTime");
 		JSONObject responseObject = jObject.getJSONObject("response");
+
+		log.info("go populationAPI response codeObject : " + codeObject);
+		log.info("go populationAPI response messageObject : " + messageObject);
+		log.info("go populationAPI response responseTimeObject : " + responseTimeObject);
+		
+		JSONObject resultsObject = responseObject.getJSONObject("results");
+		String area = resultsObject.getString("area");
+		JSONArray ya = resultsObject.getJSONArray("ya");
+		JSONArray yc = resultsObject.getJSONArray("yc");
+		JSONArray yc2021 = resultsObject.getJSONArray("yc2021");
+		JSONArray yi = resultsObject.getJSONArray("yi");
+		JSONArray ys = resultsObject.getJSONArray("ys");
 		
 		// json 작업 end
 		
-		if(dn == null) {
-			model.addAttribute("area", "거제시");
-		} else {
-			model.addAttribute("area", dn);
-		}
+//		if(dn == null) {
+//			model.addAttribute("area", "거제시");
+//		} else {
+//			model.addAttribute("area", dn);
+//		}
+		//model.addAttribute("area", area);
 		model.addAttribute("yc2021", yc2021);
 		model.addAttribute("yc", yc);
 		model.addAttribute("ys", ys);
