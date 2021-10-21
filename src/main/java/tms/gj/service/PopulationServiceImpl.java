@@ -201,9 +201,14 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	
 	@Override
-	public String getPopulationAPI() throws IOException {
+	public String getPopulationAPI(String dong) throws IOException {
 		
-		URL url = new URL("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+		if (dong != null) {
+			apiUrl = apiUrl + "?dong=" + dong;
+		}
+		
+		URL url = new URL(apiUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
