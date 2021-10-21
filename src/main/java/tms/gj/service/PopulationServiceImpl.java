@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
+
 import lombok.AllArgsConstructor;
 import tms.gj.domain.ItemVO;
 import tms.gj.domain.PopulationVO;
@@ -230,6 +231,17 @@ public class PopulationServiceImpl implements PopulationService {
         
         return sb.toString();
 	}
+	@Override
+	public void getPopulationAPI_REST() throws IOException {
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+//		if (dong != null) {
+//			apiUrl = apiUrl + "?dong=" + dong;
+//		}
+		
+		URL url = new URL(apiUrl);
+
+	}
+	
 	
 	@Override
 	public ArrayList<ItemVO> go_year_item(JSONArray yiObject) {
