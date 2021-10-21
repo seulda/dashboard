@@ -25,5 +25,5 @@ public class CampaignVO {
 	int avgRate;                        //평균 이행 현황
 	
 	int cnt;                            //진행현황 갯수(완료,추진중,보류,폐기)
-	
+
 }
