@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import tms.gj.domain.ItemVO;
@@ -131,72 +133,76 @@ public class PopulationServiceImpl implements PopulationService {
 	@Override
 	public ArrayList<ItemVO> year_item(String dong) {
 		
-		ArrayList<ItemVO> yi_before = pm.year_item(dong);
-		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
+//		ArrayList<ItemVO> yi_before = pm.year_item(dong);
+//		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
+//		
+//		for(int j = 2013; j < 2022; j++) {
+//			
+//			ItemVO ivo_one = new ItemVO();
+//			ivo_one.setYear(j);
+//			ivo_one.setItem("출생");
+//			ItemVO ivo_two = new ItemVO();
+//			ivo_two.setYear(j);
+//			ivo_two.setItem("사망");
+//			ItemVO ivo_three = new ItemVO();
+//			ivo_three.setYear(j);
+//			ivo_three.setItem("자연증가");
+//			ItemVO ivo_four = new ItemVO();
+//			ivo_four.setYear(j);
+//			ivo_four.setItem("혼인");
+//			ItemVO ivo_five = new ItemVO();
+//			ivo_five.setYear(j);
+//			ivo_five.setItem("이혼");
+//			
+//			for(int i = 0; i < yi_before.size(); i++) {
+//				
+//				int count = 0;
+//				
+//				if( j == yi_before.get(i).getYear() ) {
+//					
+//					count++;
+//
+//					String test = yi_before.get(i).getItem();
+//					
+//					if( test.equals("출생건수") ) {
+//						ivo_one.setPopulation(yi_before.get(i).getPopulation()); 
+//					} 
+//					else if( test.equals("사망건수") ) {
+//						ivo_two.setPopulation(yi_before.get(i).getPopulation()); 
+//					} 
+//					else if( test.equals("자연증가건수") ) {
+//						ivo_three.setPopulation(yi_before.get(i).getPopulation());
+//					} 
+//					else if( test.equals("혼인건수") ) {
+//						ivo_four.setPopulation(yi_before.get(i).getPopulation());
+//					} 
+//					else if( test.equals("이혼건수") ) {
+//						ivo_five.setPopulation(yi_before.get(i).getPopulation());
+//					}
+//				}
+//				
+//				if(count == 5 || j < yi_before.get(i).getYear()) {
+//					break;
+//				}
+//			}
+//			
+//			yi.add(ivo_one);
+//			yi.add(ivo_two);
+//			yi.add(ivo_three);
+//			yi.add(ivo_four);
+//			yi.add(ivo_five);
+//		}
+//		
+//		return yi;
 		
-		for(int j = 2013; j < 2022; j++) {
-			
-			ItemVO ivo_one = new ItemVO();
-			ivo_one.setYear(j);
-			ivo_one.setItem("출생");
-			ItemVO ivo_two = new ItemVO();
-			ivo_two.setYear(j);
-			ivo_two.setItem("사망");
-			ItemVO ivo_three = new ItemVO();
-			ivo_three.setYear(j);
-			ivo_three.setItem("자연증가");
-			ItemVO ivo_four = new ItemVO();
-			ivo_four.setYear(j);
-			ivo_four.setItem("혼인");
-			ItemVO ivo_five = new ItemVO();
-			ivo_five.setYear(j);
-			ivo_five.setItem("이혼");
-			
-			for(int i = 0; i < yi_before.size(); i++) {
-				
-				int count = 0;
-				
-				if( j == yi_before.get(i).getYear() ) {
-					
-					count++;
-
-					String test = yi_before.get(i).getItem();
-					
-					if( test.equals("출생건수") ) {
-						ivo_one.setPopulation(yi_before.get(i).getPopulation()); 
-					} 
-					else if( test.equals("사망건수") ) {
-						ivo_two.setPopulation(yi_before.get(i).getPopulation()); 
-					} 
-					else if( test.equals("자연증가건수") ) {
-						ivo_three.setPopulation(yi_before.get(i).getPopulation());
-					} 
-					else if( test.equals("혼인건수") ) {
-						ivo_four.setPopulation(yi_before.get(i).getPopulation());
-					} 
-					else if( test.equals("이혼건수") ) {
-						ivo_five.setPopulation(yi_before.get(i).getPopulation());
-					}
-				}
-				
-				if(count == 5 || j < yi_before.get(i).getYear()) {
-					break;
-				}
-			}
-			
-			yi.add(ivo_one);
-			yi.add(ivo_two);
-			yi.add(ivo_three);
-			yi.add(ivo_four);
-			yi.add(ivo_five);
-		}
-		
-		return yi;
+		return pm.year_item(dong);
 	}
 	
 	
+	
 	@Override
-	public String getPopulation() throws IOException {
+	public String getPopulationAPI() throws IOException {
+		
 		URL url = new URL("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -217,11 +223,27 @@ public class PopulationServiceImpl implements PopulationService {
         rd.close();
         conn.disconnect();
         
-        System.out.println("@@@@ go server getPopulationApi success!!! : " + sb.toString());
-        
         return sb.toString();
 	}
 	
-	
+	@Override
+	public ArrayList<ItemVO> go_year_item(JSONArray yiObject) {
+		
+		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
+		
+		for (int i = 0; i <  yiObject.length(); i++) {
+			
+			ItemVO ivo = new ItemVO();
+			JSONObject iobj = yiObject.getJSONObject(i);
+
+			ivo.setYear(iobj.getInt("year"));
+			ivo.setItem(iobj.getString("item"));
+			ivo.setPopulation(iobj.getInt("population"));
+			
+			yi.add(ivo);
+		}
+		
+		return yi;
+	}
 
 }

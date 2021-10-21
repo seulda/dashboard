@@ -13,11 +13,9 @@
 						<div class="card shadow mb-0" style="background-color:#FFF0E0">
 							<div class="card-body text-center">
 								<p style="padding-top:10px;">(2021년 06월 기준)</p>
-								<%-- <h3 style="margin-top:15px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3> --%>
-								<h3 style="margin-top:15px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;${yc2021}명</h3>
+								<h3 style="margin-top:15px;">거제시 인구 현황&nbsp;&nbsp;:&nbsp;&nbsp;<fmt:formatNumber value="${yc2021}" pattern="#,###,###" />명</h3>
 								<div style="margin:20px;">
-									<%-- <h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4> --%>
-									<h4>${area} 인구수 : ${yc[8].population}명 </h4>
+									<h4>${area} 인구수 : <fmt:formatNumber value="${yc[8].population}" pattern="#,###,###" />명 </h4>
 									<h6>&nbsp;<c:if test="${area ne '거제시'}">거제시 대비 구성비 : <fmt:parseNumber value="${yc[8].population/yc2021 * 100}" integerOnly="true" />%</c:if>&nbsp;</h6>
 								</div>
 								<div class="progress" style="margin:1vh 0vh 1vh 8vh; height:2rem; width:70%;">
@@ -30,13 +28,10 @@
 									</div>
 								</div>
 								<div style="margin:0vh 0vh 3vh 8vh; width:70%;">
-									<%-- <span style="float:left; margin-left:1vh; font-size:16px;"><fmt:formatNumber value="${ys[0].population}" pattern="#,###,###" />명</span> --%>
-									<span style="float:left; margin-left:1vh; font-size:16px;">${ys[0].population}명</span>
-									<%-- <span style="float:right; margin-right:1vh; font-size:16px;"><fmt:formatNumber value="${ys[1].population}" pattern="#,###,###" />명</span> --%>
-									<span style="float:right; margin-right:1vh; font-size:16px;">${ys[1].population}명</span>	
+									<span style="float:left; margin-left:1vh; font-size:16px;"><fmt:formatNumber value="${ys[0].population}" pattern="#,###,###" />명</span>
+									<span style="float:right; margin-right:1vh; font-size:16px;"><fmt:formatNumber value="${ys[1].population}" pattern="#,###,###" />명</span>	
 								</div>
-								<%-- <h5 style="margin:7px 0; padding-top:30px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5> --%>
-								<h5 style="margin:7px 0; padding-top:30px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if>${yc[7].population - yc[8].population}명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
+								<h5 style="margin:7px 0; padding-top:30px;">전년대비 증감 :&nbsp;<c:if test="${yc[7].population > yc[8].population}">&nbsp;-&nbsp;</c:if><fmt:formatNumber value="${yc[7].population - yc[8].population}" pattern="#,###,###" />명 (<c:if test="${yc[7].population > yc[8].population}">-</c:if><fmt:parseNumber value="${yc[7].population/yc[8].population * 100 - 100}" integerOnly="true" />%)</h5>
 							</div>
 						</div>
 						
@@ -129,54 +124,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/apexcharts.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/tinycolor-min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/config.js"></script>
-
-<script>
-	function dongClick(name) {
-		
-		var dn = name;
-		
-		console.log("dong Click : " + dn);
-		
-		$.ajax({
-			url: "${pageContext.request.contextPath}/population_Area",
-			type: "post",
-			data: { dn : dn },
-			dataType: "json",
-			success: function(data){
-				
-				area = data.area;
-				console.log("data.area : " + area);
-				yc2021 = data.yc2021;
-				console.log("data.yc2021 : " + yc2021);
-				
-				yc = data.yc;
-				console.log("data.yc : " + yc);
-				console.log("yc[0].population : " + yc[0].population);
-				
-				men = data.men;
-				console.log("data.men : " + men);
-				woman = data.woman;
-				console.log("data.woman : " + woman);
-				
-				ya = data.ya;
-				console.log("data.ya : " + ya);
-				console.log("ya[0].population : " + ya[0].population);
-				
-				yi = data.yi;
-				console.log("data.yi : " + yi);
-				console.log("yi[0].population : " + yi[0].population);
-				
-				alert("graph reload success");
-				//location.reload();
-				
-			},
-			error: function() {
-				alert("server error");
-			}
-		});
-
-	}
-</script>
 
 <script>
 	var dateArea = [], D = [];
@@ -498,11 +445,11 @@
 	
 	var lineChart, lineChartoptions = {
 		series : [
-			{ name : "출생", data : d01 },
-			{ name : "사망", data : d02 },
-			{ name : "전입전출", data : d03 },
-			{ name : "혼인", data : d04 },
-			{ name : "이혼", data : d05 } 
+			{ name : "${yi[3].item}", data : d04 },
+			{ name : "${yi[0].item}", data : d01 },
+			{ name : "${yi[2].item}", data : d03 },
+			{ name : "${yi[4].item}", data : d05 },
+			{ name : "${yi[1].item}", data : d02 }
 		],
 		chart : {
 			height : 270,

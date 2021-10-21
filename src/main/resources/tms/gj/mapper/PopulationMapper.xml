@@ -85,7 +85,7 @@
 	<select id="year_item" resultType="tms.gj.domain.ItemVO">
 		select 
 			year, 
-			item, 
+			REPLACE(item, '건수', '') AS item, 
 			sum(population) as population 
 		from 
 			item
