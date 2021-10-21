@@ -95,7 +95,7 @@ public class PopulationController {
 	@GetMapping("/goPopulation")
 	public String goPopulation(Model model, @RequestParam(value = "dn", required = false) String dn) throws IOException {
 		
-		String result = ps.getPopulationAPI();
+		String result = ps.getPopulationAPI(dn);
 		
 		ArrayList<PopulationVO> yc2021 = new ArrayList<PopulationVO>();
 		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();
@@ -111,7 +111,6 @@ public class PopulationController {
 		String messageObject = jObject.getString("message");
 		String responseTimeObject = jObject.getString("responseTime");
 		JSONObject responseObject = jObject.getJSONObject("response");
-
 		log.info("[go populationAPI] response codeObject : " + codeObject
 				+ " / messageObject : " + messageObject + " / responseTimeObject : " + responseTimeObject);
 		
@@ -122,6 +121,8 @@ public class PopulationController {
 		JSONArray ysObject = resultsObject.getJSONArray("ys");
 		JSONArray yaObject = resultsObject.getJSONArray("ya");
 		JSONArray yiObject = resultsObject.getJSONArray("yi");
+		
+		yi = ps.go_year_item(yiObject);
 		
 		String[] objectKey = { "yc2021", "yc", "ys", "ya" };
 		int[] objectLength = { yc2021Object.length(), ycObject.length(), ysObject.length(), yaObject.length() };
@@ -174,9 +175,8 @@ public class PopulationController {
 			}
 		}
 		
-		yi = ps.go_year_item(yiObject);
-		
 		// ==================== json 작업 end ====================
+		
 		
 		model.addAttribute("area", areaObject);								// 기준 지역
 		model.addAttribute("yc2021", yc2021.get(0).getPopulation());		// 2021년 거제시 전체 인구

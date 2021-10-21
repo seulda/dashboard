@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
+
 import lombok.AllArgsConstructor;
 import tms.gj.domain.ItemVO;
 import tms.gj.domain.PopulationVO;
@@ -201,9 +202,14 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	
 	@Override
-	public String getPopulationAPI() throws IOException {
+	public String getPopulationAPI(String dong) throws IOException {
 		
-		URL url = new URL("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+		if (dong != null) {
+			apiUrl = apiUrl + "?dong=" + dong;
+		}
+		
+		URL url = new URL(apiUrl);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
@@ -225,6 +231,17 @@ public class PopulationServiceImpl implements PopulationService {
         
         return sb.toString();
 	}
+	@Override
+	public void getPopulationAPI_REST() throws IOException {
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+//		if (dong != null) {
+//			apiUrl = apiUrl + "?dong=" + dong;
+//		}
+		
+		URL url = new URL(apiUrl);
+
+	}
+	
 	
 	@Override
 	public ArrayList<ItemVO> go_year_item(JSONArray yiObject) {
