@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -88,6 +90,8 @@ public class CampaignController {
 		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 		ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 		
+		String resultJson = result.toString().substring(5, 15848);
+		
 		ArrayList<CampaignVO> detailList = cs.detailList(department);
 		ArrayList<CampaignVO> rate = cs.campaignRate();
 		ArrayList<CampaignVO> period = cs.businessPeriod();
@@ -100,7 +104,8 @@ public class CampaignController {
 		model.addAttribute("fulfil", fulfil);
 		model.addAttribute("cnt", cnt);
 
-		log.info(result.toString());
+		//log.info(result.toString().replaceAll("<", "{").replaceAll(">", "}"));
+		log.info(resultJson.toString());
 
 		return "/dashboard/campaign";
 
