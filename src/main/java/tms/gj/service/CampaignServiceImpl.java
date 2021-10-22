@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import jdk.internal.org.jline.utils.Log;
 import lombok.AllArgsConstructor;
 import tms.gj.domain.CampaignVO;
 import tms.gj.mapper.CampaignMapper;
@@ -59,45 +60,16 @@ public class CampaignServiceImpl implements CampaignService {
 		}
 		URI uri = URI.create(apiUrl);
 
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.set("user-agent",
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36");
-		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
+		//HttpHeaders headers = new HttpHeaders();
+		//headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+		//headers.setContentType(MediaType.APPLICATION_JSON);
+		//headers.set("user-agent",
+				//"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36");
+		//HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
+		String result = restTemplate.getForObject(uri, String.class);
 		
-		String resultJson = result.toString().substring(5, 15852);
-		
-		
-		return resultJson;
+		return result;
 	}
 	
-	/*
-	 * @Override public ResponseEntity<Object> getCampaign(String department) {
-	 * 
-	 * RestTemplate restTemplate = new RestTemplate();
-	 * restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
-	 * 
-	 * HttpHeaders header = new HttpHeaders(); HttpEntity<?> entity = new
-	 * HttpEntity<>(header);
-	 * 
-	 * String url = "http://localhost:8080/vurix-dms/api/v1/dbData/getCampaign";
-	 * UriComponents uri = UriComponentsBuilder.fromHttpUrl(url + "?" + "department"
-	 * + department).build();
-	 * 
-	 * ResponseEntity<Object> exchange = restTemplate.exchange(uri.toString(),
-	 * HttpMethod.GET, entity, Object.class);
-	 * 
-	 * System.out.println("exchange = " + exchange);
-	 * 
-	 * HttpStatus statusCode = exchange.getStatusCode(); //상태코드확인 HttpHeaders
-	 * headers = exchange.getHeaders(); //헤더정보확인 Object body = exchange.getBody();
-	 * //바디정보확인
-	 * 
-	 * return exchange;
-	 * 
-	 * }
-	 */
 	
 }
