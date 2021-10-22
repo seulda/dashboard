@@ -15,7 +15,7 @@ public class CampaignVO {
 	private String businessPeriod;		// 사업기간
 	private String department;			// 부서
 	private String section;				// 담당
-	private String manager;				// 담당자
+	private int manager;				// 담당자
 	private String fulfil;				// 자체점검 - 이행도
 	private int rate;       			// 자체점검 - 이행률
 	
