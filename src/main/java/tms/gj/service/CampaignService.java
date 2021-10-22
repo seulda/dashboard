@@ -16,6 +16,9 @@ public interface CampaignService {
 	public ArrayList<CampaignVO> detailList(String department);
 	// 부서별 진행현황(완료,추진중,보류,폐기) 갯수
 	public ArrayList<CampaignVO> cnt(String department);
+	
+	//go 서버 연결
+	public String getCampaignAPI(String department);
 
 
 }

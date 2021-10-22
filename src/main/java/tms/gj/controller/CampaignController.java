@@ -23,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import tms.gj.domain.CampaignVO;
+import tms.gj.domain.PopulationVO;
 import tms.gj.service.CampaignService;
 
 
@@ -78,66 +79,105 @@ public class CampaignController {
 	@GetMapping("/goCampaign")
 	public String goCampaign(@RequestParam(value = "department", required = false) String department, Model model)
 			throws Exception {
-
-		RestTemplate restTemplate = new RestTemplate();
-
-		URI uri = URI.create("http://localhost:8080/vurix-dms/api/v1/dbData/getCampaign");
-		HttpHeaders headers = new HttpHeaders();
-		headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-		headers.setContentType(MediaType.APPLICATION_JSON);
-		headers.set("user-agent",
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36");
-		HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		ResponseEntity<String> result = restTemplate.exchange(uri, HttpMethod.GET, entity, String.class);
 		
-		String resultJson = result.toString().substring(5, 15848);
-		
-		ArrayList<CampaignVO> detailList = cs.detailList(department);
-		ArrayList<CampaignVO> rate = cs.campaignRate();
-		ArrayList<CampaignVO> period = cs.businessPeriod();
-		ArrayList<CampaignVO> fulfil = cs.fulfil();
-		ArrayList<CampaignVO> cnt = cs.cnt(department);
+		//vo====================================================================
+		ArrayList<CampaignVO> cnt = new ArrayList<CampaignVO>();
+		ArrayList<CampaignVO> detailList = new ArrayList<CampaignVO>();
+		ArrayList<CampaignVO> fulfil = new ArrayList<CampaignVO>();
+		ArrayList<CampaignVO> period = new ArrayList<CampaignVO>();
+		ArrayList<CampaignVO> rate = new ArrayList<CampaignVO>();
 
+		//service연결
+		String result = cs.getCampaignAPI(department);
+		
+		//json==================================================================
+		JSONObject jObject = new JSONObject(result);
+		log.info("jObject:"+ result);
+		int codeObject = jObject.getInt("code");
+		String messageObject = jObject.getString("message");
+		String responseTimeObject = jObject.getString("responseTime");
+		JSONObject responseObject = jObject.getJSONObject("response");
+		log.info("[go campaignAPI] response codeObject : " + codeObject
+				+ " / messageObject : " + messageObject + " / responseTimeObject : " + responseTimeObject);
+		
+		JSONObject resultsObject = responseObject.getJSONObject("results");
+		JSONArray cntObject = resultsObject.getJSONArray("cnt");
+		JSONArray detailListObject = resultsObject.getJSONArray("detailList");
+		JSONArray fulfilObject = resultsObject.getJSONArray("fulfil");
+		JSONArray periodObject = resultsObject.getJSONArray("period");
+		JSONArray rateObject = resultsObject.getJSONArray("rate");
+		
+		String[] objectKey = { "rate", "period", "fulfil", "detailList", "cnt"  };
+		int[] objectLength = { rateObject.length(), periodObject.length(), fulfilObject.length(), detailListObject.length(), cntObject.length() };
+
+		for (int i = 0; i < 5; i++) {
+
+			ArrayList<CampaignVO> list = new ArrayList<CampaignVO>();
+			JSONArray itemArray = resultsObject.getJSONArray(objectKey[i]);
+			
+			for (int j = 0; j < objectLength[i]; j++) {
+				
+				CampaignVO cvo = new CampaignVO();
+				JSONObject iobj = itemArray.getJSONObject(j);
+				
+				if(iobj.has("avgRate")) {
+					cvo.setAvgRate(iobj.getInt("avgRate"));
+				}
+				if(iobj.has("businessPeriod")) {
+					cvo.setBusinessPeriod(iobj.getString("businessPeriod")); 
+				}
+				if(iobj.has("department")) {
+					cvo.setDepartment(iobj.getString("department"));
+				}
+				if(iobj.has("fulfil")) {
+					cvo.setFulfil(iobj.getString("fulfil"));
+				}
+				if(iobj.has("manager")) {
+					cvo.setManager(iobj.getInt("manager"));
+				}
+				if(iobj.has("name")) {
+					cvo.setName(iobj.getString("name"));
+				}
+				if(iobj.has("rate")) {
+					cvo.setRate(iobj.getInt("rate"));
+				}
+				if(iobj.has("cnt")) {
+					cvo.setCnt(iobj.getInt("cnt"));
+				}
+				if(iobj.has("section")) {
+					cvo.setSection(iobj.getString("section"));
+				}
+					
+				list.add(cvo);
+			}
+			
+			switch (i) {
+				case 0: 
+					rate = list;
+					break;
+				case 1: 
+					period = list;
+					break;
+				case 2: 
+					fulfil = list;
+					break;
+				case 3: 
+					detailList = list;
+					break;
+				case 4: 
+					cnt = list;
+					break;	
+			}
+		}
+		
 		model.addAttribute("detailList", detailList);
 		model.addAttribute("rate", rate);
 		model.addAttribute("period", period);
 		model.addAttribute("fulfil", fulfil);
 		model.addAttribute("cnt", cnt);
 
-		//log.info(result.toString().replaceAll("<", "{").replaceAll(">", "}"));
-		log.info(resultJson.toString());
-
 		return "/dashboard/campaign";
 
-	}
-	 
-	/*
-	 @GetMapping("/goCampaign") 
-	 public String goCampaign(@RequestParam(value ="department",required = false) String department,Model model) throws Exception {
-	 
-		    List<HttpMessageConverter<?>> converters = new ArrayList<HttpMessageConverter<?>>();
-		    converters.add(new FormHttpMessageConverter());
-		    converters.add(new StringHttpMessageConverter());
-		 
-		    RestTemplate restTemplate = new RestTemplate();
-		    restTemplate.setMessageConverters(converters);
-		 
-		    // parameter 세팅
-		    MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-		    map.add("str", "thisistest");
-		 
-		    // REST API 호출
-		    String result = restTemplate.postForObject("http://localhost:8080/vurix-dms/api/v1/dbData/getCampaign", map, String.class);
-		    System.out.println("------------------ TEST 결과 ------------------");
-		    System.out.println(result);
-
-
-	  
-	 return "/dashboard/campaign";
-	  
-	 }
-	 */
-	
-	
+	}	
 	
 }
