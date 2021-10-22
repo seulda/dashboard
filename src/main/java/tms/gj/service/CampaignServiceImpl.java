@@ -2,17 +2,10 @@ package tms.gj.service;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.AllArgsConstructor;
 import tms.gj.domain.CampaignVO;
 import tms.gj.mapper.CampaignMapper;
@@ -54,7 +47,7 @@ public class CampaignServiceImpl implements CampaignService {
 		
 		RestTemplate restTemplate = new RestTemplate();
 
-		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getCampaign";
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/campaign/getCampaign";
 		if (department != null) {
 			apiUrl = apiUrl + "?department=" + department;
 		}

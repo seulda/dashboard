@@ -208,7 +208,7 @@ public class PopulationServiceImpl implements PopulationService {
 	@Override
 	public String getPopulationAPI(String dong) throws IOException {
 		
-		StringBuilder apiUrl = new StringBuilder("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
+		StringBuilder apiUrl = new StringBuilder("http://localhost:8080/vurix-dms/api/v1/population/getPopulation");
 		if (dong != null) {
 			apiUrl.append("?dong=").append(dong);
 		}
@@ -240,7 +240,7 @@ public class PopulationServiceImpl implements PopulationService {
 	@Override
 	public String getPopulationAPI_REST(String dong) throws IOException {
 		
-		StringBuilder apiUrl = new StringBuilder("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
+		StringBuilder apiUrl = new StringBuilder("http://localhost:8080/vurix-dms/api/v1/population/getPopulation");
 		if (dong != null) {
 			apiUrl.append("?dong=").append(dong);
 		}
