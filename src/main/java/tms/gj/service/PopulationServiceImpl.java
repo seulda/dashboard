@@ -7,9 +7,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import lombok.AllArgsConstructor;
 import tms.gj.domain.ItemVO;
@@ -208,14 +212,13 @@ public class PopulationServiceImpl implements PopulationService {
 		if (dong != null) {
 			apiUrl = apiUrl + "?dong=" + dong;
 		}
-		
 		URL url = new URL(apiUrl);
+		
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Content-type", "application/json");
         System.out.println("Go getPopulationApi Response code: " + conn.getResponseCode());
-        BufferedReader rd;
-        rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 //        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
 //            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 //        } else {
@@ -229,17 +232,38 @@ public class PopulationServiceImpl implements PopulationService {
         rd.close();
         conn.disconnect();
         
+//		System.out.println("getPopulationAPI result: " + sb.toString());
+        
         return sb.toString();
 	}
+	
 	@Override
-	public void getPopulationAPI_REST() throws IOException {
-		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
-//		if (dong != null) {
-//			apiUrl = apiUrl + "?dong=" + dong;
-//		}
+	public String getPopulationAPI_REST(String dong) throws IOException {
 		
-		URL url = new URL(apiUrl);
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+		if (dong != null) {
+			apiUrl = apiUrl + "?dong=" + dong;
+		}
+//		URL url = new URL(apiUrl);
 
+		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+		factory.setReadTimeout(5000);    								// 읽기 시간 초과
+		factory.setConnectTimeout(3000); 								// 호출 (연결) 시간 초과
+		HttpClient httpClient = HttpClientBuilder.create()
+				.setMaxConnTotal(100) 									// connection pool 적용
+				.setMaxConnPerRoute(5)  								// connection pool 적용
+				.build();
+		factory.setHttpClient(httpClient); 								// 동기실행에 사용될 HttpClient 세팅
+		RestTemplate restTemplate = new RestTemplate(factory);
+
+		//요청 후 응답
+		String response = restTemplate.getForObject(apiUrl, String.class);
+//		System.out.println("RestTemplate Test result: " + response.toString());
+
+		//Object ObjectResult = restTemplate.getForObject(apiUrl, Object.class);
+		//System.out.println("RestTemplate Test object result: " + ObjectResult);
+		
+		return response.toString();
 	}
 	
 	

@@ -36,7 +36,7 @@ public interface PopulationService {
 	
 	// go server : getPopulation API
 	public String getPopulationAPI(String dong) throws IOException;
-	public void getPopulationAPI_REST() throws IOException;
+	public String getPopulationAPI_REST(String dong) throws IOException;
 	
 	// go 연도별 변화요인
 	public ArrayList<ItemVO> go_year_item(JSONArray yi_before);

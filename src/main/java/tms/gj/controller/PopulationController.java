@@ -95,6 +95,11 @@ public class PopulationController {
 	@GetMapping("/goPopulation")
 	public String goPopulation(Model model, @RequestParam(value = "dn", required = false) String dn) throws IOException {
 		
+		log.info("===== getPopulationAPI_REST TEST START =====");
+		String result1 = ps.getPopulationAPI_REST(dn);
+		log.info("@@@ reset1 result : " + result1);
+		log.info("=====  getPopulationAPI_REST TEST END  =====");
+		
 		String result = ps.getPopulationAPI(dn);
 		
 		ArrayList<PopulationVO> yc2021 = new ArrayList<PopulationVO>();
