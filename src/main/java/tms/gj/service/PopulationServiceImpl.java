@@ -208,11 +208,11 @@ public class PopulationServiceImpl implements PopulationService {
 	@Override
 	public String getPopulationAPI(String dong) throws IOException {
 		
-		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+		StringBuilder apiUrl = new StringBuilder("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
 		if (dong != null) {
-			apiUrl = apiUrl + "?dong=" + dong;
+			apiUrl.append("?dong=").append(dong);
 		}
-		URL url = new URL(apiUrl);
+		URL url = new URL(apiUrl.toString());
 		
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -240,28 +240,29 @@ public class PopulationServiceImpl implements PopulationService {
 	@Override
 	public String getPopulationAPI_REST(String dong) throws IOException {
 		
-		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation";
+		StringBuilder apiUrl = new StringBuilder("http://localhost:8080/vurix-dms/api/v1/dbData/getPopulation");
 		if (dong != null) {
-			apiUrl = apiUrl + "?dong=" + dong;
+			apiUrl.append("?dong=").append(dong);
 		}
-//		URL url = new URL(apiUrl);
 
-		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-		factory.setReadTimeout(5000);    								// 읽기 시간 초과
-		factory.setConnectTimeout(3000); 								// 호출 (연결) 시간 초과
-		HttpClient httpClient = HttpClientBuilder.create()
-				.setMaxConnTotal(100) 									// connection pool 적용
-				.setMaxConnPerRoute(5)  								// connection pool 적용
-				.build();
-		factory.setHttpClient(httpClient); 								// 동기실행에 사용될 HttpClient 세팅
-		RestTemplate restTemplate = new RestTemplate(factory);
+//		HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+//		factory.setReadTimeout(5000);    								// 읽기 시간 초과
+//		factory.setConnectTimeout(3000); 								// 호출 (연결) 시간 초과
+//		HttpClient httpClient = HttpClientBuilder.create()
+//				.setMaxConnTotal(100) 									// connection pool 적용
+//				.setMaxConnPerRoute(5)  								// connection pool 적용
+//				.build();
+//		factory.setHttpClient(httpClient); 								// 동기실행에 사용될 HttpClient 세팅
+//		RestTemplate restTemplate = new RestTemplate(factory);
+		
+		RestTemplate restTemplate = new RestTemplate();
 
 		//요청 후 응답
-		String response = restTemplate.getForObject(apiUrl, String.class);
+		String response = restTemplate.getForObject(apiUrl.toString(), String.class);
 //		System.out.println("RestTemplate Test result: " + response.toString());
 
-		//Object ObjectResult = restTemplate.getForObject(apiUrl, Object.class);
-		//System.out.println("RestTemplate Test object result: " + ObjectResult);
+//		Object ObjectResult = restTemplate.getForObject(apiUrl, Object.class);
+//		System.out.println("RestTemplate Test object result: " + ObjectResult);
 		
 		return response.toString();
 	}
