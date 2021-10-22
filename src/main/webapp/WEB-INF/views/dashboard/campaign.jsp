@@ -274,7 +274,7 @@
 <script>
 	function pop(department) {
 
-		location.href = '${ pageContext.request.contextPath}/campaign?department='
+		location.href = '${ pageContext.request.contextPath}?department='
 				+ department;
 
 	}
