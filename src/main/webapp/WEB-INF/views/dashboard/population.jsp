@@ -38,7 +38,6 @@
 						<div class="card shadow mb-0">
 							<div class="card-body">
 								<h5><a href="${pageContext.request.contextPath}" style="text-decoration:none; color:black;">거제시 전체</a></h5>
-								<!-- <span onClick="dongClick('dong01')">거제면 TEST</span> -->
 								<div style="position:relative; width:565px; margin:auto; padding-left:3vh">
 									<span style="text-align:center; position:absolute; z-index:1; left:28%; top:49%; padding-left:2vh"><a href="${pageContext.request.contextPath}?dn=거제면" style="text-decoration: none; color:black;">거제면</a></span>
 									<span style="text-align:center; position:absolute; z-index:1; left:37%; top:44%; padding-left:2vh"><a href="${pageContext.request.contextPath}?dn=고현동" style="text-decoration: none; color:black;">고현동</a></span>
@@ -78,6 +77,7 @@
 								</div>
 							</div>
 						</div>
+						<!-- /.card -->
 						
 						
 						<div class="card shadow mb-0">
@@ -89,7 +89,6 @@
 									<div id="barChart"></div>
 								</div>
 							</div>
-							<!-- /.card-body -->
 						</div>
 						<!-- /.card -->
 						
@@ -103,7 +102,6 @@
 									<div id="lineChart"></div>
 								</div>
 							</div>
-							<!-- /.card-body -->
 						</div>
 						<!-- /.card -->
 						

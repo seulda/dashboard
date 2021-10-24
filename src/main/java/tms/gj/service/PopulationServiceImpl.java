@@ -269,14 +269,14 @@ public class PopulationServiceImpl implements PopulationService {
 	
 	
 	@Override
-	public ArrayList<ItemVO> go_year_item(JSONArray yiObject) {
+	public ArrayList<ItemVO> go_year_item(JSONArray yiArray) {
 		
 		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
 		
-		for (int i = 0; i <  yiObject.length(); i++) {
+		for (int i = 0; i <  yiArray.length(); i++) {
 			
 			ItemVO ivo = new ItemVO();
-			JSONObject iobj = yiObject.getJSONObject(i);
+			JSONObject iobj = yiArray.getJSONObject(i);
 
 			ivo.setYear(iobj.getInt("year"));
 			ivo.setItem(iobj.getString("item"));
