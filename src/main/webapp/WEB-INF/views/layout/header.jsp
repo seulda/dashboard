@@ -36,12 +36,22 @@
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
 							  <a class="nav-link" href="/campaign">
-							    <span class="ml-lg-2">100대 공약사항 이행 현황</span>
+							    <span class="ml-lg-2">100대 공약사항 이행 현황&nbsp;</span>
+							  </a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="/goCampaign">
+							    <span class="ml-lg-2">(go)100대 공약사항 이행 현황&nbsp;</span>
 							  </a>
 							</li>
 							<li class="nav-item">
 							  <a class="nav-link" href="/population">
-							    <span class="ml-lg-2">인구 현황</span>
+							    <span class="ml-lg-2">인구 현황&nbsp;</span>
+							  </a>
+							</li>
+							<li class="nav-item">
+							  <a class="nav-link" href="/goPopulation">
+							    <span class="ml-lg-2">(go)인구 현황&nbsp;</span>
 							  </a>
 							</li>
 						</ul>
