@@ -4,8 +4,11 @@ import java.net.URI;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import jdk.internal.org.jline.utils.Log;
 import lombok.AllArgsConstructor;
 import tms.gj.domain.CampaignVO;
 import tms.gj.mapper.CampaignMapper;
@@ -46,7 +49,7 @@ public class CampaignServiceImpl implements CampaignService {
 	public String getCampaignAPI(String department) {
 		
 		RestTemplate restTemplate = new RestTemplate();
-
+		
 		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/campaign/getCampaign";
 		if (department != null) {
 			apiUrl = apiUrl + "?department=" + department;
@@ -59,9 +62,35 @@ public class CampaignServiceImpl implements CampaignService {
 		//headers.set("user-agent",
 				//"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.121 Safari/537.36");
 		//HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
-		String result = restTemplate.getForObject(uri, String.class);
+		String result ="";
+		try {
+			result = restTemplate.getForObject(uri, String.class);
+			
+		} catch (RestClientException e) {
+			 System.out.printf("restTemplate error : [uri = %s]\n [error=%s]",uri,e);
+		}
 		
 		return result;
+		
+	}
+	@Override
+	public void getCampaignVoAPI(String department) {
+		
+		RestTemplate restTemplate = new RestTemplate();
+		
+		//ArrayList<CampaignVO> cvo = new ArrayList<CampaignVO>();
+		
+		String apiUrl = "http://localhost:8080/vurix-dms/api/v1/campaign/getCampaign";
+		if (department != null) {
+			apiUrl = apiUrl + "?department=" + department;
+		}
+		URI uri = URI.create(apiUrl);
+
+		//ArrayList<CampaignVO> result = (ArrayList<CampaignVO>) restTemplate.getForObject(uri, Object.class);
+		Object result = restTemplate.getForObject(uri, Object.class);
+		System.out.println("result"+result);
+		
+		//return result;
 	}
 	
 	

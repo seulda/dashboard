@@ -180,4 +180,14 @@ public class CampaignController {
 
 	}	
 	
+	@GetMapping("/goCampaignVo")
+	public String goCampaignVo(@RequestParam(value = "department", required = false) String department, Model model) throws Exception {
+		
+		//ArrayList<CampaignVO> result = cs.getCampaignVoAPI(department);
+		 cs.getCampaignVoAPI(department);
+		
+		return "/dashboard/campaign";
+
+	}
+	
 }

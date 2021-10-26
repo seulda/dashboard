@@ -19,6 +19,8 @@ public interface CampaignService {
 	
 	//go 서버 연결
 	public String getCampaignAPI(String department);
+	
+	public void getCampaignVoAPI(String department);
 
 
 }

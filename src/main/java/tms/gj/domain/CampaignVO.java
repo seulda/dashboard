@@ -1,11 +1,15 @@
 package tms.gj.domain;
 
+import java.awt.List;
+
 import lombok.Data;
 import lombok.Getter;
 
 @Data
 @Getter
 public class CampaignVO {
+	
+	private List campaignList;
 
 	//private int idx;					// number
 	private String category;			// 분류
@@ -25,5 +29,6 @@ public class CampaignVO {
 	int avgRate;                        //평균 이행 현황
 	
 	int cnt;                            //진행현황 갯수(완료,추진중,보류,폐기)
+	
 
 }
