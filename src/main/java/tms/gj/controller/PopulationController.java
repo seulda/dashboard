@@ -1,4 +1,4 @@
-	package tms.gj.controller;
+package tms.gj.controller;
 
 
 import java.io.IOException;
@@ -96,15 +96,15 @@ public class PopulationController {
 	@GetMapping("/goPopulation")
 	public String goPopulation(Model model, @RequestParam(value = "dn", required = false) String dn) throws IOException {
 		
-//		String result = ps.getPopulationAPI(dn);
-		String result = ps.getPopulationAPI_REST(dn);
-		
 		ArrayList<PopulationVO> yc2021 = new ArrayList<PopulationVO>();
 		ArrayList<PopulationVO> yc = new ArrayList<PopulationVO>();
 		ArrayList<PopulationVO> ys = new ArrayList<PopulationVO>();
 		ArrayList<PopulationVO> ya = new ArrayList<PopulationVO>();
 		ArrayList<ItemVO> yi = new ArrayList<ItemVO>();
 		
+		// go API 요청
+//		String result = ps.getPopulationAPI(dn);
+		String result = ps.getPopulationAPI_REST(dn);
 		
 		// ==================== json 작업 start ====================
 		
@@ -129,7 +129,7 @@ public class PopulationController {
 		String[] objectKey = { "yc2021", "yc", "ys", "ya" };
 		int[] objectLength = { yc2021Object.length(), ycObject.length(), ysObject.length(), yaObject.length() };
 		
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < objectKey.length; i++) {
 
 			ArrayList<PopulationVO> list = new ArrayList<PopulationVO>();
 			JSONArray itemArray = resultsObject.getJSONArray(objectKey[i]);

@@ -4,11 +4,9 @@ import java.net.URI;
 import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.AllArgsConstructor;
 import tms.gj.domain.CampaignVO;
 import tms.gj.mapper.CampaignMapper;
